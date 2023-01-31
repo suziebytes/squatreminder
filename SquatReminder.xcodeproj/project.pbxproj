@@ -9,14 +9,17 @@
 /* Begin PBXBuildFile section */
 		B0ACB02B298883F000664508 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB02A298883F000664508 /* AppDelegate.swift */; };
 		B0ACB02D298883F000664508 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB02C298883F000664508 /* SceneDelegate.swift */; };
-		B0ACB02F298883F000664508 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB02E298883F000664508 /* ViewController.swift */; };
-		B0ACB032298883F000664508 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0ACB030298883F000664508 /* Main.storyboard */; };
+		B0ACB02F298883F000664508 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB02E298883F000664508 /* HomeVC.swift */; };
 		B0ACB035298883F000664508 /* SquatReminder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB033298883F000664508 /* SquatReminder.xcdatamodeld */; };
 		B0ACB037298883F200664508 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0ACB036298883F200664508 /* Assets.xcassets */; };
-		B0ACB03A298883F200664508 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0ACB038298883F200664508 /* LaunchScreen.storyboard */; };
 		B0ACB045298883F200664508 /* SquatReminderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB044298883F200664508 /* SquatReminderTests.swift */; };
 		B0ACB04F298883F200664508 /* SquatReminderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB04E298883F200664508 /* SquatReminderUITests.swift */; };
 		B0ACB051298883F200664508 /* SquatReminderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB050298883F200664508 /* SquatReminderUITestsLaunchTests.swift */; };
+		B0ACB06A2988D77400664508 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB0692988D77400664508 /* Buttons.swift */; };
+		B0ACB06C29897DEA00664508 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB06B29897DEA00664508 /* ColorManager.swift */; };
+		B0ACB06E298985FF00664508 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB06D298985FF00664508 /* TodayView.swift */; };
+		B0ACB0702989860800664508 /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB06F2989860800664508 /* WeekView.swift */; };
+		B0ACB0722989860F00664508 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB0712989860F00664508 /* MonthView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,17 +43,20 @@
 		B0ACB027298883F000664508 /* SquatReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SquatReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0ACB02A298883F000664508 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0ACB02C298883F000664508 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B0ACB02E298883F000664508 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B0ACB031298883F000664508 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B0ACB02E298883F000664508 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		B0ACB034298883F000664508 /* SquatReminder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SquatReminder.xcdatamodel; sourceTree = "<group>"; };
 		B0ACB036298883F200664508 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B0ACB039298883F200664508 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0ACB03B298883F200664508 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0ACB040298883F200664508 /* SquatReminderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SquatReminderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0ACB044298883F200664508 /* SquatReminderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquatReminderTests.swift; sourceTree = "<group>"; };
 		B0ACB04A298883F200664508 /* SquatReminderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SquatReminderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0ACB04E298883F200664508 /* SquatReminderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquatReminderUITests.swift; sourceTree = "<group>"; };
 		B0ACB050298883F200664508 /* SquatReminderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquatReminderUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B0ACB0692988D77400664508 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		B0ACB06B29897DEA00664508 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
+		B0ACB06D298985FF00664508 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+		B0ACB06F2989860800664508 /* WeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
+		B0ACB0712989860F00664508 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,10 +109,10 @@
 			children = (
 				B0ACB02A298883F000664508 /* AppDelegate.swift */,
 				B0ACB02C298883F000664508 /* SceneDelegate.swift */,
-				B0ACB02E298883F000664508 /* ViewController.swift */,
-				B0ACB030298883F000664508 /* Main.storyboard */,
+				B0ACB06B29897DEA00664508 /* ColorManager.swift */,
+				B0ACB05D29888CFB00664508 /* Home */,
+				B0ACB05E29888D0700664508 /* Settings */,
 				B0ACB036298883F200664508 /* Assets.xcassets */,
-				B0ACB038298883F200664508 /* LaunchScreen.storyboard */,
 				B0ACB03B298883F200664508 /* Info.plist */,
 				B0ACB033298883F000664508 /* SquatReminder.xcdatamodeld */,
 			);
@@ -128,6 +134,49 @@
 				B0ACB050298883F200664508 /* SquatReminderUITestsLaunchTests.swift */,
 			);
 			path = SquatReminderUITests;
+			sourceTree = "<group>";
+		};
+		B0ACB05D29888CFB00664508 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B0ACB0682988D6E800664508 /* Controller */,
+				B0ACB0662988D58A00664508 /* View */,
+				B0ACB0652988D57800664508 /* Model */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B0ACB05E29888D0700664508 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		B0ACB0652988D57800664508 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B0ACB0662988D58A00664508 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B0ACB0692988D77400664508 /* Buttons.swift */,
+				B0ACB06D298985FF00664508 /* TodayView.swift */,
+				B0ACB06F2989860800664508 /* WeekView.swift */,
+				B0ACB0712989860F00664508 /* MonthView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B0ACB0682988D6E800664508 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B0ACB02E298883F000664508 /* HomeVC.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,9 +283,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0ACB03A298883F200664508 /* LaunchScreen.storyboard in Resources */,
 				B0ACB037298883F200664508 /* Assets.xcassets in Resources */,
-				B0ACB032298883F000664508 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,9 +308,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0ACB02F298883F000664508 /* ViewController.swift in Sources */,
+				B0ACB0702989860800664508 /* WeekView.swift in Sources */,
+				B0ACB06A2988D77400664508 /* Buttons.swift in Sources */,
+				B0ACB02F298883F000664508 /* HomeVC.swift in Sources */,
 				B0ACB02B298883F000664508 /* AppDelegate.swift in Sources */,
+				B0ACB06E298985FF00664508 /* TodayView.swift in Sources */,
+				B0ACB06C29897DEA00664508 /* ColorManager.swift in Sources */,
 				B0ACB035298883F000664508 /* SquatReminder.xcdatamodeld in Sources */,
+				B0ACB0722989860F00664508 /* MonthView.swift in Sources */,
 				B0ACB02D298883F000664508 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,25 +351,6 @@
 			targetProxy = B0ACB04B298883F200664508 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		B0ACB030298883F000664508 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B0ACB031298883F000664508 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		B0ACB038298883F200664508 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B0ACB039298883F200664508 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B0ACB052298883F200664508 /* Debug */ = {
@@ -446,9 +479,9 @@
 				INFOPLIST_FILE = SquatReminder/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -456,9 +489,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.susiechhuor.SquatReminder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -474,9 +510,9 @@
 				INFOPLIST_FILE = SquatReminder/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -484,9 +520,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.susiechhuor.SquatReminder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
