@@ -14,13 +14,14 @@ class TodayView: UIView {
     let currentSquatLabel = UILabel()
     let dailySquatButton = Buttons()
     let dailySquatLabel = UILabel()
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupTodayLabel()
         setupCurrentLabel()
         setupCurrentSquatButton()
         setupDailyButton()
+        setupDailyLabel()
         setupCurrentLabel()
     }
     
@@ -59,7 +60,6 @@ class TodayView: UIView {
         currentSquatLabel.textColor = .white
         currentSquatLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 12.0) ?? nil
         currentSquatLabel.text = "SQUATTED"
-        
         currentSquatLabel.translatesAutoresizingMaskIntoConstraints = false
         currentSquatLabel.bottomAnchor.constraint(equalTo: currentSquatButton.bottomAnchor, constant: -5).isActive = true
         currentSquatLabel.centerXAnchor.constraint(equalTo: currentSquatButton.centerXAnchor).isActive = true
@@ -76,7 +76,7 @@ class TodayView: UIView {
         dailySquatButton.translatesAutoresizingMaskIntoConstraints = false
         dailySquatButton.heightAnchor.constraint(equalToConstant: 130).isActive = true
         dailySquatButton.widthAnchor.constraint(equalToConstant: 130).isActive = true
-        dailySquatButton.leftAnchor.constraint(equalTo: currentSquatButton.rightAnchor, constant: 10).isActive = true
+        dailySquatButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
         dailySquatButton.topAnchor.constraint(equalTo: todayLabel.bottomAnchor, constant: 10).isActive = true
     }
     
@@ -85,9 +85,8 @@ class TodayView: UIView {
         dailySquatLabel.textColor = .white
         dailySquatLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 12.0)
         dailySquatLabel.text = "DAILY GOAL"
-        
         dailySquatLabel.translatesAutoresizingMaskIntoConstraints = false
+        dailySquatLabel.bottomAnchor.constraint(equalTo: dailySquatButton.bottomAnchor, constant: -5).isActive = true
+        dailySquatLabel.centerXAnchor.constraint(equalTo: dailySquatButton.centerXAnchor).isActive = true
     }
-    
-  
 }
