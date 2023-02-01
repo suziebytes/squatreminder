@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate, UITableViewDelegate {
     
     var window: UIWindow?

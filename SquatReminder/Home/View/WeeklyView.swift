@@ -14,10 +14,11 @@ class WeeklyView: UIView {
     let weeklyLabel = UILabel()
     let barChart = BarChartView()
     let stackView = UIStackView()
-    
+    let cardView = CardView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupCardView()
         configureStackView()
         setupStackView()
         setupWeeklyLabel()
@@ -28,6 +29,7 @@ class WeeklyView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+
     //MARK: STACKVIEW
     func configureStackView() {
         addSubview(stackView)
@@ -43,12 +45,11 @@ class WeeklyView: UIView {
     
     func setupStackView(){
         stackView.addArrangedSubview(weeklyLabel)
-        stackView.addArrangedSubview(barChart)
+        stackView.addArrangedSubview(cardView)
     }
-     
+    
     //MARK: LABEL
     func setupWeeklyLabel() {
-//        addSubview(weeklyLabel)
         weeklyLabel.text = "W E E K L Y"
         weeklyLabel.textColor = .black
         weeklyLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 25.0)
@@ -57,8 +58,18 @@ class WeeklyView: UIView {
     }
     
     //MARK: CHART
+    
+    func setupCardView() {
+        addSubview(cardView)
+        cardView.translatesAutoresizingMaskIntoConstraints = false
+        cardView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        cardView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        
+    }
+    
     func setupBarChart(){
-//        addSubview(barChart)
+        //        addSubview(barChart)
+        cardView.addSubview(barChart)
         let mockBarChartDataSet: BarChartView.DataSet? = BarChartView.DataSet(elements: [
             BarChartView.DataSet.DataElement(date: nil, xLabel: "SUN", bars:
                                                 [BarChartView.DataSet.DataElement.Bar(value: 20000, color: colors.lightPurple)]),
@@ -76,11 +87,14 @@ class WeeklyView: UIView {
                                                 [BarChartView.DataSet.DataElement.Bar(value: 20000, color: colors.lightPurple)])
         ], selectionColor: colors.darkPurple)
         
-        barChart.barWidth = 20
+        barChart.barWidth = 30
         
         barChart.dataSet = mockBarChartDataSet
         barChart.translatesAutoresizingMaskIntoConstraints = false
         barChart.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        barChart.topAnchor.constraint(equalTo: cardView.topAnchor).isActive = true
+        barChart.bottomAnchor.constraint(equalTo: cardView.bottomAnchor).isActive = true
+        barChart.widthAnchor.constraint(equalTo: cardView.widthAnchor).isActive = true
         
     }
 }

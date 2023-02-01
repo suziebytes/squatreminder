@@ -23,6 +23,7 @@
 		B0ACB0782989BBB900664508 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB0772989BBB900664508 /* SettingsVC.swift */; };
 		B0ACB07A2989DAA200664508 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB0792989DAA200664508 /* WelcomeView.swift */; };
 		B0ACB082298AEA4B00664508 /* BarChartKit-static in Frameworks */ = {isa = PBXBuildFile; productRef = B0ACB081298AEA4B00664508 /* BarChartKit-static */; };
+		B0ACB086298B2B4800664508 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB085298B2B4800664508 /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		B0ACB0732989996800664508 /* WeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyView.swift; sourceTree = "<group>"; };
 		B0ACB0772989BBB900664508 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		B0ACB0792989DAA200664508 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		B0ACB085298B2B4800664508 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				B0ACB0692988D77400664508 /* Buttons.swift */,
+				B0ACB085298B2B4800664508 /* CardView.swift */,
 				B0ACB06D298985FF00664508 /* TodayView.swift */,
 				B0ACB0732989996800664508 /* WeeklyView.swift */,
 				B0ACB0712989860F00664508 /* MonthView.swift */,
@@ -332,6 +335,7 @@
 				B0ACB035298883F000664508 /* SquatReminder.xcdatamodeld in Sources */,
 				B0ACB0742989996800664508 /* WeeklyView.swift in Sources */,
 				B0ACB0722989860F00664508 /* MonthView.swift in Sources */,
+				B0ACB086298B2B4800664508 /* CardView.swift in Sources */,
 				B0ACB02D298883F000664508 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,7 +423,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -473,7 +477,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

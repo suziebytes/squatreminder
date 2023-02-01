@@ -7,13 +7,17 @@
 
 import UIKit
 
+//@available(iOS 16.0, *)
 class MonthView: UIView {
     
     let monthLabel = UILabel()
+//    let calendarView = UICalendarView()
+    let card = CardView()
     
     override init(frame: CGRect) {
         super .init(frame: frame)
         setupMonthLabel()
+//        setupCalendar()
     }
     
     required init?(coder: NSCoder) {
@@ -31,5 +35,11 @@ class MonthView: UIView {
         monthLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         monthLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
+    
+//    func setupCalendar(){
+//        addSubview(calendarView)
+//        calendarView.translatesAutoresizingMaskIntoConstraints = false
+//        calendarView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+//    }
     
 }
