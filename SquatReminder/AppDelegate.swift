@@ -8,8 +8,7 @@
 import UIKit
 import CoreData
 
-@main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UITableViewDelegate {
     
     var window: UIWindow?
     
@@ -19,8 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
-        window?.rootViewController = HomeVC()
-        
+
         return true
     }
     

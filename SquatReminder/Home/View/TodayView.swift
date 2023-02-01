@@ -33,7 +33,7 @@ class TodayView: UIView {
         addSubview(todayLabel)
         todayLabel.text = "Today"
         todayLabel.textColor = .black
-        todayLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 35.0)
+        todayLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 30.0)
         
         todayLabel.translatesAutoresizingMaskIntoConstraints = false
         todayLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
@@ -46,13 +46,14 @@ class TodayView: UIView {
         currentSquatButton.tintColor = .white
         currentSquatButton.setTitle("5", for: .normal)
         currentSquatButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        currentSquatButton.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 125)
+        currentSquatButton.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 100)
         
         currentSquatButton.translatesAutoresizingMaskIntoConstraints = false
         currentSquatButton.topAnchor.constraint(equalTo: todayLabel.bottomAnchor, constant: 10).isActive = true
-        currentSquatButton.heightAnchor.constraint(equalTo: heightAnchor, constant: 150).isActive = true
-        currentSquatButton.widthAnchor.constraint(equalToConstant: 160).isActive = true
+        currentSquatButton.heightAnchor.constraint(equalToConstant: 140).isActive = true
+        currentSquatButton.widthAnchor.constraint(equalToConstant: 145).isActive = true
         currentSquatButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
+        currentSquatButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
     func setupCurrentLabel() {
@@ -71,7 +72,7 @@ class TodayView: UIView {
         dailySquatButton.tintColor = .white
         dailySquatButton.setTitle("100", for: .normal)
         dailySquatButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        dailySquatButton.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 100)
+        dailySquatButton.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 75)
         
         dailySquatButton.translatesAutoresizingMaskIntoConstraints = false
         dailySquatButton.heightAnchor.constraint(equalToConstant: 130).isActive = true

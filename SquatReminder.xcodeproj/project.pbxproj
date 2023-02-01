@@ -18,9 +18,11 @@
 		B0ACB06A2988D77400664508 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB0692988D77400664508 /* Buttons.swift */; };
 		B0ACB06C29897DEA00664508 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB06B29897DEA00664508 /* ColorManager.swift */; };
 		B0ACB06E298985FF00664508 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB06D298985FF00664508 /* TodayView.swift */; };
-		B0ACB0702989860800664508 /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB06F2989860800664508 /* WeekView.swift */; };
 		B0ACB0722989860F00664508 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB0712989860F00664508 /* MonthView.swift */; };
 		B0ACB0742989996800664508 /* WeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB0732989996800664508 /* WeeklyView.swift */; };
+		B0ACB0782989BBB900664508 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB0772989BBB900664508 /* SettingsVC.swift */; };
+		B0ACB07A2989DAA200664508 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB0792989DAA200664508 /* WelcomeView.swift */; };
+		B0ACB082298AEA4B00664508 /* BarChartKit-static in Frameworks */ = {isa = PBXBuildFile; productRef = B0ACB081298AEA4B00664508 /* BarChartKit-static */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,9 +58,10 @@
 		B0ACB0692988D77400664508 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		B0ACB06B29897DEA00664508 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		B0ACB06D298985FF00664508 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
-		B0ACB06F2989860800664508 /* WeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
 		B0ACB0712989860F00664508 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
 		B0ACB0732989996800664508 /* WeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyView.swift; sourceTree = "<group>"; };
+		B0ACB0772989BBB900664508 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		B0ACB0792989DAA200664508 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0ACB082298AEA4B00664508 /* BarChartKit-static in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +148,7 @@
 				B0ACB0682988D6E800664508 /* Controller */,
 				B0ACB0662988D58A00664508 /* View */,
 				B0ACB0652988D57800664508 /* Model */,
+				B0ACB0772989BBB900664508 /* SettingsVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -168,8 +173,8 @@
 				B0ACB0692988D77400664508 /* Buttons.swift */,
 				B0ACB06D298985FF00664508 /* TodayView.swift */,
 				B0ACB0732989996800664508 /* WeeklyView.swift */,
-				B0ACB06F2989860800664508 /* WeekView.swift */,
 				B0ACB0712989860F00664508 /* MonthView.swift */,
+				B0ACB0792989DAA200664508 /* WelcomeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -198,6 +203,9 @@
 			dependencies = (
 			);
 			name = SquatReminder;
+			packageProductDependencies = (
+				B0ACB081298AEA4B00664508 /* BarChartKit-static */,
+			);
 			productName = SquatReminder;
 			productReference = B0ACB027298883F000664508 /* SquatReminder.app */;
 			productType = "com.apple.product-type.application";
@@ -270,6 +278,9 @@
 				Base,
 			);
 			mainGroup = B0ACB01E298883F000664508;
+			packageReferences = (
+				B0ACB080298AEA4B00664508 /* XCRemoteSwiftPackageReference "BarChart" */,
+			);
 			productRefGroup = B0ACB028298883F000664508 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -311,12 +322,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0ACB0702989860800664508 /* WeekView.swift in Sources */,
 				B0ACB06A2988D77400664508 /* Buttons.swift in Sources */,
 				B0ACB02F298883F000664508 /* HomeVC.swift in Sources */,
 				B0ACB02B298883F000664508 /* AppDelegate.swift in Sources */,
+				B0ACB0782989BBB900664508 /* SettingsVC.swift in Sources */,
 				B0ACB06E298985FF00664508 /* TodayView.swift in Sources */,
 				B0ACB06C29897DEA00664508 /* ColorManager.swift in Sources */,
+				B0ACB07A2989DAA200664508 /* WelcomeView.swift in Sources */,
 				B0ACB035298883F000664508 /* SquatReminder.xcdatamodeld in Sources */,
 				B0ACB0742989996800664508 /* WeeklyView.swift in Sources */,
 				B0ACB0722989860F00664508 /* MonthView.swift in Sources */,
@@ -649,6 +661,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B0ACB080298AEA4B00664508 /* XCRemoteSwiftPackageReference "BarChart" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marekpridal/BarChart.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B0ACB081298AEA4B00664508 /* BarChartKit-static */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B0ACB080298AEA4B00664508 /* XCRemoteSwiftPackageReference "BarChart" */;
+			productName = "BarChartKit-static";
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		B0ACB033298883F000664508 /* SquatReminder.xcdatamodeld */ = {
