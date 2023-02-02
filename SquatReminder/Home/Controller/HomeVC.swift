@@ -5,6 +5,8 @@
 //  Created by Suzie on 1/30/23.
 //
 
+
+
 import UIKit
 import BarChartKit
 
@@ -20,8 +22,6 @@ class HomeVC: UIViewController {
     let stackView = UIStackView()
     let todayView = TodayView()
     let weeklyView = WeeklyView()
-    let monthlyView = MonthView()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,18 +35,23 @@ class HomeVC: UIViewController {
         view.addSubview(stackView)
         stackView.axis = .vertical
         stackView.distribution = .fill
-        stackView.spacing = 10
+        stackView.spacing = 7
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
-        stackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25).isActive = true
-        stackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25).isActive = true
+        stackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40).isActive = true
+        stackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -40).isActive = true
     }
     
     func addToStackView(){
         stackView.addArrangedSubview(welcomeView)
         stackView.addArrangedSubview(todayView)
         stackView.addArrangedSubview(weeklyView)
-        stackView.addArrangedSubview(monthlyView)
+        
+        if #available(iOS 16.0, *) {
+            let monthlyView = MonthView()
+            stackView.addArrangedSubview(monthlyView)
+        }
     }
-}
     
+}
+

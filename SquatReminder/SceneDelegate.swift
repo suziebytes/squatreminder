@@ -16,7 +16,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = HomeVC()
+        if #available(iOS 16.0, *) {
+            window.rootViewController = HomeVC()
+        } else {
+            // Fallback on earlier versions
+        }
         self.window = window
         window.makeKeyAndVisible()
         
@@ -28,13 +32,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         UITabBar.appearance().tintColor = .systemPink
         
+        
         let homeVC = HomeVC()
         homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
         let settingsVC = SettingsVC()
         settingsVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "slider.horizontal.3"), tag: 1)
         
         tabBarVC.viewControllers = [homeVC, settingsVC]
-        
+    
         window.rootViewController = tabBarVC
         
     }

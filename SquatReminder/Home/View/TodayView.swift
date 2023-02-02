@@ -36,7 +36,7 @@ class TodayView: UIView {
         todayLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 30.0)
         
         todayLabel.translatesAutoresizingMaskIntoConstraints = false
-        todayLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
+        todayLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         todayLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
     }
     
@@ -49,10 +49,10 @@ class TodayView: UIView {
         currentSquatButton.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 100)
         
         currentSquatButton.translatesAutoresizingMaskIntoConstraints = false
-        currentSquatButton.topAnchor.constraint(equalTo: todayLabel.bottomAnchor, constant: 10).isActive = true
+        currentSquatButton.topAnchor.constraint(equalTo: todayLabel.bottomAnchor, constant: 5).isActive = true
         currentSquatButton.heightAnchor.constraint(equalToConstant: 140).isActive = true
         currentSquatButton.widthAnchor.constraint(equalToConstant: 145).isActive = true
-        currentSquatButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
+        currentSquatButton.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         currentSquatButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
@@ -72,12 +72,12 @@ class TodayView: UIView {
         dailySquatButton.tintColor = .white
         dailySquatButton.setTitle("100", for: .normal)
         dailySquatButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        dailySquatButton.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 75)
+        dailySquatButton.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 60)
         
         dailySquatButton.translatesAutoresizingMaskIntoConstraints = false
         dailySquatButton.heightAnchor.constraint(equalToConstant: 130).isActive = true
         dailySquatButton.widthAnchor.constraint(equalToConstant: 130).isActive = true
-        dailySquatButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
+        dailySquatButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         dailySquatButton.topAnchor.constraint(equalTo: todayLabel.bottomAnchor, constant: 10).isActive = true
     }
     

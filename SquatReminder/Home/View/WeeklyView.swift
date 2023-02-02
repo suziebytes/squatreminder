@@ -35,7 +35,7 @@ class WeeklyView: UIView {
         addSubview(stackView)
         stackView.axis = .vertical
         stackView.distribution = .fill
-        stackView.spacing = 10
+        stackView.spacing = 5
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         stackView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
@@ -52,9 +52,8 @@ class WeeklyView: UIView {
     func setupWeeklyLabel() {
         weeklyLabel.text = "W E E K L Y"
         weeklyLabel.textColor = .black
-        weeklyLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 25.0)
+        weeklyLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 15.0)
         weeklyLabel.translatesAutoresizingMaskIntoConstraints = false
-        weeklyLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     //MARK: CHART
@@ -62,14 +61,11 @@ class WeeklyView: UIView {
     func setupCardView() {
         addSubview(cardView)
         cardView.translatesAutoresizingMaskIntoConstraints = false
-        cardView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        cardView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        
     }
     
     func setupBarChart(){
-        //        addSubview(barChart)
         cardView.addSubview(barChart)
+        
         let mockBarChartDataSet: BarChartView.DataSet? = BarChartView.DataSet(elements: [
             BarChartView.DataSet.DataElement(date: nil, xLabel: "SUN", bars:
                                                 [BarChartView.DataSet.DataElement.Bar(value: 20000, color: colors.lightPurple)]),
@@ -94,7 +90,8 @@ class WeeklyView: UIView {
         barChart.heightAnchor.constraint(equalToConstant: 150).isActive = true
         barChart.topAnchor.constraint(equalTo: cardView.topAnchor).isActive = true
         barChart.bottomAnchor.constraint(equalTo: cardView.bottomAnchor).isActive = true
-        barChart.widthAnchor.constraint(equalTo: cardView.widthAnchor).isActive = true
+        barChart.leftAnchor.constraint(equalTo: cardView.leftAnchor, constant: 10).isActive = true
+        barChart.rightAnchor.constraint(equalTo: cardView.rightAnchor, constant: -10).isActive = true
         
     }
 }

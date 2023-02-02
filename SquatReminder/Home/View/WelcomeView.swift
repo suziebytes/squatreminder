@@ -26,7 +26,7 @@ class WelcomeView: UIView {
         addSubview(welcomeLabel)
         welcomeLabel.textColor = colors.darkPurple
         welcomeLabel.text = "WELCOME BACK"
-        welcomeLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 25.0)
+        welcomeLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 20.0)
     
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
         welcomeLabel.topAnchor.constraint(equalTo: topAnchor, constant: 50).isActive = true
@@ -37,9 +37,9 @@ class WelcomeView: UIView {
         addSubview(nameLabel)
         nameLabel.text = "KIMBERLY"
         nameLabel.textColor = colors.lightPurple
-        nameLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 45.0)
+        nameLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 40.0)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 5).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 2).isActive = true
         nameLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
