@@ -8,7 +8,7 @@
 import UIKit
 
 @available(iOS 16.0, *)
-class MonthView: UIView {
+class MonthView: UIView, UICalendarViewDelegate {
     
     let monthLabel = UILabel()
     let calendarView = UICalendarView()
@@ -17,7 +17,6 @@ class MonthView: UIView {
     override init(frame: CGRect) {
         super .init(frame: frame)
         setupMonthLabel()
-        setupCardView()
         setupCalendar()
     }
     
@@ -27,29 +26,31 @@ class MonthView: UIView {
     
     func setupMonthLabel() {
         addSubview(monthLabel)
-        monthLabel.text = "M O N T H L Y"
+        monthLabel.text = "MONTHLY"
         monthLabel.textColor = .black
-        monthLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 15.0)
+        monthLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 20.0)
         
         monthLabel.translatesAutoresizingMaskIntoConstraints = false
         monthLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
         monthLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
-    func setupCardView() {
-        addSubview(cardView)
-        cardView.translatesAutoresizingMaskIntoConstraints = false
-        cardView.topAnchor.constraint(equalTo: monthLabel.bottomAnchor, constant: 5).isActive = true
-        cardView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-        cardView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-    }
-
     func setupCalendar(){
-        cardView.addSubview(calendarView)
+        addSubview(calendarView)
         calendarView.calendar = Calendar(identifier: .gregorian)
+        calendarView.locale = .current
+        calendarView.fontDesign = .rounded
+        calendarView.backgroundColor = .white
+        layer.shadowColor = UIColor.darkGray.cgColor
+        layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        layer.shadowOpacity = 0.4
+        layer.shadowRadius = 5.0
+        calendarView.layer.cornerCurve = .continuous
+        calendarView.layer.cornerRadius = 10.0
+    
         calendarView.translatesAutoresizingMaskIntoConstraints = false
-        calendarView.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
+        calendarView.topAnchor.constraint(equalTo: monthLabel.bottomAnchor, constant: 10).isActive = true
         calendarView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-        calendarView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        calendarView.heightAnchor.constraint(equalToConstant: 250).isActive = true
     }
 }

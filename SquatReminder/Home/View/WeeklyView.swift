@@ -50,9 +50,9 @@ class WeeklyView: UIView {
     
     //MARK: LABEL
     func setupWeeklyLabel() {
-        weeklyLabel.text = "W E E K L Y"
+        weeklyLabel.text = "WEEKLY"
         weeklyLabel.textColor = .black
-        weeklyLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 15.0)
+        weeklyLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 20.0)
         weeklyLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -87,7 +87,7 @@ class WeeklyView: UIView {
         
         barChart.dataSet = mockBarChartDataSet
         barChart.translatesAutoresizingMaskIntoConstraints = false
-        barChart.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        barChart.heightAnchor.constraint(equalToConstant: 100).isActive = true
         barChart.topAnchor.constraint(equalTo: cardView.topAnchor).isActive = true
         barChart.bottomAnchor.constraint(equalTo: cardView.bottomAnchor).isActive = true
         barChart.leftAnchor.constraint(equalTo: cardView.leftAnchor, constant: 10).isActive = true

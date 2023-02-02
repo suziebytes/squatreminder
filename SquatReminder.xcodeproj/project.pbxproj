@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B07973EC298C6F2500338BA1 /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = B07973EB298C6F2500338BA1 /* HorizonCalendar */; };
 		B0ACB02B298883F000664508 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB02A298883F000664508 /* AppDelegate.swift */; };
 		B0ACB02D298883F000664508 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB02C298883F000664508 /* SceneDelegate.swift */; };
 		B0ACB02F298883F000664508 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB02E298883F000664508 /* HomeVC.swift */; };
@@ -71,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B07973EC298C6F2500338BA1 /* HorizonCalendar in Frameworks */,
 				B0ACB082298AEA4B00664508 /* BarChartKit-static in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -208,6 +210,7 @@
 			name = SquatReminder;
 			packageProductDependencies = (
 				B0ACB081298AEA4B00664508 /* BarChartKit-static */,
+				B07973EB298C6F2500338BA1 /* HorizonCalendar */,
 			);
 			productName = SquatReminder;
 			productReference = B0ACB027298883F000664508 /* SquatReminder.app */;
@@ -283,6 +286,7 @@
 			mainGroup = B0ACB01E298883F000664508;
 			packageReferences = (
 				B0ACB080298AEA4B00664508 /* XCRemoteSwiftPackageReference "BarChart" */,
+				B07973EA298C6F2500338BA1 /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
 			);
 			productRefGroup = B0ACB028298883F000664508 /* Products */;
 			projectDirPath = "";
@@ -667,6 +671,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B07973EA298C6F2500338BA1 /* XCRemoteSwiftPackageReference "HorizonCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/HorizonCalendar.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		B0ACB080298AEA4B00664508 /* XCRemoteSwiftPackageReference "BarChart" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/marekpridal/BarChart.git";
@@ -678,6 +690,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B07973EB298C6F2500338BA1 /* HorizonCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B07973EA298C6F2500338BA1 /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
+			productName = HorizonCalendar;
+		};
 		B0ACB081298AEA4B00664508 /* BarChartKit-static */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B0ACB080298AEA4B00664508 /* XCRemoteSwiftPackageReference "BarChart" */;
