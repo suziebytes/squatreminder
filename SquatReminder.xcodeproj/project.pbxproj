@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B07973EC298C6F2500338BA1 /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = B07973EB298C6F2500338BA1 /* HorizonCalendar */; };
+		B07973EE298D894600338BA1 /* SpacedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07973ED298D894600338BA1 /* SpacedLabel.swift */; };
 		B0ACB02B298883F000664508 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB02A298883F000664508 /* AppDelegate.swift */; };
 		B0ACB02D298883F000664508 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB02C298883F000664508 /* SceneDelegate.swift */; };
 		B0ACB02F298883F000664508 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB02E298883F000664508 /* HomeVC.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B07973ED298D894600338BA1 /* SpacedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacedLabel.swift; sourceTree = "<group>"; };
 		B0ACB027298883F000664508 /* SquatReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SquatReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0ACB02A298883F000664508 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0ACB02C298883F000664508 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				B0ACB0732989996800664508 /* WeeklyView.swift */,
 				B0ACB0712989860F00664508 /* MonthView.swift */,
 				B0ACB0792989DAA200664508 /* WelcomeView.swift */,
+				B07973ED298D894600338BA1 /* SpacedLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				B0ACB0742989996800664508 /* WeeklyView.swift in Sources */,
 				B0ACB0722989860F00664508 /* MonthView.swift in Sources */,
 				B0ACB086298B2B4800664508 /* CardView.swift in Sources */,
+				B07973EE298D894600338BA1 /* SpacedLabel.swift in Sources */,
 				B0ACB02D298883F000664508 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

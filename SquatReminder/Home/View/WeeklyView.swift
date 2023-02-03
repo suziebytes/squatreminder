@@ -11,7 +11,7 @@ import BarChartKit
 class WeeklyView: UIView {
     
     let colors = ColorManager()
-    let weeklyLabel = UILabel()
+    let weeklyLabel = SpacedLabel()
     let barChart = BarChartView()
     let stackView = UIStackView()
     let cardView = CardView()
@@ -50,9 +50,7 @@ class WeeklyView: UIView {
     
     //MARK: LABEL
     func setupWeeklyLabel() {
-        weeklyLabel.text = "WEEKLY"
-        weeklyLabel.textColor = .black
-        weeklyLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 20.0)
+        weeklyLabel.setupLabel(inputText: "WEEKLY")
         weeklyLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     

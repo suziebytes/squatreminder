@@ -30,9 +30,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UITabBar.appearance().barTintColor = .orange
         appearance.configureWithOpaqueBackground()
         
-        UITabBar.appearance().tintColor = .systemPink
+        UITabBar.appearance().tintColor = UIColor(red: 122/255, green: 90/255, blue: 212/255, alpha: 1)
         
-        
+        if #available(iOS 16.0, *) {
+            
+        } else {
+            // Fallback on earlier versions
+        }
         let homeVC = HomeVC()
         homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
         let settingsVC = SettingsVC()

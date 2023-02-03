@@ -4,9 +4,6 @@
 //
 //  Created by Suzie on 1/30/23.
 //
-
-
-
 import UIKit
 import BarChartKit
 
@@ -18,7 +15,6 @@ class HomeVC: UIViewController {
     let todayLabel = UILabel()
     let weekLabel = UILabel()
     let monthLabel = UILabel()
-    
     let stackView = UIStackView()
     let todayView = TodayView()
     let weeklyView = WeeklyView()
