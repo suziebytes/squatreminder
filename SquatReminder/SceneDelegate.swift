@@ -26,11 +26,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         
         let tabBarVC = UITabBarController()
-        let appearance = UITabBarAppearance()
-        UITabBar.appearance().barTintColor = .orange
-        appearance.configureWithOpaqueBackground()
+        var appearance = UITabBarAppearance()
+        if #available(iOS 13.0, *) {
+            let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
+            tabBarAppearance.configureWithDefaultBackground()
+            tabBarAppearance.backgroundColor = UIColor.white
+            UITabBar.appearance().standardAppearance = tabBarAppearance
+
+            if #available(iOS 15.0, *) {
+                UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+            }
+        }
         
-        UITabBar.appearance().tintColor = UIColor(red: 122/255, green: 90/255, blue: 212/255, alpha: 1)
+//        UITabBar.appearance().tintColor = UIColor(red: 122/255, green: 90/255, blue: 212/255, alpha: 1)
         
         if #available(iOS 16.0, *) {
             
