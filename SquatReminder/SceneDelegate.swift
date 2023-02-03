@@ -38,7 +38,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
         
-//        UITabBar.appearance().tintColor = UIColor(red: 122/255, green: 90/255, blue: 212/255, alpha: 1)
+        UITabBar.appearance().tintColor = UIColor(red: 122/255, green: 90/255, blue: 212/255, alpha: 1)
         
         if #available(iOS 16.0, *) {
             

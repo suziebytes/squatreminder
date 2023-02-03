@@ -29,7 +29,7 @@ class WelcomeView: UIView {
         welcomeLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 20.0)
     
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
-        welcomeLabel.topAnchor.constraint(equalTo: topAnchor, constant: 50).isActive = true
+        welcomeLabel.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
         welcomeLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
     }
     

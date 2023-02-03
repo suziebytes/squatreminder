@@ -34,7 +34,6 @@ class MonthView: UIView {
    
         monthLabel.translatesAutoresizingMaskIntoConstraints = false
         monthLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        monthLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     private func createCalendar() {
         let calender = Calendar.current
@@ -58,9 +57,10 @@ class MonthView: UIView {
         
         calendarView.translatesAutoresizingMaskIntoConstraints = false
         calendarView.topAnchor.constraint(equalTo: monthLabel.bottomAnchor, constant: 5).isActive = true
-        calendarView.rightAnchor.constraint(equalTo: rightAnchor, constant: 5).isActive = true
-        calendarView.leftAnchor.constraint(equalTo: leftAnchor, constant: -5).isActive = true
+        calendarView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        calendarView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         calendarView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        calendarView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
     //    func setupCalendar(){
