@@ -8,7 +8,6 @@
 import UIKit
 import HorizonCalendar
 
-@available(iOS 16.0, *)
 class MonthView: UIView {
     
     let monthLabel = SpacedLabel()

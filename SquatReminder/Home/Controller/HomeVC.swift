@@ -14,6 +14,7 @@ class HomeVC: UIViewController {
     let todayView = TodayView()
     let weeklyView = WeeklyView()
     let scrollView = UIScrollView()
+    let monthlyView = MonthView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,11 +52,7 @@ class HomeVC: UIViewController {
         stackView.addArrangedSubview(welcomeView)
         stackView.addArrangedSubview(todayView)
         stackView.addArrangedSubview(weeklyView)
-        
-        if #available(iOS 16.0, *) {
-            let monthlyView = MonthView()
-            stackView.addArrangedSubview(monthlyView)
-        }
+        stackView.addArrangedSubview(monthlyView)
     }
     
 }
