@@ -27,6 +27,8 @@
 		B0ACB082298AEA4B00664508 /* BarChartKit-static in Frameworks */ = {isa = PBXBuildFile; productRef = B0ACB081298AEA4B00664508 /* BarChartKit-static */; };
 		B0ACB086298B2B4800664508 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACB085298B2B4800664508 /* CardView.swift */; };
 		B0C15952298EBEF0006EC7C0 /* DescriptionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C15951298EBEF0006EC7C0 /* DescriptionLabel.swift */; };
+		B0C15959298F025D006EC7C0 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C15958298F025D006EC7C0 /* NotificationView.swift */; };
+		B0C1595B298F04E3006EC7C0 /* SquatButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1595A298F04E3006EC7C0 /* SquatButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		B0ACB0792989DAA200664508 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		B0ACB085298B2B4800664508 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		B0C15951298EBEF0006EC7C0 /* DescriptionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionLabel.swift; sourceTree = "<group>"; };
+		B0C15958298F025D006EC7C0 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		B0C1595A298F04E3006EC7C0 /* SquatButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquatButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +160,6 @@
 				B0ACB0682988D6E800664508 /* Controller */,
 				B0ACB0662988D58A00664508 /* View */,
 				B0ACB0652988D57800664508 /* Model */,
-				B0ACB0772989BBB900664508 /* SettingsVC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -164,6 +167,9 @@
 		B0ACB05E29888D0700664508 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				B0C15954298F022E006EC7C0 /* Model */,
+				B0C15956298F0241006EC7C0 /* View */,
+				B0C15957298F0245006EC7C0 /* Controller */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -194,6 +200,30 @@
 			isa = PBXGroup;
 			children = (
 				B0ACB02E298883F000664508 /* HomeVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B0C15954298F022E006EC7C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B0C15956298F0241006EC7C0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B0C15958298F025D006EC7C0 /* NotificationView.swift */,
+				B0C1595A298F04E3006EC7C0 /* SquatButtonView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B0C15957298F0245006EC7C0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B0ACB0772989BBB900664508 /* SettingsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -341,6 +371,7 @@
 				B0ACB0782989BBB900664508 /* SettingsVC.swift in Sources */,
 				B0ACB06E298985FF00664508 /* TodayView.swift in Sources */,
 				B0ACB06C29897DEA00664508 /* ColorManager.swift in Sources */,
+				B0C1595B298F04E3006EC7C0 /* SquatButtonView.swift in Sources */,
 				B0ACB07A2989DAA200664508 /* WelcomeView.swift in Sources */,
 				B0ACB035298883F000664508 /* SquatReminder.xcdatamodeld in Sources */,
 				B0ACB0742989996800664508 /* WeeklyView.swift in Sources */,
@@ -349,6 +380,7 @@
 				B0ACB086298B2B4800664508 /* CardView.swift in Sources */,
 				B07973EE298D894600338BA1 /* SpacedLabel.swift in Sources */,
 				B0ACB02D298883F000664508 /* SceneDelegate.swift in Sources */,
+				B0C15959298F025D006EC7C0 /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

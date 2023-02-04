@@ -9,6 +9,7 @@ import UIKit
 
 class DescriptionLabel: UILabel {
     let labelTitle: String = ""
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLabel(labelTitle: "")
@@ -21,6 +22,7 @@ class DescriptionLabel: UILabel {
     func setupLabel(labelTitle: String) {
         textColor = .white
         font = UIFont(name:"HelveticaNeue-Bold", size: 12.0) ?? nil
+        attributedText = NSAttributedString(string: labelTitle, attributes: [.kern: 2.50])
         text = labelTitle
     }
     
