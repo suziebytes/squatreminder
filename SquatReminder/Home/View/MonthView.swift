@@ -12,11 +12,8 @@ import HorizonCalendar
 class MonthView: UIView {
     
     let monthLabel = SpacedLabel()
-    //    let calendarView = UICalendarView()
     let cardView = CardView()
     let colors = ColorManager()
-    
-    
     
     override init(frame: CGRect) {
         super .init(frame: frame)
@@ -43,7 +40,7 @@ class MonthView: UIView {
         content = content.interMonthSpacing(20)
         content = content.verticalDayMargin(5)
         content = content.horizontalDayMargin(5)
-    
+
         let calendarView = CalendarView(initialContent: content)
         calendarView.tintColor = colors.darkGray
         
@@ -62,24 +59,4 @@ class MonthView: UIView {
         calendarView.heightAnchor.constraint(equalToConstant: 250).isActive = true
         calendarView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
-    
-    //    func setupCalendar(){
-    //        addSubview(calendarView)
-    //        calendarView.calendar = Calendar(identifier: .gregorian)
-    //        calendarView.locale = .current
-    //        calendarView.fontDesign = .rounded
-    //        calendarView.backgroundColor = .white
-    //        layer.shadowColor = UIColor.darkGray.cgColor
-    //        layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
-    //        layer.shadowOpacity = 0.4
-    //        layer.shadowRadius = 5.0
-    //        calendarView.layer.cornerCurve = .continuous
-    //        calendarView.layer.cornerRadius = 10.0
-    //        calendarView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-    //
-    //        calendarView.translatesAutoresizingMaskIntoConstraints = false
-    //        calendarView.topAnchor.constraint(equalTo: monthLabel.bottomAnchor, constant: 10).isActive = true
-    //        calendarView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-    //        calendarView.heightAnchor.constraint(equalToConstant: 250).isActive = true
-    //    }
 }
