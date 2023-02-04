@@ -28,19 +28,32 @@ class MonthView: UIView {
     func setupMonthLabel() {
         addSubview(monthLabel)
         monthLabel.setupLabel(inputText: "MONTH")
-   
+        
         monthLabel.translatesAutoresizingMaskIntoConstraints = false
         monthLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
     }
+    
     private func createCalendar() {
         let calender = Calendar.current
         let startDate = calender.date(from: DateComponents(year: 2022, month: 2, day: 1))!
         let endDate = calender.date(from: DateComponents(year: 2022, month: 12, day: 31))!
         var content = CalendarViewContent(calendar: calender, visibleDateRange: startDate...endDate, monthsLayout: .horizontal(options: HorizontalMonthsLayoutOptions()))
-        content = content.interMonthSpacing(20)
+        content = content.interMonthSpacing(15)
         content = content.verticalDayMargin(5)
         content = content.horizontalDayMargin(5)
-
+        
+        //Day styling
+        content = content.dayItemProvider { day in
+            var invariantViewProperties = DayView.InvariantViewProperties.baseNonInteractive
+            invariantViewProperties.font = UIFont.systemFont(ofSize: 12)
+            invariantViewProperties.textColor = self.colors.darkGray
+            
+            return DayView.calendarItemModel(
+                invariantViewProperties: invariantViewProperties,
+                viewModel: .init(dayText: day.day.description, accessibilityLabel: nil, accessibilityHint: nil)
+            )
+        }
+        
         let calendarView = CalendarView(initialContent: content)
         calendarView.tintColor = colors.darkGray
         
