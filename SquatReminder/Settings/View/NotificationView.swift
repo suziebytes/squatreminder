@@ -30,10 +30,10 @@ class NotificationView: UIView {
         addSubview(notificationOptionLabel)
         notificationOptionLabel.text = "Notifications"
         notificationOptionLabel.textColor = colors.darkGray
-        notificationOptionLabel.font = UIFont(name:"HelveticaNeue-Medium", size: 15.0)
+        notificationOptionLabel.font = UIFont(name:"HelveticaNeue", size: 15.0)
 
         notificationOptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        notificationOptionLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
+        notificationOptionLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         notificationOptionLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     

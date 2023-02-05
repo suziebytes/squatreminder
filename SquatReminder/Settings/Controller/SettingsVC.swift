@@ -13,6 +13,7 @@ class SettingsVC: UIViewController {
     let squatButtonView = SquatButtonView()
     let notificationTitleLabel = UILabel()
     let notificationView = NotificationView()
+    let maxSquatView = MaxSquatView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,9 +22,9 @@ class SettingsVC: UIViewController {
         setupSquatButtonView()
         setupNotificationTitleLabel()
         setupNotificationView()
+        setupMaxSquatView()
     }
     
-   
     func setupSettingsLabel() {
         view.addSubview(settingsLabel)
         settingsLabel.text = "Settings"
@@ -53,15 +54,23 @@ class SettingsVC: UIViewController {
         notificationTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         notificationTitleLabel.topAnchor.constraint(equalTo: squatButtonView.bottomAnchor, constant: 20).isActive = true
         notificationTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-
     }
     
     func setupNotificationView() {
         view.addSubview(notificationView)
         
         notificationView.translatesAutoresizingMaskIntoConstraints = false
-        notificationView.topAnchor.constraint(equalTo: notificationTitleLabel.bottomAnchor, constant: 25).isActive = true
-        notificationView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        notificationView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        notificationView.topAnchor.constraint(equalTo: notificationTitleLabel.bottomAnchor, constant: 30).isActive = true
+        notificationView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40).isActive = true
+        notificationView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
+    }
+    
+    func setupMaxSquatView() {
+        view.addSubview(maxSquatView)
+        
+        maxSquatView.translatesAutoresizingMaskIntoConstraints = false
+        maxSquatView.topAnchor.constraint(equalTo: notificationView.bottomAnchor, constant: 40).isActive = true
+        maxSquatView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40).isActive = true
+        maxSquatView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
     }
 }

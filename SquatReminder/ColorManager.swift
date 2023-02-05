@@ -11,4 +11,5 @@ struct ColorManager {
     let darkPurple: UIColor = UIColor(red: 122/255, green: 90/255, blue: 212/255, alpha: 1)
     let darkGray: UIColor = UIColor(red: 91/255, green: 91/255, blue: 91/255, alpha: 1)
     let lightPurple: UIColor = UIColor(red: 202/255, green: 183/255, blue: 255/255, alpha: 1)
+    let lightGray: UIColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
 }
