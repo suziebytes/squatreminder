@@ -11,9 +11,11 @@ class SettingsVC: UIViewController {
     let colors = ColorManager()
     let settingsLabel = UILabel()
     let squatButtonView = SquatButtonView()
-    let notificationTitleLabel = UILabel()
+    let notificationTitleLabel = HeaderLabel()
+    let remindersLabel = HeaderLabel()
     let notificationView = NotificationView()
     let maxSquatView = MaxSquatView()
+    let timePickerView = TimePickerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,8 @@ class SettingsVC: UIViewController {
         setupNotificationTitleLabel()
         setupNotificationView()
         setupMaxSquatView()
+        setupRemindersLabel()
+        setupTimePickerView()
     }
     
     func setupSettingsLabel() {
@@ -31,8 +35,8 @@ class SettingsVC: UIViewController {
         settingsLabel.font = UIFont.boldSystemFont(ofSize: 30.0)
         
         settingsLabel.translatesAutoresizingMaskIntoConstraints = false
-        settingsLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        settingsLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 25).isActive = true
+        settingsLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        settingsLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
         settingsLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
     }
     
@@ -40,19 +44,17 @@ class SettingsVC: UIViewController {
         view.addSubview(squatButtonView)
         
         squatButtonView.translatesAutoresizingMaskIntoConstraints = false
-        squatButtonView.topAnchor.constraint(equalTo: settingsLabel.bottomAnchor, constant: 25).isActive = true
+        squatButtonView.topAnchor.constraint(equalTo: settingsLabel.bottomAnchor, constant: 15).isActive = true
         squatButtonView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         squatButtonView.heightAnchor.constraint(equalToConstant: 150).isActive = true
     }
     
     func setupNotificationTitleLabel() {
         view.addSubview(notificationTitleLabel)
-        notificationTitleLabel.attributedText = NSAttributedString(string: "NOTIFICATION SETTINGS", attributes: [.kern: 2.00])
-        notificationTitleLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 14.0)
-        notificationTitleLabel.textColor = colors.darkGray
+        notificationTitleLabel.setupLabel(inputText: "NOTIFICATION SETTINGS")
         
         notificationTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        notificationTitleLabel.topAnchor.constraint(equalTo: squatButtonView.bottomAnchor, constant: 20).isActive = true
+        notificationTitleLabel.topAnchor.constraint(equalTo: squatButtonView.bottomAnchor, constant: 30).isActive = true
         notificationTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
     }
     
@@ -72,5 +74,24 @@ class SettingsVC: UIViewController {
         maxSquatView.topAnchor.constraint(equalTo: notificationView.bottomAnchor, constant: 40).isActive = true
         maxSquatView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40).isActive = true
         maxSquatView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
+    }
+    
+    func setupRemindersLabel() {
+        view.addSubview(remindersLabel)
+        remindersLabel.setupLabel(inputText: "WHEN DO YOU WANT TO BE REMINDED")
+        
+        remindersLabel.translatesAutoresizingMaskIntoConstraints = false
+        remindersLabel.topAnchor.constraint(equalTo: maxSquatView.bottomAnchor, constant: 30).isActive = true
+        remindersLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        remindersLabel.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+    }
+    
+    func setupTimePickerView() {
+        view.addSubview(timePickerView)
+        
+        timePickerView.translatesAutoresizingMaskIntoConstraints = false
+        timePickerView.topAnchor.constraint(equalTo: remindersLabel.bottomAnchor, constant: 10).isActive = true
+        timePickerView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        timePickerView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true 
     }
 }

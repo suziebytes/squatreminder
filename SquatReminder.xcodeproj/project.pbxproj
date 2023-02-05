@@ -30,6 +30,8 @@
 		B0C15959298F025D006EC7C0 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C15958298F025D006EC7C0 /* NotificationView.swift */; };
 		B0C1595B298F04E3006EC7C0 /* SquatButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1595A298F04E3006EC7C0 /* SquatButtonView.swift */; };
 		B0C1595D298F25B6006EC7C0 /* MaxSquatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1595C298F25B6006EC7C0 /* MaxSquatView.swift */; };
+		B0C1595F2990449A006EC7C0 /* HeaderLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1595E2990449A006EC7C0 /* HeaderLabels.swift */; };
+		B0C1596129904AF9006EC7C0 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1596029904AF9006EC7C0 /* TimePickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		B0C15958298F025D006EC7C0 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		B0C1595A298F04E3006EC7C0 /* SquatButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquatButtonView.swift; sourceTree = "<group>"; };
 		B0C1595C298F25B6006EC7C0 /* MaxSquatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxSquatView.swift; sourceTree = "<group>"; };
+		B0C1595E2990449A006EC7C0 /* HeaderLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderLabels.swift; sourceTree = "<group>"; };
+		B0C1596029904AF9006EC7C0 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +221,8 @@
 			isa = PBXGroup;
 			children = (
 				B0C15958298F025D006EC7C0 /* NotificationView.swift */,
+				B0C1596029904AF9006EC7C0 /* TimePickerView.swift */,
+				B0C1595E2990449A006EC7C0 /* HeaderLabels.swift */,
 				B0C1595C298F25B6006EC7C0 /* MaxSquatView.swift */,
 				B0C1595A298F04E3006EC7C0 /* SquatButtonView.swift */,
 			);
@@ -369,7 +375,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0C1595D298F25B6006EC7C0 /* MaxSquatView.swift in Sources */,
+				B0C1595F2990449A006EC7C0 /* HeaderLabels.swift in Sources */,
 				B0ACB06A2988D77400664508 /* Buttons.swift in Sources */,
+				B0C1596129904AF9006EC7C0 /* TimePickerView.swift in Sources */,
 				B0ACB02F298883F000664508 /* HomeVC.swift in Sources */,
 				B0ACB02B298883F000664508 /* AppDelegate.swift in Sources */,
 				B0ACB0782989BBB900664508 /* SettingsVC.swift in Sources */,
