@@ -57,8 +57,8 @@ class TimePickerView: UIView {
     //MARK: Start View
     func configureStartStackView() {
         addSubview(startStackView)
-        startStackView.backgroundColor = .systemPink
         startStackView.axis = .vertical
+        startStackView.alignment = .center
         startStackView.distribution = .fillEqually
         startStackView.spacing = 10
         startStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -73,10 +73,8 @@ class TimePickerView: UIView {
     
     func setupStartLabel() {
         startTimeLabel.setupLabel(inputText: "START TIME")
+        startTimeLabel.textColor = colors.darkPurple
         startTimeLabel.translatesAutoresizingMaskIntoConstraints = false
-//        startTimeLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-//        startTimeLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-//        startTimeLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
     func setupStartTimePicker() {
@@ -88,14 +86,13 @@ class TimePickerView: UIView {
     //MARK: End View
     func configureEndStackView() {
         addSubview(endStackView)
-        endStackView.backgroundColor = .purple
         endStackView.axis = .vertical
         endStackView.distribution = .fillEqually
+        endStackView.alignment = .center
         endStackView.spacing = 10
         endStackView.translatesAutoresizingMaskIntoConstraints = false
-//        endStackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-//        endStackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-//        endStackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        endStackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        endStackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
     func setupEndStackView() {
@@ -105,15 +102,12 @@ class TimePickerView: UIView {
     
     func setupEndLabel() {
         endTimeLabel.setupLabel(inputText: "END TIME")
+        endTimeLabel.textColor = colors.darkPurple
         endTimeLabel.translatesAutoresizingMaskIntoConstraints = false
-//        endTimeLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-//        endTimeLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     func setupEndTimePicker() {
         endTimePicker.tintColor = colors.darkPurple
         endTimePicker.datePickerMode = UIDatePicker.Mode.time
         endTimePicker.translatesAutoresizingMaskIntoConstraints = false
-//        endTimeLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-
     }
 }

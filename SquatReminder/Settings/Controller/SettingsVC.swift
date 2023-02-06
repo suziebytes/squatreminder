@@ -92,6 +92,6 @@ class SettingsVC: UIViewController {
         timePickerView.translatesAutoresizingMaskIntoConstraints = false
         timePickerView.topAnchor.constraint(equalTo: remindersLabel.bottomAnchor, constant: 10).isActive = true
         timePickerView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        timePickerView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true 
+        timePickerView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
     }
 }
