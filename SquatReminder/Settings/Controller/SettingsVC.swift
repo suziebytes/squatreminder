@@ -106,30 +106,41 @@ class SettingsVC: UIViewController {
         
         nameButton.translatesAutoresizingMaskIntoConstraints = false
         nameButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        nameButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        nameButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
         nameButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
         nameButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
     @objc func alertName() {
         let alertController = UIAlertController(title: "Hi! What's Your Name?", message: "", preferredStyle: .alert)
-            alertController.addTextField { (textField) in
-                    // configure the properties of the text field
-                textField.placeholder = "Name"
-                }
+        alertController.addTextField { (textField) in
+            // configure the properties of the text field
+            textField.placeholder = "Name"
+        }
         
-                alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (_) in
-                    print("User clicked Edit button")
-                }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (_) in
+            print("User clicked Edit button")
+        }))
         
-                alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: {[weak alertController] (_) in
-                    let textField = alertController?.textFields![0]
-                    UserDefaults.standard.set(textField?.text ?? "", forKey: "key-name")
-                    //use the key to grab value data (textField?.text)
-                    //to access the name: let name = UserDefaults.standard.string(forKey: "pp-name") ?? ""
-                    self.welcomeView.setupNameLabel()
-                }))
+        alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: {[self, weak alertController] (_) in
+            let textField = alertController?.textFields![0]
+            UserDefaults.standard.set(textField?.text ?? "", forKey: "key-name")
+            let name = UserDefaults.standard.string(forKey: "key-name") ?? ""
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(handleNotificationCall), name: Notification.Name("NameUpdated"), object: nil)
+            
+            //use the key to grab value data (textField?.text)
+            //to access the name: let name = UserDefaults.standard.string(forKey: "pp-name") ?? ""
+            self.welcomeView.setupNameLabel()
+            self.nameButton.setTitle(name, for: .normal)
+        }))
         
-                present(alertController, animated: true, completion: nil)
-            }
+        present(alertController, animated: true, completion: nil)
+    }
+    @objc func handleNotificationCall(_notification: NSNotification) {
+        print("Got notification")
+        let updateName: [String: String] = ["Name": UserDefaults.standard.string(forKey: "key-name") ?? ""]
+        NotificationCenter.default.post(name: Notification.Name("NameUpdated"), object: nil, userInfo: updateName)
+        
+    }
 }

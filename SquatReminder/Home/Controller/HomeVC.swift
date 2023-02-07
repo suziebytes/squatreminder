@@ -29,6 +29,11 @@ class HomeVC: UIViewController {
         addToStackView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        welcomeView.setupNameLabel()
+    }
+    
     func configureScrollView() {
         view.addSubview(scrollView)
         scrollView.alwaysBounceVertical = true
@@ -58,6 +63,5 @@ class HomeVC: UIViewController {
         stackView.addArrangedSubview(weeklyView)
         stackView.addArrangedSubview(monthlyView)
     }
-    
 }
 
