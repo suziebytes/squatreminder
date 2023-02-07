@@ -16,6 +16,8 @@ class SettingsVC: UIViewController {
     let notificationView = NotificationView()
     let maxSquatView = MaxSquatView()
     let timePickerView = TimePickerView()
+    let nameButton = Buttons()
+    let welcomeView = WelcomeView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,7 @@ class SettingsVC: UIViewController {
         setupMaxSquatView()
         setupRemindersLabel()
         setupTimePickerView()
+        setupNameButton()
     }
     
     func setupSettingsLabel() {
@@ -94,4 +97,39 @@ class SettingsVC: UIViewController {
         timePickerView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         timePickerView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
     }
+    
+    func setupNameButton() {
+        view.addSubview(nameButton)
+        nameButton.setTitle("Name", for: .normal)
+        nameButton.addTarget(self, action: #selector(alertName), for: .touchUpInside)
+        nameButton.backgroundColor = colors.darkPurple
+        
+        nameButton.translatesAutoresizingMaskIntoConstraints = false
+        nameButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        nameButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        nameButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
+        nameButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    }
+    
+    @objc func alertName() {
+        let alertController = UIAlertController(title: "Hi! What's Your Name?", message: "", preferredStyle: .alert)
+            alertController.addTextField { (textField) in
+                    // configure the properties of the text field
+                textField.placeholder = "Name"
+                }
+        
+                alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (_) in
+                    print("User clicked Edit button")
+                }))
+        
+                alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: {[weak alertController] (_) in
+                    let textField = alertController?.textFields![0]
+                    UserDefaults.standard.set(textField?.text ?? "", forKey: "key-name")
+                    //use the key to grab value data (textField?.text)
+                    //to access the name: let name = UserDefaults.standard.string(forKey: "pp-name") ?? ""
+                    self.welcomeView.setupNameLabel()
+                }))
+        
+                present(alertController, animated: true, completion: nil)
+            }
 }

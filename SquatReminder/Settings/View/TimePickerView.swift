@@ -13,6 +13,8 @@ class TimePickerView: UIView {
     let endTimePicker = UIDatePicker()
     let startTimeLabel = HeaderLabel()
     let endTimeLabel = HeaderLabel()
+    let dateFormatter = DateFormatter()
+    
      
     let startStackView = UIStackView()
     let endStackView = UIStackView()
@@ -78,6 +80,10 @@ class TimePickerView: UIView {
     }
     
     func setupStartTimePicker() {
+        dateFormatter.dateFormat = "hh:mm a"
+        let date = dateFormatter.date(from: "9:00 AM")
+        startTimePicker.date = date!
+        
         startTimePicker.tintColor = colors.darkPurple
         startTimePicker.datePickerMode = UIDatePicker.Mode.time
         startTimePicker.translatesAutoresizingMaskIntoConstraints = false
@@ -106,6 +112,10 @@ class TimePickerView: UIView {
         endTimeLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     func setupEndTimePicker() {
+        dateFormatter.dateFormat = "hh:mm a"
+        let date = dateFormatter.date(from: "8:00 PM")
+        endTimePicker.date = date!
+        
         endTimePicker.tintColor = colors.darkPurple
         endTimePicker.datePickerMode = UIDatePicker.Mode.time
         endTimePicker.translatesAutoresizingMaskIntoConstraints = false
