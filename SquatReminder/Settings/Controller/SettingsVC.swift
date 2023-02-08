@@ -31,12 +31,16 @@ class SettingsVC: UIViewController {
         setupRemindersLabel()
         setupTimePickerView()
         setupNameButton()
+        
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Register", style: .plain, target: self, action: #selector(registerLocal))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Schedule", style: .plain, target: self, action: #selector(scheduleLocal))
     }
     
     override func viewWillAppear(_ animated: Bool) {
         squatButtonView.setupSquatButton()
     }
-  
+    
     
     func setupSettingsLabel() {
         view.addSubview(settingsLabel)
@@ -141,5 +145,42 @@ class SettingsVC: UIViewController {
         }))
         
         present(alertController, animated: true, completion: nil)
+    }
+    
+    //MARK: Notifications
+    @objc func registerLocal() {
+        //request permission from user to send notificaitons
+        let center = UNUserNotificationCenter.current()
+        
+        center.requestAuthorization(options: [.alert, .badge, .sound]) {
+            granted, error in
+            if granted {
+                print("YAY")
+            } else {
+                print("NOOOO")
+            }
+        }
+    }
+    
+    @objc func scheduleLocal() {
+        //access current notice of user notifications
+        let center = UNUserNotificationCenter.current()
+        center.removeAllPendingNotificationRequests()
+        
+        let content = UNMutableNotificationContent()
+        content.title = "SQUAT TIME"
+        content.body = "Drop it like a Squat"
+        content.sound = .default
+        
+        // when notificaiton will be triggered
+        var dateComponents = DateComponents()
+        dateComponents.hour = 10
+        dateComponents.minute = 30
+        //        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        center.add(request)
+        
     }
 }
