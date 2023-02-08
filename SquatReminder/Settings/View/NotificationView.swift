@@ -39,14 +39,18 @@ class NotificationView: UIView {
     
     func setupSwitch() {
         addSubview(onOffSwitch)
-        onOffSwitch.backgroundColor = colors.darkPurple
+        onOffSwitch.backgroundColor = colors.lightGray
+        onOffSwitch.tintColor = colors.lightGray
+        onOffSwitch.onTintColor = colors.darkPurple
         onOffSwitch.layer.cornerRadius = 15
+        onOffSwitch.layer.borderColor = colors.darkGray.cgColor
+        onOffSwitch.layer.borderWidth = 1
         
         onOffSwitch.translatesAutoresizingMaskIntoConstraints = false
         onOffSwitch.topAnchor.constraint(equalTo: topAnchor).isActive = true
-//        onOffSwitch.leftAnchor.constraint(equalTo: notificationOption.rightAnchor).isActive = true
         onOffSwitch.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
         onOffSwitch.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
+    
     
 }
