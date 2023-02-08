@@ -27,11 +27,17 @@ class SquatButtonView: UIView {
         squatButton.backgroundColor = colors.darkPurple
         squatButton.setTitle("100", for: .normal)
         squatButton.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 100)
+        squatButton.addTarget(self, action: #selector(updateSquatGoal), for: .touchUpInside)
 
         squatButton.translatesAutoresizingMaskIntoConstraints = false
         squatButton.heightAnchor.constraint(equalToConstant: 150).isActive = true
         squatButton.widthAnchor.constraint(equalToConstant: 220).isActive = true
         squatButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+    }
+    
+    @objc func updateSquatGoal() {
+        print("this was tapped")
+        squatButton.setTitle("50", for: .normal)
     }
     
     func setupSquatGoalLabel() {

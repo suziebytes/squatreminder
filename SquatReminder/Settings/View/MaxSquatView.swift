@@ -73,4 +73,10 @@ class MaxSquatView: UIView, UIPickerViewDelegate, UIPickerViewDataSource{
         let row = values[row]
         return String(row)
     }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let row = values[row]
+        maxSquatTextField.text = String(row)
+    }
 }

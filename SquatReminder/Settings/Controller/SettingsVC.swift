@@ -127,8 +127,6 @@ class SettingsVC: UIViewController {
             UserDefaults.standard.set(textField?.text ?? "", forKey: "key-name")
             let name = UserDefaults.standard.string(forKey: "key-name") ?? ""
             
-            NotificationCenter.default.addObserver(self, selector: #selector(handleNotificationCall), name: Notification.Name("NameUpdated"), object: nil)
-            
             //use the key to grab value data (textField?.text)
             //to access the name: let name = UserDefaults.standard.string(forKey: "pp-name") ?? ""
             self.welcomeView.setupNameLabel()
@@ -136,11 +134,5 @@ class SettingsVC: UIViewController {
         }))
         
         present(alertController, animated: true, completion: nil)
-    }
-    @objc func handleNotificationCall(_notification: NSNotification) {
-        print("Got notification")
-        let updateName: [String: String] = ["Name": UserDefaults.standard.string(forKey: "key-name") ?? ""]
-        NotificationCenter.default.post(name: Notification.Name("NameUpdated"), object: nil, userInfo: updateName)
-        
     }
 }

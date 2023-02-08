@@ -32,8 +32,6 @@
 		B0C1595F2990449A006EC7C0 /* HeaderLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1595E2990449A006EC7C0 /* HeaderLabels.swift */; };
 		B0C1596129904AF9006EC7C0 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1596029904AF9006EC7C0 /* TimePickerView.swift */; };
 		B0C15968299211CA006EC7C0 /* SquatReminder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0C15966299211CA006EC7C0 /* SquatReminder.xcdatamodeld */; };
-		B0C159702992D635006EC7C0 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1596E2992D635006EC7C0 /* Person+CoreDataClass.swift */; };
-		B0C159712992D635006EC7C0 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1596F2992D635006EC7C0 /* Person+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,8 +79,6 @@
 		B0C1595E2990449A006EC7C0 /* HeaderLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderLabels.swift; sourceTree = "<group>"; };
 		B0C1596029904AF9006EC7C0 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		B0C15967299211CA006EC7C0 /* SquatReminder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SquatReminder.xcdatamodel; sourceTree = "<group>"; };
-		B0C1596E2992D635006EC7C0 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
-		B0C1596F2992D635006EC7C0 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,8 +241,6 @@
 		B0C1596D29921263006EC7C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B0C1596E2992D635006EC7C0 /* Person+CoreDataClass.swift */,
-				B0C1596F2992D635006EC7C0 /* Person+CoreDataProperties.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -400,9 +394,7 @@
 				B0C1595B298F04E3006EC7C0 /* SquatButtonView.swift in Sources */,
 				B0ACB07A2989DAA200664508 /* WelcomeView.swift in Sources */,
 				B0ACB0742989996800664508 /* WeeklyView.swift in Sources */,
-				B0C159702992D635006EC7C0 /* Person+CoreDataClass.swift in Sources */,
 				B0C15952298EBEF0006EC7C0 /* DescriptionLabel.swift in Sources */,
-				B0C159712992D635006EC7C0 /* Person+CoreDataProperties.swift in Sources */,
 				B0ACB0722989860F00664508 /* MonthView.swift in Sources */,
 				B0ACB086298B2B4800664508 /* CardView.swift in Sources */,
 				B0C15968299211CA006EC7C0 /* SquatReminder.xcdatamodeld in Sources */,

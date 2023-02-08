@@ -17,8 +17,6 @@ class HomeVC: UIViewController {
     let monthlyView = MonthView()
     //1 CORE DATA - create reference to managed object context
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    // Data
-    var item: [Person]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
