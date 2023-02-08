@@ -65,9 +65,10 @@ class TodayView: UIView {
     
     func setupDailyButton() {
         addSubview(dailySquatButton)
+        let squatGoal = UserDefaults.standard.string(forKey: "key-goal") ?? ""
         dailySquatButton.backgroundColor = colors.darkPurple
         dailySquatButton.tintColor = .white
-        dailySquatButton.setTitle("100", for: .normal)
+        dailySquatButton.setTitle(squatGoal, for: .normal)
         dailySquatButton.titleLabel?.adjustsFontSizeToFitWidth = true
         dailySquatButton.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 60)
         

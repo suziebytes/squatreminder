@@ -22,6 +22,7 @@ class SettingsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        squatButtonView.isUserInteractionEnabled = true
         setupSettingsLabel()
         setupSquatButtonView()
         setupNotificationTitleLabel()
@@ -31,6 +32,7 @@ class SettingsVC: UIViewController {
         setupTimePickerView()
         setupNameButton()
     }
+  
     
     func setupSettingsLabel() {
         view.addSubview(settingsLabel)
@@ -100,7 +102,8 @@ class SettingsVC: UIViewController {
     
     func setupNameButton() {
         view.addSubview(nameButton)
-        nameButton.setTitle("Name", for: .normal)
+        let name = UserDefaults.standard.string(forKey: "key-name") ?? ""
+        nameButton.setTitle(name, for: .normal)
         nameButton.addTarget(self, action: #selector(alertName), for: .touchUpInside)
         nameButton.backgroundColor = colors.darkPurple
         
