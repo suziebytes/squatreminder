@@ -5,6 +5,7 @@
 //  Created by Suzie on 1/30/23.
 //
 import UIKit
+import UserNotifications
 import BarChartKit
 
 class HomeVC: UIViewController {
@@ -16,8 +17,6 @@ class HomeVC: UIViewController {
     let scrollView = UIScrollView()
     let monthlyView = MonthView()
     let squatButtonView = SquatButtonView()
-    //1 CORE DATA - create reference to managed object context
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +25,9 @@ class HomeVC: UIViewController {
         configureScrollView()
         configureStackView()
         addToStackView()
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Register", style: .plain, target: self, action: #selector(registerLocal))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Schedule", style: .plain, target: self, action: #selector(scheduleLocal))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +64,31 @@ class HomeVC: UIViewController {
         stackView.addArrangedSubview(todayView)
         stackView.addArrangedSubview(weeklyView)
         stackView.addArrangedSubview(monthlyView)
+    }
+    
+    //MARK: Notifications
+    @objc func registerLocal() {
+        //request permission
+        let center = UNUserNotificationCenter.current()
+        
+        center.requestAuthorization(options: [.alert, .badge, .sound]) {
+            granted, error in
+            if granted {
+                print("YAY")
+            } else {
+                print("NOOOO")
+            }
+        }
+    }
+    
+    @objc func scheduleLocal() {
+        //access current notice of user notifications
+        let center = UNUserNotificationCenter.current()
+        let content = UNMutableNotificationContent()
+        content.title = "SQUAT TIME"
+        content.body = "Drop it like a Squat"
+        content.sound = .default
+        
     }
 }
 

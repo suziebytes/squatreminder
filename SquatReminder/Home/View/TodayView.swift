@@ -14,6 +14,7 @@ class TodayView: UIView {
     let currentSquatLabel = DescriptionLabel()
     let dailySquatButton = Buttons()
     let dailySquatLabel = DescriptionLabel()
+    var currentSquatCount = 0
         
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,9 +43,10 @@ class TodayView: UIView {
     
     func setupCurrentSquatButton(){
         addSubview(currentSquatButton)
+        var stringCount =  String(currentSquatCount)
         currentSquatButton.backgroundColor = colors.darkPurple
         currentSquatButton.tintColor = .white
-        currentSquatButton.setTitle("5", for: .normal)
+        currentSquatButton.setTitle("\(stringCount)", for: .normal)
         currentSquatButton.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 100)
         
         currentSquatButton.translatesAutoresizingMaskIntoConstraints = false
