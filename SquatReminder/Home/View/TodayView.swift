@@ -71,12 +71,37 @@ class TodayView: UIView {
         dailySquatButton.setTitle(squatGoal, for: .normal)
         dailySquatButton.titleLabel?.adjustsFontSizeToFitWidth = true
         dailySquatButton.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 60)
+        dailySquatButton.addTarget(self, action: #selector(updateSquatGoal), for: .touchUpInside)
         
         dailySquatButton.translatesAutoresizingMaskIntoConstraints = false
         dailySquatButton.heightAnchor.constraint(equalToConstant: 130).isActive = true
         dailySquatButton.widthAnchor.constraint(equalToConstant: 130).isActive = true
         dailySquatButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         dailySquatButton.topAnchor.constraint(equalTo: todayLabel.bottomAnchor, constant: 10).isActive = true
+    }
+    
+    @objc func updateSquatGoal() {
+        let alertController = UIAlertController(title: "Set Your Daily Squat Goal", message: "", preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            // configure the properties of the text field
+            textField.placeholder = "0"
+        }
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (_) in
+            print("User clicked Edit button")
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: {[self, weak alertController] (_) in
+            let textField = alertController?.textFields![0]
+            UserDefaults.standard.set(textField?.text ?? "", forKey: "key-goal")
+            let squatGoal = UserDefaults.standard.string(forKey: "key-goal") ?? ""
+            
+            //use the key to grab value data (textField?.text)
+            //to access the name: let name = UserDefaults.standard.string(forKey: "pp-name") ?? ""
+            self.dailySquatButton.setTitle(squatGoal, for: .normal)
+        }))
+        
+        UIApplication.shared.windows.first?.rootViewController?.present(alertController, animated: true, completion: nil)
     }
     
     func setupDailyLabel() {

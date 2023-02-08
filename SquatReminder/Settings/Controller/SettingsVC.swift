@@ -32,6 +32,10 @@ class SettingsVC: UIViewController {
         setupTimePickerView()
         setupNameButton()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        squatButtonView.setupSquatButton()
+    }
   
     
     func setupSettingsLabel() {

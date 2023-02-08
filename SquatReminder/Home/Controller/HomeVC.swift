@@ -15,6 +15,7 @@ class HomeVC: UIViewController {
     let weeklyView = WeeklyView()
     let scrollView = UIScrollView()
     let monthlyView = MonthView()
+    let squatButtonView = SquatButtonView()
     //1 CORE DATA - create reference to managed object context
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -30,6 +31,7 @@ class HomeVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         welcomeView.setupNameLabel()
+        todayView.setupDailyButton()
     }
     
     func configureScrollView() {
