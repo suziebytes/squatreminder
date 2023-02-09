@@ -83,10 +83,17 @@ class TimePickerView: UIView {
         dateFormatter.dateFormat = "hh:mm a"
         let date = dateFormatter.date(from: "9:00 AM")
         startTimePicker.date = date!
+        startTimePicker.addTarget(self, action: #selector(startTimePickerValueChanged), for: .valueChanged)
         
         startTimePicker.tintColor = colors.darkPurple
         startTimePicker.datePickerMode = UIDatePicker.Mode.time
         startTimePicker.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    @objc func startTimePickerValueChanged() {
+        let selectedDate = startTimePicker.date
+        let selectedTime = dateFormatter.string(from: selectedDate)
+        print("Selected Time: \(selectedTime)")
     }
     
     //MARK: End View
@@ -115,9 +122,18 @@ class TimePickerView: UIView {
         dateFormatter.dateFormat = "hh:mm a"
         let date = dateFormatter.date(from: "8:00 PM")
         endTimePicker.date = date!
+        endTimePicker.addTarget(self, action: #selector(endTimePickerValueChanged), for: .valueChanged)
         
         endTimePicker.tintColor = colors.darkPurple
         endTimePicker.datePickerMode = UIDatePicker.Mode.time
         endTimePicker.translatesAutoresizingMaskIntoConstraints = false
     }
+    
+    @objc func endTimePickerValueChanged() {
+        let selectedDate = endTimePicker.date
+        let selectedTime = dateFormatter.string(from: selectedDate)
+        print("Selected Time: \(selectedTime)")
+    }
 }
+
+
