@@ -16,7 +16,6 @@ class NotificationView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-      
         setupNotifcationOptionLabel()
         setupSwitch()
     }
@@ -24,7 +23,6 @@ class NotificationView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     func setupNotifcationOptionLabel() {
         addSubview(notificationOptionLabel)
@@ -45,12 +43,27 @@ class NotificationView: UIView {
         onOffSwitch.layer.cornerRadius = 15
         onOffSwitch.layer.borderColor = colors.darkGray.cgColor
         onOffSwitch.layer.borderWidth = 1
+        onOffSwitch.addTarget(self, action: #selector(switchDidChange), for: .valueChanged)
         
+        if UserDefaults.standard.bool(forKey: "outletSwitch"){
+            onOffSwitch.setOn(true, animated: false)
+        } else {
+            onOffSwitch.setOn(false, animated: false)
+        }
+
         onOffSwitch.translatesAutoresizingMaskIntoConstraints = false
         onOffSwitch.topAnchor.constraint(equalTo: topAnchor).isActive = true
         onOffSwitch.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
         onOffSwitch.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
-    
+    @objc func switchDidChange(_ sender:UISwitch) {
+        if sender.isOn == true {
+            print("notifications on")
+            UserDefaults.standard.set(true, forKey: "outletSwitch")
+        } else {
+            UserDefaults.standard.set(false, forKey: "outletSwitch")
+          print("notifications off")
+        }
+    }
 }

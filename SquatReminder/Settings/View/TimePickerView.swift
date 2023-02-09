@@ -15,7 +15,7 @@ class TimePickerView: UIView {
     let endTimeLabel = HeaderLabel()
     let dateFormatter = DateFormatter()
     
-     
+    
     let startStackView = UIStackView()
     let endStackView = UIStackView()
     let stackViewContainer = UIStackView()
@@ -81,10 +81,15 @@ class TimePickerView: UIView {
     
     func setupStartTimePicker() {
         dateFormatter.dateFormat = "hh:mm a"
-        let date = dateFormatter.date(from: "9:00 AM")
+        var date = dateFormatter.date(from: "9:00 AM")
         startTimePicker.date = date!
-        startTimePicker.addTarget(self, action: #selector(startTimePickerValueChanged), for: .valueChanged)
         
+        //declare a variable and check to see if there's a selected time in userdefaults, if there is, update the date variable
+        if let storedTime = UserDefaults.standard.string(forKey: "selectedStartTime") {
+            date = dateFormatter.date(from: storedTime)
+        }
+        
+        startTimePicker.addTarget(self, action: #selector(startTimePickerValueChanged), for: .valueChanged)
         startTimePicker.tintColor = colors.darkPurple
         startTimePicker.datePickerMode = UIDatePicker.Mode.time
         startTimePicker.translatesAutoresizingMaskIntoConstraints = false
@@ -94,6 +99,8 @@ class TimePickerView: UIView {
         let selectedDate = startTimePicker.date
         let selectedTime = dateFormatter.string(from: selectedDate)
         print("Selected Time: \(selectedTime)")
+        
+        UserDefaults.standard.set(selectedTime, forKey: "selectedStartTime")
     }
     
     //MARK: End View
@@ -120,10 +127,15 @@ class TimePickerView: UIView {
     }
     func setupEndTimePicker() {
         dateFormatter.dateFormat = "hh:mm a"
-        let date = dateFormatter.date(from: "8:00 PM")
+        var date = dateFormatter.date(from: "8:00 PM")
+        
+        //declare a variable and check to see if there's a selected time in userdefaults, if there is, update the date variable
+        if let storedTime = UserDefaults.standard.string(forKey: "selectedEndTime") {
+            date = dateFormatter.date(from: storedTime)
+        }
+        
         endTimePicker.date = date!
         endTimePicker.addTarget(self, action: #selector(endTimePickerValueChanged), for: .valueChanged)
-        
         endTimePicker.tintColor = colors.darkPurple
         endTimePicker.datePickerMode = UIDatePicker.Mode.time
         endTimePicker.translatesAutoresizingMaskIntoConstraints = false
@@ -133,7 +145,10 @@ class TimePickerView: UIView {
         let selectedDate = endTimePicker.date
         let selectedTime = dateFormatter.string(from: selectedDate)
         print("Selected Time: \(selectedTime)")
+        //saves selected time
+        UserDefaults.standard.set(selectedTime, forKey: "selectedEndTime")
     }
 }
+
 
 

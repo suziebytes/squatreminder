@@ -32,13 +32,15 @@ class SettingsVC: UIViewController {
         setupTimePickerView()
         setupNameButton()
         
-        
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Register", style: .plain, target: self, action: #selector(registerLocal))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Schedule", style: .plain, target: self, action: #selector(scheduleLocal))
     }
     
     override func viewWillAppear(_ animated: Bool) {
         squatButtonView.setupSquatButton()
+        timePickerView.setupEndTimePicker()
+        timePickerView.setupStartTimePicker()
+        notificationView.setupSwitch()
     }
     
     
