@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import UserNotifications
 
 class NotificationView: UIView {
     let colors = ColorManager()
     let onOffSwitch = UISwitch()
     let notificationOptionLabel = UILabel()
     let maxSquatLabel = UILabel()
+    let timePickerView = TimePickerView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,7 +31,7 @@ class NotificationView: UIView {
         notificationOptionLabel.text = "Notifications"
         notificationOptionLabel.textColor = colors.darkGray
         notificationOptionLabel.font = UIFont(name:"HelveticaNeue", size: 15.0)
-
+        
         notificationOptionLabel.translatesAutoresizingMaskIntoConstraints = false
         notificationOptionLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         notificationOptionLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -48,9 +50,9 @@ class NotificationView: UIView {
         if UserDefaults.standard.bool(forKey: "outletSwitch"){
             onOffSwitch.setOn(true, animated: false)
         } else {
-            onOffSwitch.setOn(false, animated: false)
-        }
-
+                onOffSwitch.setOn(false, animated: false)
+            }
+        
         onOffSwitch.translatesAutoresizingMaskIntoConstraints = false
         onOffSwitch.topAnchor.constraint(equalTo: topAnchor).isActive = true
         onOffSwitch.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
@@ -61,9 +63,21 @@ class NotificationView: UIView {
         if sender.isOn == true {
             print("notifications on")
             UserDefaults.standard.set(true, forKey: "outletSwitch")
+            //request permission from user to send notificaitons
+            
+            //request authorization for notifications from user
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .badge, .sound]) {
+                granted, error in
+                if granted {
+                    print("YAY")
+                } else {
+                    print("NOOOO")
+                }
+            }
         } else {
             UserDefaults.standard.set(false, forKey: "outletSwitch")
-          print("notifications off")
+            print("notifications off")
         }
     }
 }

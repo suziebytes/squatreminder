@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class SettingsVC: UIViewController {
     let colors = ColorManager()
@@ -31,9 +32,9 @@ class SettingsVC: UIViewController {
         setupRemindersLabel()
         setupTimePickerView()
         setupNameButton()
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Register", style: .plain, target: self, action: #selector(registerLocal))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Schedule", style: .plain, target: self, action: #selector(scheduleLocal))
+    
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Register", style: .plain, target: self, action: #selector(registerLocal))
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Schedule", style: .plain, target: self, action: #selector(scheduleLocal))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -150,19 +151,19 @@ class SettingsVC: UIViewController {
     }
     
     //MARK: Notifications
-    @objc func registerLocal() {
-        //request permission from user to send notificaitons
-        let center = UNUserNotificationCenter.current()
-        
-        center.requestAuthorization(options: [.alert, .badge, .sound]) {
-            granted, error in
-            if granted {
-                print("YAY")
-            } else {
-                print("NOOOO")
-            }
-        }
-    }
+//    @objc func registerLocal() {
+//        //request permission from user to send notificaitons
+//        let center = UNUserNotificationCenter.current()
+//
+//        center.requestAuthorization(options: [.alert, .badge, .sound]) {
+//            granted, error in
+//            if granted {
+//                print("YAY")
+//            } else {
+//                print("NOOOO")
+//            }
+//        }
+//    }
     
     @objc func scheduleLocal() {
         //access current notice of user notifications
@@ -173,13 +174,22 @@ class SettingsVC: UIViewController {
         content.title = "SQUAT TIME"
         content.body = "Drop it like a Squat"
         content.sound = .default
+        content.categoryIdentifier = "alarm"
         
         // when notificaiton will be triggered
-        var dateComponents = DateComponents()
-        dateComponents.hour = 10
-        dateComponents.minute = 30
-        //        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+//        var dateComponents = DateComponents()
+        
+        //trigger notifications between x hours to x hours everyday, every 1 hour
+//        dateComponents.hour = 10
+//        dateComponents.minute = 30
+        //request everyday
+        
+        let componentsFromDate = Calendar.current.dateComponents(in: TimeZone.current, from: timePickerView.startTimePicker.date)
+        print("this is componentsFromDaate \(componentsFromDate)")
+        let trigger = UNCalendarNotificationTrigger(dateMatching: componentsFromDate, repeats: true)
+
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+
         
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         center.add(request)
