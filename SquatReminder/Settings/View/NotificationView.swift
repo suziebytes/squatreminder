@@ -17,9 +17,9 @@ class NotificationView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setupNotifcationOptionLabel()
         setupSwitch()
+        checkForPermissions()
     }
     
     required init?(coder: NSCoder) {
@@ -49,6 +49,7 @@ class NotificationView: UIView {
         
         if UserDefaults.standard.bool(forKey: "outletSwitch"){
             onOffSwitch.setOn(true, animated: false)
+            scheduleLocal()
         } else {
                 onOffSwitch.setOn(false, animated: false)
             }
@@ -71,13 +72,49 @@ class NotificationView: UIView {
                 granted, error in
                 if granted {
                     print("YAY")
+                    self.scheduleLocal()
                 } else {
-                    print("NOOOO")
+                    print("❌ NOOOO")
                 }
             }
         } else {
             UserDefaults.standard.set(false, forKey: "outletSwitch")
             print("notifications off")
+        }
+    }
+    
+    func scheduleLocal() {
+        //access current notice of user notifications
+        let center = UNUserNotificationCenter.current()
+        center.removeAllPendingNotificationRequests()
+        
+        let content = UNMutableNotificationContent()
+        content.title = "SQUAT TIME"
+        content.body = "Drop it like a Squat"
+        content.sound = .default
+        content.categoryIdentifier = "alarm"
+        
+//        let componentsFromDate = Calendar.current.dateComponents(in: TimeZone.current, from: timePickerView.startTimePicker.date)
+//        print("this is componentsFromDaate \(componentsFromDate)")
+//
+        
+        var dateComponents = DateComponents()
+        dateComponents.hour = 7
+        dateComponents.minute = 30
+//        let trigger = UNCalendarNotificationTrigger(dateMatching: componentsFromDate, repeats: true)
+
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        center.add(request)
+    }
+    
+    func checkForPermissions() {
+        let center = UNUserNotificationCenter.current()
+        center.getNotificationSettings { settings in
+            if settings.authorizationStatus == .authorized {
+                self.scheduleLocal()
+            }
         }
     }
 }
