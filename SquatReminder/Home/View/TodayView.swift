@@ -80,7 +80,6 @@ class TodayView: UIView {
         dailySquatButton.titleLabel?.lineBreakMode = .byWordWrapping
         dailySquatButton.titleEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
 
-        
         dailySquatButton.translatesAutoresizingMaskIntoConstraints = false
         dailySquatButton.heightAnchor.constraint(equalToConstant: 130).isActive = true
         dailySquatButton.widthAnchor.constraint(equalToConstant: 130).isActive = true

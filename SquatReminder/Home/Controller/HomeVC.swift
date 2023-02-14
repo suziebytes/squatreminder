@@ -17,6 +17,7 @@ class HomeVC: UIViewController {
     let scrollView = UIScrollView()
     let monthlyView = MonthView()
     let squatButtonView = SquatButtonView()
+    let notificationView = NotificationView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,13 @@ class HomeVC: UIViewController {
         super.viewWillAppear(animated)
         welcomeView.setupNameLabel()
         todayView.setupDailyButton()
+        
+        if UserDefaults.standard.bool(forKey: "outletSwitch"){
+            notificationView.onOffSwitch.setOn(true, animated: false)
+            notificationView.scheduleLocal()
+        } else {
+            notificationView.onOffSwitch.setOn(false, animated: false)
+        }
     }
     
     func configureScrollView() {
