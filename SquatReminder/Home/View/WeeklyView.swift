@@ -28,7 +28,6 @@ class WeeklyView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 
     //MARK: STACKVIEW
     func configureStackView() {
@@ -37,7 +36,7 @@ class WeeklyView: UIView {
         stackView.distribution = .fill
         stackView.spacing = 5
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        stackView.topAnchor.constraint(equalTo: topAnchor, constant: 25).isActive = true
         stackView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         stackView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true

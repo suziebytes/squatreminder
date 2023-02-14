@@ -40,12 +40,12 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
         timePickerView.setupEndTimePicker()
         timePickerView.setupStartTimePicker()
         
-//        if UserDefaults.standard.bool(forKey: "outletSwitch"){
-//            notificationView.onOffSwitch.setOn(true, animated: false)
-//            notificationView.scheduleLocal()
-//        } else {
-//            notificationView.onOffSwitch.setOn(false, animated: false)
-//        }
+        if UserDefaults.standard.bool(forKey: "outletSwitch"){
+            notificationView.onOffSwitch.setOn(true, animated: false)
+            notificationView.scheduleLocal()
+        } else {
+            notificationView.onOffSwitch.setOn(false, animated: false)
+        }
     }
     
     func setupSettingsLabel() {
@@ -149,7 +149,6 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
             self.welcomeView.setupNameLabel()
             self.nameButton.setTitle(name, for: .normal)
         }))
-        
         present(alertController, animated: true, completion: nil)
     }
 }

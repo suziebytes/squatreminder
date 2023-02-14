@@ -8,7 +8,7 @@
 import UIKit
 import UserNotifications
 
-class NotificationView: UIView {
+class NotificationView: UIView, UNUserNotificationCenterDelegate {
     let colors = ColorManager()
     let onOffSwitch = UISwitch()
     let notificationOptionLabel = UILabel()
@@ -51,8 +51,8 @@ class NotificationView: UIView {
             onOffSwitch.setOn(true, animated: false)
             scheduleLocal()
         } else {
-                onOffSwitch.setOn(false, animated: false)
-            }
+            onOffSwitch.setOn(false, animated: false)
+        }
         
         onOffSwitch.translatesAutoresizingMaskIntoConstraints = false
         onOffSwitch.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -84,6 +84,8 @@ class NotificationView: UIView {
     }
     
     func scheduleLocal() {
+        registerCategories()
+        
         //access current notice of user notifications
         let center = UNUserNotificationCenter.current()
         center.removeAllPendingNotificationRequests()
@@ -92,20 +94,20 @@ class NotificationView: UIView {
         content.title = "SQUAT TIME"
         content.body = "Drop it like a Squat"
         content.sound = .default
-        content.categoryIdentifier = "alarm"
+        content.userInfo = ["logsquats": "add to count"]
+        content.categoryIdentifier = "squatsReminderCategory"
         
-//        let componentsFromDate = Calendar.current.dateComponents(in: TimeZone.current, from: timePickerView.startTimePicker.date)
-//        print("this is componentsFromDaate \(componentsFromDate)")
-//
+        //        let componentsFromDate = Calendar.current.dateComponents(in: TimeZone.current, from: timePickerView.startTimePicker.date)
+        //        print("this is componentsFromDaate \(componentsFromDate)")
         
-        var dateComponents = DateComponents()
-        dateComponents.hour = 7
-        dateComponents.minute = 30
-//        let trigger = UNCalendarNotificationTrigger(dateMatching: componentsFromDate, repeats: true)
-
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
-
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        //        let trigger = UNCalendarNotificationTrigger(dateMatching: componentsFromDate, repeats: true)
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        
+        //        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        let request = UNNotificationRequest(identifier: "squatsReminder", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         center.add(request)
     }
     
@@ -116,5 +118,43 @@ class NotificationView: UIView {
                 self.scheduleLocal()
             }
         }
+    }
+    
+    func registerCategories() {
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+        
+        let noSquats = UNNotificationAction(
+            identifier: "squatsReminder.doneAction",
+            title: "None",
+            options: [])
+        let logSquats = UNTextInputNotificationAction(
+            identifier: "squatsReminder.howManySquatsInputAction",
+            title: "How Many Squats Did You Do?",
+            options: [],
+            textInputButtonTitle: "Submit",
+            textInputPlaceholder: "Type your message here")
+        let logSquatsRemiderCategory = UNNotificationCategory(
+            identifier: "squatsReminderCategory",
+            actions: [logSquats, noSquats],
+            intentIdentifiers: [],
+            options: .customDismissAction)
+        UNUserNotificationCenter.current().setNotificationCategories([logSquatsRemiderCategory])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        switch response.actionIdentifier {
+        case "squatsReminder.doneAction":
+            print("hello")
+        case "squatsReminder.howManySquatsInputAction":
+            if let userInput = (response as? UNTextInputNotificationResponse)?.userText {
+                print(userInput)
+            }
+        default:
+            break
+        }
+        // you must call the completion handler when you're done
+        completionHandler()
     }
 }

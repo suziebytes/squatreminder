@@ -20,11 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITableViewDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
-        
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
-         (granted, error) in
-         //Parse errors and track state
-        }
       
         return true
     }

@@ -29,7 +29,7 @@ class MonthView: UIView {
         monthLabel.setupLabel(inputText: "MONTH")
         
         monthLabel.translatesAutoresizingMaskIntoConstraints = false
-        monthLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        monthLabel.topAnchor.constraint(equalTo: topAnchor, constant: 25).isActive = true
     }
     
     private func createCalendar() {
