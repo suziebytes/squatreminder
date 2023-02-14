@@ -130,10 +130,10 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate {
             options: [])
         let logSquats = UNTextInputNotificationAction(
             identifier: "squatsReminder.howManySquatsInputAction",
-            title: "How Many Squats Did You Do?",
+            title: "Log Squats",
             options: [],
             textInputButtonTitle: "Submit",
-            textInputPlaceholder: "Type your message here")
+            textInputPlaceholder: "How Many Squats Did You Do?")
         let logSquatsRemiderCategory = UNNotificationCategory(
             identifier: "squatsReminderCategory",
             actions: [logSquats, noSquats],

@@ -31,6 +31,11 @@ class SquatButtonView: UIView {
         squatButton.setTitle(squatGoal, for: .normal)
         squatButton.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 100)
         squatButton.addTarget(self, action: #selector(updateSquatGoal), for: .touchUpInside)
+        squatButton.titleLabel?.minimumScaleFactor = 0.5
+        squatButton.titleLabel?.numberOfLines = 1
+        squatButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        squatButton.titleLabel?.lineBreakMode = .byWordWrapping
+        squatButton.titleEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
         squatButton.translatesAutoresizingMaskIntoConstraints = false
         squatButton.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -61,6 +66,9 @@ class SquatButtonView: UIView {
             //use the key to grab value data (textField?.text)
             //to access the name: let name = UserDefaults.standard.string(forKey: "pp-name") ?? ""
             self.squatButton.setTitle(squatGoal, for: .normal)
+            self.squatButton.titleLabel?.minimumScaleFactor = 0.5
+            self.squatButton.titleLabel?.numberOfLines = 0
+            self.squatButton.titleLabel?.adjustsFontSizeToFitWidth = true
         }))
         
         UIApplication.shared.windows.first?.rootViewController?.present(alertController, animated: true, completion: nil)
