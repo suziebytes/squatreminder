@@ -8,7 +8,7 @@
 import UIKit
 import UserNotifications
 
-class NotificationView: UIView, UNUserNotificationCenterDelegate {
+class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDelegate {
     let colors = ColorManager()
     let onOffSwitch = UISwitch()
     let notificationOptionLabel = UILabel()
@@ -25,6 +25,12 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let allowedCharacterSet = CharacterSet(charactersIn: "0123456789")
+        let replacementStringCharacterSet = CharacterSet(charactersIn: string)
+        return allowedCharacterSet.isSuperset(of: replacementStringCharacterSet)
     }
     
     func setupNotifcationOptionLabel() {
@@ -134,7 +140,7 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate {
             title: "Log Squats",
             options: [],
             textInputButtonTitle: "Submit",
-            textInputPlaceholder: "How Many Squats Did You Do?") 
+            textInputPlaceholder: "How Many Squats Did You Do?")
         let logSquatsRemiderCategory = UNNotificationCategory(
             identifier: "squatsReminderCategory",
             actions: [logSquats, noSquats],
@@ -150,11 +156,25 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate {
         case "squatsReminder.howManySquatsInputAction":
             if let userInput = (response as? UNTextInputNotificationResponse)?.userText {
                 print(userInput)
+                if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: userInput)) {
+                    guard let isInteger = Int(userInput) else {
+                        return
+                    }
+                    print("this is integer \(isInteger)")
+                    
+                } else {
+                    let alertController = UIAlertController(title: "Enter Numbers Only", message: "", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
+                        print("User clicked OK")
+                    }))
+                    self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+                }
             }
         default:
             break
         }
-        // you must call the completion handler when you're done
+            // you must call the completion handler when you're done
         completionHandler()
+        }
     }
-}
+
