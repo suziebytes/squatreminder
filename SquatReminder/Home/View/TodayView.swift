@@ -11,7 +11,7 @@ class TodayView: UIView {
     let colors = ColorManager()
     let todayLabel = UILabel()
     let currentSquatButton = Buttons()
-    let currentSquatLabel = DescriptionLabel()
+    var currentSquatLabel = DescriptionLabel()
     let dailySquatButton = Buttons()
     let dailySquatLabel = DescriptionLabel()
     var currentSquatCount = 0
@@ -74,11 +74,6 @@ class TodayView: UIView {
         dailySquatButton.titleLabel?.adjustsFontSizeToFitWidth = true
         dailySquatButton.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 60)
         dailySquatButton.addTarget(self, action: #selector(updateSquatGoal), for: .touchUpInside)
-        dailySquatButton.titleLabel?.minimumScaleFactor = 0.5
-        dailySquatButton.titleLabel?.numberOfLines = 1
-        dailySquatButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        dailySquatButton.titleLabel?.lineBreakMode = .byWordWrapping
-        dailySquatButton.titleEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
 
         dailySquatButton.translatesAutoresizingMaskIntoConstraints = false
         dailySquatButton.heightAnchor.constraint(equalToConstant: 130).isActive = true

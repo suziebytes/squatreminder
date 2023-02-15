@@ -14,6 +14,7 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate {
     let notificationOptionLabel = UILabel()
     let maxSquatLabel = UILabel()
     let timePickerView = TimePickerView()
+    let todayView = TodayView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -133,7 +134,7 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate {
             title: "Log Squats",
             options: [],
             textInputButtonTitle: "Submit",
-            textInputPlaceholder: "How Many Squats Did You Do?")
+            textInputPlaceholder: "How Many Squats Did You Do?") 
         let logSquatsRemiderCategory = UNNotificationCategory(
             identifier: "squatsReminderCategory",
             actions: [logSquats, noSquats],
@@ -143,7 +144,6 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate {
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        
         switch response.actionIdentifier {
         case "squatsReminder.doneAction":
             print("hello")

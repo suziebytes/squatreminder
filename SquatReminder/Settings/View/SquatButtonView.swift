@@ -31,11 +31,6 @@ class SquatButtonView: UIView {
         squatButton.setTitle(squatGoal, for: .normal)
         squatButton.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 100)
         squatButton.addTarget(self, action: #selector(updateSquatGoal), for: .touchUpInside)
-        squatButton.titleLabel?.minimumScaleFactor = 0.5
-        squatButton.titleLabel?.numberOfLines = 1
-        squatButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        squatButton.titleLabel?.lineBreakMode = .byWordWrapping
-        squatButton.titleEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
         squatButton.translatesAutoresizingMaskIntoConstraints = false
         squatButton.topAnchor.constraint(equalTo: topAnchor).isActive = true

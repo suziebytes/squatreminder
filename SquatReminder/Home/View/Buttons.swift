@@ -24,6 +24,11 @@ class Buttons: UIButton {
         layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
         layer.shadowOpacity = 0.4
         layer.shadowRadius = 5.0
+        titleLabel?.minimumScaleFactor = 0.5
+        titleLabel?.numberOfLines = 1
+        titleLabel?.adjustsFontSizeToFitWidth = true
+        titleLabel?.lineBreakMode = .byWordWrapping
+        titleEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     
 }

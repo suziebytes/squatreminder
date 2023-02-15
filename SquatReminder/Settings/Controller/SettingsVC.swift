@@ -39,8 +39,13 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
         squatButtonView.setupSquatButton()
         timePickerView.setupEndTimePicker()
         timePickerView.setupStartTimePicker()
-    
         
+        if UserDefaults.standard.string(forKey: "key-name") != nil {
+            nameButton.setTitle(UserDefaults.standard.string(forKey: "key-name"), for: .normal)
+        } else {
+            nameButton.setTitle("ADD NAME", for: .normal)
+        }
+    
         if UserDefaults.standard.bool(forKey: "outletSwitch"){
             notificationView.onOffSwitch.setOn(true, animated: false)
             notificationView.scheduleLocal()
@@ -117,7 +122,6 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
     
     func setupNameButton() {
         view.addSubview(nameButton)
-//        let name = UserDefaults.standard.string(forKey: "key-name") ?? ""
         nameButton.setTitle("ADD NAME", for: .normal)
         nameButton.addTarget(self, action: #selector(alertName), for: .touchUpInside)
         nameButton.backgroundColor = colors.darkPurple
