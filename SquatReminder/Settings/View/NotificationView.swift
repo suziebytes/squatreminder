@@ -15,6 +15,7 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
     let maxSquatLabel = UILabel()
     let timePickerView = TimePickerView()
     let todayView = TodayView()
+    var saveSquatCount: Void
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -157,10 +158,10 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
             if let userInput = (response as? UNTextInputNotificationResponse)?.userText {
                 print(userInput)
                 if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: userInput)) {
-                    guard let isInteger = Int(userInput) else {
+                    guard Int(userInput) != nil else {
                         return
                     }
-                    print("this is integer \(isInteger)")
+                    saveSquatCount = UserDefaults.standard.set(Int(userInput), forKey: "logSquats")
                     
                 } else {
                     let alertController = UIAlertController(title: "Enter Numbers Only", message: "", preferredStyle: .alert)
