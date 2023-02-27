@@ -39,6 +39,9 @@ class HomeVC: UIViewController {
         } else {
             notificationView.onOffSwitch.setOn(false, animated: false)
         }
+        
+        var squatCount = UserDefaults.standard.integer(forKey: "logSquats")
+        todayView.currentSquatButton.setTitle(String(squatCount), for: .normal)
     }
     
     func configureScrollView() {

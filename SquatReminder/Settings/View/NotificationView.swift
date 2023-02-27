@@ -15,7 +15,6 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
     let maxSquatLabel = UILabel()
     let timePickerView = TimePickerView()
     let todayView = TodayView()
-    var saveSquatCount: Void
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -90,7 +89,7 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
             print("notifications off")
         }
     }
-    
+
     func scheduleLocal() {
         registerCategories()
         
@@ -158,10 +157,16 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
             if let userInput = (response as? UNTextInputNotificationResponse)?.userText {
                 print(userInput)
                 if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: userInput)) {
-                    guard Int(userInput) != nil else {
+                    guard let tempCount = Int(userInput) else {
+                        print("failed because there was no number value")
                         return
                     }
-                    saveSquatCount = UserDefaults.standard.set(Int(userInput), forKey: "logSquats")
+                    //get the previous count (using standard.integer instead of 'set')
+                    var previousCount =  UserDefaults.standard.integer(forKey: "logSquats")
+                    // add previous count + new count
+                    var updatedCount = tempCount + previousCount
+                    //update the same key with the updateCount 
+                    UserDefaults.standard.set(updatedCount, forKey: "logSquats")
                     
                 } else {
                     let alertController = UIAlertController(title: "Enter Numbers Only", message: "", preferredStyle: .alert)
@@ -174,7 +179,6 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
         default:
             break
         }
-            // you must call the completion handler when you're done
         completionHandler()
         }
     }
