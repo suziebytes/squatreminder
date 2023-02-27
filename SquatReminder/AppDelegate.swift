@@ -14,13 +14,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITableViewDelegate {
     
     var window: UIWindow?
     
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        UNUserNotificationCenter.current().delegate = self
+        
+        // request permission from user to send notification
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: { authorized, error in
+            if authorized {
+                DispatchQueue.main.async(execute: {
+                    application.registerForRemoteNotifications()
+                })
+            }
+        })
+        
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
-      
+        
         return true
     }
     
@@ -82,5 +93,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITableViewDelegate {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate{
+    
+    // This function will be called when the app receive notification
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        // show the notification alert (banner), and with sound
+        completionHandler(.sound)
+    }
+    
+    // This function will be called right after user tap on the notification
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        // tell the app that we have finished processing the user’s action / response
+        completionHandler()
     }
 }

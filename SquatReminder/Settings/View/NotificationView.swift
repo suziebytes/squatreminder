@@ -89,7 +89,7 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
             print("notifications off")
         }
     }
-
+    
     func scheduleLocal() {
         registerCategories()
         
@@ -133,7 +133,7 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
         
         let noSquats = UNNotificationAction(
             identifier: "squatsReminder.doneAction",
-            title: "None",
+            title: "I didn't Squat",
             options: [])
         let logSquats = UNTextInputNotificationAction(
             identifier: "squatsReminder.howManySquatsInputAction",
@@ -141,15 +141,30 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
             options: [],
             textInputButtonTitle: "Submit",
             textInputPlaceholder: "How Many Squats Did You Do?")
-        let logSquatsRemiderCategory = UNNotificationCategory(
+        let logSquatsReminderCategory = UNNotificationCategory(
             identifier: "squatsReminderCategory",
             actions: [logSquats, noSquats],
             intentIdentifiers: [],
             options: .customDismissAction)
-        UNUserNotificationCenter.current().setNotificationCategories([logSquatsRemiderCategory])
+        UNUserNotificationCenter.current().setNotificationCategories([logSquatsReminderCategory])
     }
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        let application = UIApplication.shared
+        
+        if(application.applicationState == .active){
+            UserDefaults.standard.set(true, forKey: "notificationTapped")
+            print("user tapped the notification bar when the app is in foreground")
+        }
+        
+        if(application.applicationState == .inactive)
+        {
+            UserDefaults.standard.set(true, forKey: "notificationTapped")
+            print("user tapped the notification bar when the app is in background")
+        }
+        
         switch response.actionIdentifier {
         case "squatsReminder.doneAction":
             print("hello")
@@ -162,10 +177,10 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
                         return
                     }
                     //get the previous count (using standard.integer instead of 'set')
-                    var previousCount =  UserDefaults.standard.integer(forKey: "logSquats")
+                    let previousCount =  UserDefaults.standard.integer(forKey: "logSquats")
                     // add previous count + new count
-                    var updatedCount = tempCount + previousCount
-                    //update the same key with the updateCount 
+                    let updatedCount = tempCount + previousCount
+                    //update the same key with the updateCount
                     UserDefaults.standard.set(updatedCount, forKey: "logSquats")
                     
                 } else {
@@ -176,10 +191,11 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
                     self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
                 }
             }
+            
         default:
             break
         }
         completionHandler()
-        }
     }
+}
 

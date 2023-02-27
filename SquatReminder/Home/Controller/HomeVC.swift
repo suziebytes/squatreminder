@@ -40,8 +40,12 @@ class HomeVC: UIViewController {
             notificationView.onOffSwitch.setOn(false, animated: false)
         }
         
-        var squatCount = UserDefaults.standard.integer(forKey: "logSquats")
+        let squatCount = UserDefaults.standard.integer(forKey: "logSquats")
         todayView.currentSquatButton.setTitle(String(squatCount), for: .normal)
+        
+        if UserDefaults.standard.bool(forKey: "notificationTapped") {
+            print("present alert here nowwwwwwwww 🫠")
+        }
     }
     
     func configureScrollView() {
