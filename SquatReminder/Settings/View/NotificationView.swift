@@ -8,7 +8,25 @@
 import UIKit
 import UserNotifications
 
+//1.  Create a protocol + a empty function
+//      >> conform to 'AnyObject' >> protocol NotificationViewDelegate: AnyObject
+//2.  Create a delegate variable (homeDelegate : NotificationViewDelegate)
+//      >> homeDelegate has acccess to the function in the protocol
+//      >> Define 'weak' var for var homeDelegate because it creates a 'loop', which leads to a memory leak; commonly           known as retain cycle
+//      >> weak var needs to be an optional >> NotificationViewDelegate?
+//3. 'Conform' the delegate to other VCs that want to have access to the protocol function // i.e. HomeVC wants access to didTapBanner() so we add HomeVC: NotificationViewDelegate
+//4. Xcode will automatically have the 'stubs'
+//5.  Access delegate (homeDelegate) from the NotificaitonView inside the HomeVC (VDL)
+//6.  Assign it to self (        notificationView.homeDelegate = self       )
+//7. Define 'weak' var for var homeDelegate because it creates a 'loop', which leads to a memory leak; commonly known as retain cycle
+
+protocol NotificationViewDelegate: AnyObject {
+    func didTapBanner()
+}
+
 class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDelegate {
+    weak var homeDelegate: NotificationViewDelegate?
+    
     let colors = ColorManager()
     let onOffSwitch = UISwitch()
     let notificationOptionLabel = UILabel()
@@ -149,19 +167,23 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
         UNUserNotificationCenter.current().setNotificationCategories([logSquatsReminderCategory])
     }
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
         let application = UIApplication.shared
         
         if(application.applicationState == .active){
-            UserDefaults.standard.set(true, forKey: "notificationTapped")
+         
+            homeDelegate?.didTapBanner()
             print("user tapped the notification bar when the app is in foreground")
         }
         
         if(application.applicationState == .inactive)
         {
-            UserDefaults.standard.set(true, forKey: "notificationTapped")
+            homeDelegate?.didTapBanner()
+
             print("user tapped the notification bar when the app is in background")
         }
         

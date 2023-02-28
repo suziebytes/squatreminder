@@ -8,7 +8,26 @@ import UIKit
 import UserNotifications
 import BarChartKit
 
-class HomeVC: UIViewController {
+class HomeVC: UIViewController, NotificationViewDelegate {
+    func didTapBanner() {
+        print("this was triggered ❌")
+        let alertController = UIAlertController(title: "Log Squat", message: "", preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            textField.placeholder = "0"
+        }
+        
+        alertController.addAction(UIAlertAction(title: "No Squats", style: .default, handler: { (_) in
+            print("User clicked Edit button")
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Log", style: .default, handler: {[self, weak alertController] (_) in
+            let textField = alertController?.textFields![0]
+            UserDefaults.standard.set(textField?.text ?? "", forKey: "logSquatAlert")
+            let logSquat = UserDefaults.standard.string(forKey: "logSquatAlert") ?? ""
+        }))
+        present(alertController, animated: true, completion: nil)
+    }
+    
     let colors = ColorManager()
     let welcomeView = WelcomeView()
     let stackView = UIStackView()
@@ -23,6 +42,7 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "Home"
+        notificationView.homeDelegate = self
         configureScrollView()
         configureStackView()
         addToStackView()
@@ -42,10 +62,6 @@ class HomeVC: UIViewController {
         
         let squatCount = UserDefaults.standard.integer(forKey: "logSquats")
         todayView.currentSquatButton.setTitle(String(squatCount), for: .normal)
-        
-        if UserDefaults.standard.bool(forKey: "notificationTapped") {
-            print("present alert here nowwwwwwwww 🫠")
-        }
     }
     
     func configureScrollView() {
