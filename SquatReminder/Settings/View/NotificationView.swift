@@ -201,7 +201,7 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
                     //get the previous count (using standard.integer instead of 'set')
                     let previousCount =  UserDefaults.standard.integer(forKey: "logSquats")
                     // add previous count + new count
-                    let updatedCount = tempCount + previousCount
+                    let updatedCount = previousCount + tempCount
                     //update the same key with the updateCount
                     UserDefaults.standard.set(updatedCount, forKey: "logSquats")
                     
