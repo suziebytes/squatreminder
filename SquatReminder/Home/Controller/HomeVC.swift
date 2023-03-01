@@ -25,14 +25,14 @@ class HomeVC: UIViewController, NotificationViewDelegate {
             let value = textField?.text ?? ""
             
             let double = Double(value) ?? 0.0
-            print("this is \(double)")
+            print("🙃 this is \(double)")
             
             UserDefaults.standard.set(double, forKey: "logSquatAlert")
             let previousCount =  UserDefaults.standard.integer(forKey: "logSquats")
             let tempCount = UserDefaults.standard.integer(forKey: "logSquatAlert")
             let updatedCount = previousCount + tempCount
-            UserDefaults.standard.set(updatedCount, forKey: "logSquatsAlert")
-//            todayView.currentSquatButton.setTitle(String(updatedCount), for: .normal)
+            UserDefaults.standard.set(updatedCount, forKey: "logSquats")
+            todayView.currentSquatButton.setTitle(String(updatedCount), for: .normal)
         }))
         present(alertController, animated: true, completion: nil)
     }
@@ -72,8 +72,8 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         let squatCount = UserDefaults.standard.integer(forKey: "logSquats")
         todayView.currentSquatButton.setTitle(String(squatCount), for: .normal)
         
-        let squatCountAlert = UserDefaults.standard.integer(forKey: "logSquatsAlert")
-        todayView.currentSquatButton.setTitle(String(squatCountAlert), for: .normal)
+//        let squatCountAlert = UserDefaults.standard.integer(forKey: "logSquatsAlert")
+//        todayView.currentSquatButton.setTitle(String(squatCountAlert), for: .normal)
         
     }
     
