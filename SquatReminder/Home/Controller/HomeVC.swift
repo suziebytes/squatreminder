@@ -45,6 +45,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
     let monthlyView = MonthView()
     let squatButtonView = SquatButtonView()
     let notificationView = NotificationView()
+    var currentDate = CurrentDate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +55,12 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         configureScrollView()
         configureStackView()
         addToStackView()
+        
+        let getCurrentDate = currentDate.getCurrentDate()
+        let getDayOfWeek = currentDate.getDayOfWeek()
+        print("😘", getCurrentDate)
+        print("🫠", getDayOfWeek)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,7 +82,6 @@ class HomeVC: UIViewController, NotificationViewDelegate {
     func configureScrollView() {
         view.addSubview(scrollView)
         scrollView.alwaysBounceVertical = true
-        
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -102,11 +108,14 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         stackView.addArrangedSubview(monthlyView)
     }
     
-    func currentDate() {
-        let dateFormatter = DateFormatter()
-        // uncomment to enforce the US locale
-        dateFormatter.locale = Locale(identifier: "en-US")
-        dateFormatter.setLocalizedDateFormatFromTemplate("EEE MMM d yyyy")
-        print("☀️ this is the today's date", dateFormatter.string(from: Date())) // "Tue, Mar 20, 2018" for en-US locale
-    }
+//    func currentDate() {
+//        let dateFormatter = DateFormatter()
+//        // uncomment to enforce the US locale
+//        dateFormatter.locale = Locale(identifier: "en-US")
+//        //        dateFormatter.setLocalizedDateFormatFromTemplate("EEE MMM d yyyy")
+//        let currentDate: Void = dateFormatter.setLocalizedDateFormatFromTemplate("EEE MMM d yyyy")
+//        print("☀️ this is the today's date", dateFormatter.string(from: Date())) // "Tue, Mar 20, 2018" for en-US locale
+//        let dayOfWeek: Void = dateFormatter.setLocalizedDateFormatFromTemplate("EEE")
+//        print("🌈 this is the day of the week", dateFormatter.string(from: Date())) // "Tue, Mar 20, 2018" for en-US locale
+//    }
 }
