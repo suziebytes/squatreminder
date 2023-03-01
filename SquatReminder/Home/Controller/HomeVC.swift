@@ -17,7 +17,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         }
         
         alertController.addAction(UIAlertAction(title: "No Squats", style: .default, handler: { (_) in
-            print("User clicked Edit button")
+            print(" ❌ User Didn't Squat")
         }))
         
         alertController.addAction(UIAlertAction(title: "Log", style: .default, handler: {[self, weak alertController] (_) in
@@ -32,7 +32,6 @@ class HomeVC: UIViewController, NotificationViewDelegate {
             let tempCount = UserDefaults.standard.integer(forKey: "logSquatAlert")
             let updatedCount = previousCount + tempCount
             UserDefaults.standard.set(updatedCount, forKey: "logSquats")
-            todayView.currentSquatButton.setTitle(String(updatedCount), for: .normal)
         }))
         present(alertController, animated: true, completion: nil)
     }
@@ -71,10 +70,6 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         
         let squatCount = UserDefaults.standard.integer(forKey: "logSquats")
         todayView.currentSquatButton.setTitle(String(squatCount), for: .normal)
-        
-//        let squatCountAlert = UserDefaults.standard.integer(forKey: "logSquatsAlert")
-//        todayView.currentSquatButton.setTitle(String(squatCountAlert), for: .normal)
-        
     }
     
     func configureScrollView() {
@@ -88,7 +83,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
-    func configureStackView(){
+    func configureStackView() {
         scrollView.addSubview(stackView)
         stackView.axis = .vertical
         stackView.distribution = .fill
@@ -100,12 +95,18 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
     }
     
-    func addToStackView(){
+    func addToStackView() {
         stackView.addArrangedSubview(welcomeView)
         stackView.addArrangedSubview(todayView)
         stackView.addArrangedSubview(weeklyView)
         stackView.addArrangedSubview(monthlyView)
     }
     
+    func currentDate() {
+        let dateFormatter = DateFormatter()
+        // uncomment to enforce the US locale
+        dateFormatter.locale = Locale(identifier: "en-US")
+        dateFormatter.setLocalizedDateFormatFromTemplate("EEE MMM d yyyy")
+        print("☀️ this is the today's date", dateFormatter.string(from: Date())) // "Tue, Mar 20, 2018" for en-US locale
+    }
 }
-

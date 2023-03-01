@@ -62,7 +62,7 @@ class WeeklyView: UIView {
     
     func setupBarChart(){
         cardView.addSubview(barChart)
-        
+
         let mockBarChartDataSet: BarChartView.DataSet? = BarChartView.DataSet(elements: [
             BarChartView.DataSet.DataElement(date: nil, xLabel: "SUN", bars:
                                                 [BarChartView.DataSet.DataElement.Bar(value: 20000, color: colors.lightPurple)]),
@@ -81,7 +81,6 @@ class WeeklyView: UIView {
         ], selectionColor: colors.darkPurple)
         
         barChart.barWidth = 30
-        
         barChart.dataSet = mockBarChartDataSet
         barChart.translatesAutoresizingMaskIntoConstraints = false
         barChart.heightAnchor.constraint(equalToConstant: 100).isActive = true
