@@ -33,6 +33,8 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
     let maxSquatLabel = UILabel()
     let timePickerView = TimePickerView()
     let todayView = TodayView()
+    let weeklyView = WeeklyView()
+    var currentDate = CurrentDate()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -204,6 +206,10 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
                     let updatedCount = previousCount + tempCount
                     //update the same key with the updateCount
                     UserDefaults.standard.set(updatedCount, forKey: "logSquats")
+                    
+                    let dayOfWeek = currentDate.getDayOfWeek()
+                    UserDefaults.standard.set(updatedCount, forKey: dayOfWeek.uppercased())
+                    weeklyView.setupBarChart()
                     
                 } else {
                     let alertController = UIAlertController(title: "Enter Numbers Only", message: "", preferredStyle: .alert)

@@ -9,18 +9,13 @@ import UIKit
 import BarChartKit
 
 class WeeklyView: UIView {
-    
     let colors = ColorManager()
     let weeklyLabel = SpacedLabel()
     let barChart = BarChartView()
     let stackView = UIStackView()
     let cardView = CardView()
     var currentDate = CurrentDate()
-    var getCurrentDate = ""
-    var getDayOfWeek = ""
-    var squatCount = 35
-    
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupCardView()
@@ -64,8 +59,6 @@ class WeeklyView: UIView {
     func getDate() {
         getCurrentDate = currentDate.getCurrentDate()
         getDayOfWeek = currentDate.getDayOfWeek()
-        print("🌈",getCurrentDate)
-        print("🌈", getDayOfWeek)
     }
 
     //MARK: CHART
