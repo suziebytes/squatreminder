@@ -15,6 +15,11 @@ class WeeklyView: UIView {
     let barChart = BarChartView()
     let stackView = UIStackView()
     let cardView = CardView()
+    var currentDate = CurrentDate()
+    var getCurrentDate = ""
+    var getDayOfWeek = ""
+    var squatCount = 35
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,12 +28,14 @@ class WeeklyView: UIView {
         setupStackView()
         setupWeeklyLabel()
         setupBarChart()
+        setupBarChartStyling()
+        getDate()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     //MARK: STACKVIEW
     func configureStackView() {
         addSubview(stackView)
@@ -53,8 +60,15 @@ class WeeklyView: UIView {
         weeklyLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    //MARK: Current Date
+    func getDate() {
+        getCurrentDate = currentDate.getCurrentDate()
+        getDayOfWeek = currentDate.getDayOfWeek()
+        print("🌈",getCurrentDate)
+        print("🌈", getDayOfWeek)
+    }
+
     //MARK: CHART
-    
     func setupCardView() {
         addSubview(cardView)
         cardView.translatesAutoresizingMaskIntoConstraints = false
@@ -62,32 +76,35 @@ class WeeklyView: UIView {
     
     func setupBarChart(){
         cardView.addSubview(barChart)
-
+        
+        let mon = Double(UserDefaults.standard.integer(forKey: "MON"))
+        let tue = Double(UserDefaults.standard.integer(forKey: "TUES"))
+        let wed = Double(UserDefaults.standard.integer(forKey: "WED"))
+        let thu = Double(UserDefaults.standard.integer(forKey: "THU"))
+        let fri = Double(UserDefaults.standard.integer(forKey: "FRI"))
+        let sat = Double(UserDefaults.standard.integer(forKey: "SAT"))
+        let sun = Double(UserDefaults.standard.integer(forKey: "SUN"))
+        
         let mockBarChartDataSet: BarChartView.DataSet? = BarChartView.DataSet(elements: [
-            BarChartView.DataSet.DataElement(date: nil, xLabel: "SUN", bars:
-                                                [BarChartView.DataSet.DataElement.Bar(value: 20000, color: colors.lightPurple)]),
-            BarChartView.DataSet.DataElement(date: nil, xLabel: "MON", bars:
-                                                [BarChartView.DataSet.DataElement.Bar(value: 0, color: colors.lightPurple)]),
-            BarChartView.DataSet.DataElement(date: nil, xLabel: "TUES", bars:
-                                                [BarChartView.DataSet.DataElement.Bar(value: 10000, color: colors.lightPurple)]),
-            BarChartView.DataSet.DataElement(date: nil, xLabel: "WED", bars:
-                                                [BarChartView.DataSet.DataElement.Bar(value: 20000, color: colors.lightPurple)]),
-            BarChartView.DataSet.DataElement(date: nil, xLabel: "THUR", bars:
-                                                [BarChartView.DataSet.DataElement.Bar(value: 32000, color: colors.lightPurple)]),
-            BarChartView.DataSet.DataElement(date: nil, xLabel: "FRI", bars:
-                                                [BarChartView.DataSet.DataElement.Bar(value: 20000, color: colors.lightPurple)]),
-            BarChartView.DataSet.DataElement(date: nil, xLabel: "SAT", bars:
-                                                [BarChartView.DataSet.DataElement.Bar(value: 20000, color: colors.lightPurple)])
+            .init(date: nil, xLabel: "SUN", bars: [.init(value: sun, color: colors.lightPurple)]),
+            .init(date: nil, xLabel: "MON", bars: [.init(value: mon, color: colors.lightPurple)]),
+            .init(date: nil, xLabel: "TUE", bars: [.init(value: tue, color: colors.lightPurple)]),
+            .init(date: nil, xLabel: "WED", bars: [.init(value: wed, color: colors.lightPurple)]),
+            .init(date: nil, xLabel: "THU", bars: [.init(value: thu, color: colors.lightPurple)]),
+            .init(date: nil, xLabel: "FRI", bars: [.init(value: fri, color: colors.lightPurple)]),
+            .init(date: nil, xLabel: "SAT", bars: [.init(value: sat, color: colors.lightPurple)])
         ], selectionColor: colors.darkPurple)
         
-        barChart.barWidth = 30
         barChart.dataSet = mockBarChartDataSet
+    }
+    
+    func setupBarChartStyling() {
+        barChart.barWidth = 30
         barChart.translatesAutoresizingMaskIntoConstraints = false
         barChart.heightAnchor.constraint(equalToConstant: 100).isActive = true
         barChart.topAnchor.constraint(equalTo: cardView.topAnchor).isActive = true
         barChart.bottomAnchor.constraint(equalTo: cardView.bottomAnchor).isActive = true
         barChart.leftAnchor.constraint(equalTo: cardView.leftAnchor, constant: 10).isActive = true
         barChart.rightAnchor.constraint(equalTo: cardView.rightAnchor, constant: -10).isActive = true
-        
     }
 }

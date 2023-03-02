@@ -9,33 +9,7 @@ import UserNotifications
 import BarChartKit
 
 class HomeVC: UIViewController, NotificationViewDelegate {
-    func didTapBanner() {
-        print("this was triggered ❌")
-        let alertController = UIAlertController(title: "Log Squat", message: "", preferredStyle: .alert)
-        alertController.addTextField { (textField) in
-            textField.placeholder = "0"
-        }
-        
-        alertController.addAction(UIAlertAction(title: "No Squats", style: .default, handler: { (_) in
-            print(" ❌ User Didn't Squat")
-        }))
-        
-        alertController.addAction(UIAlertAction(title: "Log", style: .default, handler: {[self, weak alertController] (_) in
-            let textField = alertController?.textFields![0]
-            let value = textField?.text ?? ""
-            
-            let double = Double(value) ?? 0.0
-            print("🙃 this is \(double)")
-            
-            UserDefaults.standard.set(double, forKey: "logSquatAlert")
-            let previousCount =  UserDefaults.standard.integer(forKey: "logSquats")
-            let tempCount = UserDefaults.standard.integer(forKey: "logSquatAlert")
-            let updatedCount = previousCount + tempCount
-            UserDefaults.standard.set(updatedCount, forKey: "logSquats")
-        }))
-        present(alertController, animated: true, completion: nil)
-    }
-    
+    var currentDate = CurrentDate()
     let colors = ColorManager()
     let welcomeView = WelcomeView()
     let stackView = UIStackView()
@@ -45,7 +19,6 @@ class HomeVC: UIViewController, NotificationViewDelegate {
     let monthlyView = MonthView()
     let squatButtonView = SquatButtonView()
     let notificationView = NotificationView()
-    var currentDate = CurrentDate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,12 +28,6 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         configureScrollView()
         configureStackView()
         addToStackView()
-        
-        let getCurrentDate = currentDate.getCurrentDate()
-        let getDayOfWeek = currentDate.getDayOfWeek()
-        print("😘", getCurrentDate)
-        print("🫠", getDayOfWeek)
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,6 +46,35 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         todayView.currentSquatButton.setTitle(String(squatCount), for: .normal)
     }
     
+    //MARK: Notification Banner Updates
+    func didTapBanner() {
+        print("this was triggered ❌")
+        let alertController = UIAlertController(title: "Log Squat", message: "", preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            textField.placeholder = "0"
+        }
+        
+        alertController.addAction(UIAlertAction(title: "No Squats", style: .default, handler: { (_) in
+            print(" ❌ User Didn't Squat")
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Log", style: .default, handler: {[self, weak alertController] (_) in
+            let textField = alertController?.textFields![0]
+            let value = textField?.text ?? ""
+            
+            let tempCount = Int(value) ?? 0
+            let previousCount =  UserDefaults.standard.integer(forKey: "logSquats")
+            let updatedCount = previousCount + tempCount
+            UserDefaults.standard.set(updatedCount, forKey: "logSquats")
+            
+            let dayOfWeek = currentDate.getDayOfWeek()
+            UserDefaults.standard.set(updatedCount, forKey: dayOfWeek.uppercased())
+            weeklyView.setupBarChart()
+        }))
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    //MARK: UI Configuration
     func configureScrollView() {
         view.addSubview(scrollView)
         scrollView.alwaysBounceVertical = true
@@ -107,15 +103,4 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         stackView.addArrangedSubview(weeklyView)
         stackView.addArrangedSubview(monthlyView)
     }
-    
-//    func currentDate() {
-//        let dateFormatter = DateFormatter()
-//        // uncomment to enforce the US locale
-//        dateFormatter.locale = Locale(identifier: "en-US")
-//        //        dateFormatter.setLocalizedDateFormatFromTemplate("EEE MMM d yyyy")
-//        let currentDate: Void = dateFormatter.setLocalizedDateFormatFromTemplate("EEE MMM d yyyy")
-//        print("☀️ this is the today's date", dateFormatter.string(from: Date())) // "Tue, Mar 20, 2018" for en-US locale
-//        let dayOfWeek: Void = dateFormatter.setLocalizedDateFormatFromTemplate("EEE")
-//        print("🌈 this is the day of the week", dateFormatter.string(from: Date())) // "Tue, Mar 20, 2018" for en-US locale
-//    }
 }
