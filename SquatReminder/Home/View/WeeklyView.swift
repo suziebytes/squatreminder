@@ -57,8 +57,8 @@ class WeeklyView: UIView {
     
     //MARK: Current Date
     func getDate() {
-        getCurrentDate = currentDate.getCurrentDate()
-        getDayOfWeek = currentDate.getDayOfWeek()
+        let getCurrentDate = currentDate.getCurrentDate()
+        let getDayOfWeek = currentDate.getDayOfWeek()
     }
 
     //MARK: CHART

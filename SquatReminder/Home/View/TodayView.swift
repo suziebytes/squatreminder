@@ -35,7 +35,6 @@ class TodayView: UIView {
         todayLabel.text = "Today"
         todayLabel.textColor = .black
         todayLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 30.0)
-        
         todayLabel.translatesAutoresizingMaskIntoConstraints = false
         todayLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         todayLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true

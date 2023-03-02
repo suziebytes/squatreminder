@@ -42,6 +42,14 @@ class HomeVC: UIViewController, NotificationViewDelegate {
             notificationView.onOffSwitch.setOn(false, animated: false)
         }
         
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+
+//        let squatCount = UserDefaults.standard.integer(forKey: "logSquats")
+//        todayView.currentSquatButton.setTitle(String(squatCount), for: .normal)
+    }
+    
+    
+    @objc func willEnterForeground() {
         let squatCount = UserDefaults.standard.integer(forKey: "logSquats")
         todayView.currentSquatButton.setTitle(String(squatCount), for: .normal)
     }
