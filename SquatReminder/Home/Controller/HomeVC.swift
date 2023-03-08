@@ -7,6 +7,7 @@
 import UIKit
 import UserNotifications
 import BarChartKit
+import CoreData
 
 class HomeVC: UIViewController, NotificationViewDelegate {
     var currentDate = CurrentDate()
@@ -19,6 +20,8 @@ class HomeVC: UIViewController, NotificationViewDelegate {
     let monthlyView = MonthView()
     let squatButtonView = SquatButtonView()
     let notificationView = NotificationView()
+    var logSquatModel = LogSquatsModel()
+    var squatEntityList: [SquatEntity] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +31,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         configureScrollView()
         configureStackView()
         addToStackView()
+        logSquatModel.logDate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,14 +45,14 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         } else {
             notificationView.onOffSwitch.setOn(false, animated: false)
         }
- 
+        
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
-    
     
     @objc func willEnterForeground() {
         let squatCount = UserDefaults.standard.integer(forKey: "logSquats")
         todayView.currentSquatButton.setTitle(String(squatCount), for: .normal)
+        
     }
     
     //MARK: Notification Banner Updates
@@ -67,14 +71,32 @@ class HomeVC: UIViewController, NotificationViewDelegate {
             let textField = alertController?.textFields![0]
             let value = textField?.text ?? ""
             
-            let tempCount = Int(value) ?? 0
-            let previousCount =  UserDefaults.standard.integer(forKey: "logSquats")
-            let updatedCount = previousCount + tempCount
-            UserDefaults.standard.set(updatedCount, forKey: "logSquats")
+            //store the inputted user value
+            let tempCount = Int64(value) ?? 0
             
-            let dayOfWeek = currentDate.getDayOfWeek()
-            UserDefaults.standard.set(updatedCount, forKey: dayOfWeek.uppercased())
-            weeklyView.setupBarChart()
+            // initialize SquatEntity Class
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let squatEntity = SquatEntity(context: appDelegate.persistentContainer.viewContext)
+            // Fetch result of today's squatEntity.count
+            var request: NSFetchRequest<SquatEntity> = SquatEntity.fetchRequest()
+            let today = currentDate.currentDate
+            // set the filter - filter should check for today's date and the current count for today
+            let predicate = NSPredicate(format: "count == %@ AND date == %@", today)
+            //apply fetch request with filter
+            request.predicate = predicate
+            //fetch request results and store into squatEntityList
+            do {
+                let squatEntityList = try appDelegate.persistentContainer.viewContext.fetch(request)
+                if let squatEntity = squatEntityList.first {
+                    //update squat count
+                    squatEntity.count += tempCount
+                    // Save the new count into squatEntity.count
+                    try appDelegate.persistentContainer.viewContext.save()
+                }
+            } catch {
+                print("Error fetching SquatEntity: \(error)")
+            }
+            //figure out how to handle saving count for respective date
         }))
         present(alertController, animated: true, completion: nil)
     }

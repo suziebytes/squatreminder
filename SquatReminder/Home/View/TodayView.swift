@@ -6,16 +6,18 @@
 //
 
 import UIKit
+import CoreData
 
 class TodayView: UIView {
     let colors = ColorManager()
+    let currentDate = CurrentDate()
     let todayLabel = UILabel()
     let currentSquatButton = Buttons()
     var currentSquatLabel = DescriptionLabel()
     let dailySquatButton = Buttons()
     let dailySquatLabel = DescriptionLabel()
     var currentSquatCount = 0
-        
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupTodayLabel()
@@ -24,10 +26,38 @@ class TodayView: UIView {
         setupDailyButton()
         setupDailyLabel()
         setupCurrentLabel()
+        getCount()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: Fetching current count
+    func getCount() {
+        // initialize SquatEntity Class
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let squatEntity = SquatEntity(context: appDelegate.persistentContainer.viewContext)
+        // Fetch result of today's squatEntity.count
+        var request: NSFetchRequest<SquatEntity> = SquatEntity.fetchRequest()
+        let today = currentDate.currentDate
+        // set the filter - filter should check for today's date and the current count for today
+        let predicate = NSPredicate(format: "count == %@ AND date == %@", today)
+        //apply fetch request with filter
+        request.predicate = predicate
+        //fetch request results and store into squatEntityList
+        do {
+            let squatEntityList = try appDelegate.persistentContainer.viewContext.fetch(request)
+            if let squatEntity = squatEntityList.first {
+                let count = squatEntity.count
+                let stringCount = String(count)
+                currentSquatButton.setTitle(stringCount, for: .normal)
+                // Save the new count into squatEntity.count
+                try appDelegate.persistentContainer.viewContext.save()
+            }
+        } catch {
+            print("❌ Error fetching SquatEntity: \(error)")
+        }
     }
     
     func setupTodayLabel() {
@@ -73,7 +103,7 @@ class TodayView: UIView {
         dailySquatButton.titleLabel?.adjustsFontSizeToFitWidth = true
         dailySquatButton.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 60)
         dailySquatButton.addTarget(self, action: #selector(updateSquatGoal), for: .touchUpInside)
-
+        
         dailySquatButton.translatesAutoresizingMaskIntoConstraints = false
         dailySquatButton.heightAnchor.constraint(equalToConstant: 130).isActive = true
         dailySquatButton.widthAnchor.constraint(equalToConstant: 130).isActive = true

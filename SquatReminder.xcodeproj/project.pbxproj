@@ -31,8 +31,9 @@
 		B0C1595D298F25B6006EC7C0 /* MaxSquatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1595C298F25B6006EC7C0 /* MaxSquatView.swift */; };
 		B0C1595F2990449A006EC7C0 /* HeaderLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1595E2990449A006EC7C0 /* HeaderLabels.swift */; };
 		B0C1596129904AF9006EC7C0 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1596029904AF9006EC7C0 /* TimePickerView.swift */; };
-		B0C15968299211CA006EC7C0 /* SquatReminder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0C15966299211CA006EC7C0 /* SquatReminder.xcdatamodeld */; };
 		B0DC8DBA29AFFA250029EA6E /* CurrentDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DB929AFFA250029EA6E /* CurrentDate.swift */; };
+		B0DC8DC029B7E4E40029EA6E /* LogSquatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DBF29B7E4E40029EA6E /* LogSquatsModel.swift */; };
+		B0DC8DC529B7E9D20029EA6E /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DC329B7E9D20029EA6E /* CoreDataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,8 +80,9 @@
 		B0C1595C298F25B6006EC7C0 /* MaxSquatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxSquatView.swift; sourceTree = "<group>"; };
 		B0C1595E2990449A006EC7C0 /* HeaderLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderLabels.swift; sourceTree = "<group>"; };
 		B0C1596029904AF9006EC7C0 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
-		B0C15967299211CA006EC7C0 /* SquatReminder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SquatReminder.xcdatamodel; sourceTree = "<group>"; };
 		B0DC8DB929AFFA250029EA6E /* CurrentDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDate.swift; sourceTree = "<group>"; };
+		B0DC8DBF29B7E4E40029EA6E /* LogSquatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSquatsModel.swift; sourceTree = "<group>"; };
+		B0DC8DC429B7E9D20029EA6E /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,7 +115,7 @@
 		B0ACB01E298883F000664508 = {
 			isa = PBXGroup;
 			children = (
-				B0C15966299211CA006EC7C0 /* SquatReminder.xcdatamodeld */,
+				B0DC8DC329B7E9D20029EA6E /* CoreDataModel.xcdatamodeld */,
 				B0ACB029298883F000664508 /* SquatReminder */,
 				B0ACB043298883F200664508 /* SquatReminderTests */,
 				B0ACB04D298883F200664508 /* SquatReminderUITests */,
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				B0DC8DB929AFFA250029EA6E /* CurrentDate.swift */,
+				B0DC8DBF29B7E4E40029EA6E /* LogSquatsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				B0ACB06A2988D77400664508 /* Buttons.swift in Sources */,
 				B0C1596129904AF9006EC7C0 /* TimePickerView.swift in Sources */,
 				B0ACB02F298883F000664508 /* HomeVC.swift in Sources */,
+				B0DC8DC529B7E9D20029EA6E /* CoreDataModel.xcdatamodeld in Sources */,
 				B0DC8DBA29AFFA250029EA6E /* CurrentDate.swift in Sources */,
 				B0ACB02B298883F000664508 /* AppDelegate.swift in Sources */,
 				B0ACB0782989BBB900664508 /* SettingsVC.swift in Sources */,
@@ -398,10 +402,10 @@
 				B0C1595B298F04E3006EC7C0 /* SquatButtonView.swift in Sources */,
 				B0ACB07A2989DAA200664508 /* WelcomeView.swift in Sources */,
 				B0ACB0742989996800664508 /* WeeklyView.swift in Sources */,
+				B0DC8DC029B7E4E40029EA6E /* LogSquatsModel.swift in Sources */,
 				B0C15952298EBEF0006EC7C0 /* DescriptionLabel.swift in Sources */,
 				B0ACB0722989860F00664508 /* MonthView.swift in Sources */,
 				B0ACB086298B2B4800664508 /* CardView.swift in Sources */,
-				B0C15968299211CA006EC7C0 /* SquatReminder.xcdatamodeld in Sources */,
 				B07973EE298D894600338BA1 /* SpacedLabel.swift in Sources */,
 				B0ACB02D298883F000664508 /* SceneDelegate.swift in Sources */,
 				B0C15959298F025D006EC7C0 /* NotificationView.swift in Sources */,
@@ -767,13 +771,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		B0C15966299211CA006EC7C0 /* SquatReminder.xcdatamodeld */ = {
+		B0DC8DC329B7E9D20029EA6E /* CoreDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				B0C15967299211CA006EC7C0 /* SquatReminder.xcdatamodel */,
+				B0DC8DC429B7E9D20029EA6E /* CoreDataModel.xcdatamodel */,
 			);
-			currentVersion = B0C15967299211CA006EC7C0 /* SquatReminder.xcdatamodel */;
-			path = SquatReminder.xcdatamodeld;
+			currentVersion = B0DC8DC429B7E9D20029EA6E /* CoreDataModel.xcdatamodel */;
+			path = CoreDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

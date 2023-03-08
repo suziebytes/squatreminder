@@ -7,6 +7,7 @@
 
 import UIKit
 import BarChartKit
+import CoreData
 
 class WeeklyView: UIView {
     let colors = ColorManager()
@@ -15,6 +16,7 @@ class WeeklyView: UIView {
     let stackView = UIStackView()
     let cardView = CardView()
     var currentDate = CurrentDate()
+    var logSquatsModel = LogSquatsModel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -67,6 +69,10 @@ class WeeklyView: UIView {
         cardView.translatesAutoresizingMaskIntoConstraints = false
     }
     
+//    func fetchSquatCount() {
+//
+//    }
+    
     func setupBarChart(){
         cardView.addSubview(barChart)
         
@@ -89,6 +95,9 @@ class WeeklyView: UIView {
         ], selectionColor: colors.darkPurple)
         
         barChart.dataSet = mockBarChartDataSet
+        print("🥲 this is Tues's user default", tue)
+        print("🥲 this is Thursday's user default", thu)
+        print("🥲 this is Fri's user default", fri)
     }
     
     func setupBarChartStyling() {
