@@ -95,9 +95,6 @@ class WeeklyView: UIView {
         ], selectionColor: colors.darkPurple)
         
         barChart.dataSet = mockBarChartDataSet
-        print("🥲 this is Tues's user default", tue)
-        print("🥲 this is Thursday's user default", thu)
-        print("🥲 this is Fri's user default", fri)
     }
     
     func setupBarChartStyling() {

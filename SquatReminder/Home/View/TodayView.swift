@@ -37,23 +37,24 @@ class TodayView: UIView {
     func getCount() {
         // initialize SquatEntity Class
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let squatEntity = SquatEntity(context: appDelegate.persistentContainer.viewContext)
         // Fetch result of today's squatEntity.count
-        var request: NSFetchRequest<SquatEntity> = SquatEntity.fetchRequest()
+        let request: NSFetchRequest<SquatEntity> = SquatEntity.fetchRequest()
         let today = currentDate.currentDate
         // set the filter - filter should check for today's date and the current count for today
-        let predicate = NSPredicate(format: "count == %@ AND date == %@", today)
+        let predicate = NSPredicate(format: "date == %@", today)
         //apply fetch request with filter
         request.predicate = predicate
         //fetch request results and store into squatEntityList
         do {
             let squatEntityList = try appDelegate.persistentContainer.viewContext.fetch(request)
-            if let squatEntity = squatEntityList.first {
-                let count = squatEntity.count
+            if squatEntityList.count > 0 {
+                guard let previousSquatEntity = squatEntityList.first else {
+                    return
+                }
+
+                let count = previousSquatEntity.count
                 let stringCount = String(count)
                 currentSquatButton.setTitle(stringCount, for: .normal)
-                // Save the new count into squatEntity.count
-                try appDelegate.persistentContainer.viewContext.save()
             }
         } catch {
             print("❌ Error fetching SquatEntity: \(error)")
@@ -75,7 +76,7 @@ class TodayView: UIView {
         let stringCount =  String(currentSquatCount)
         currentSquatButton.backgroundColor = colors.darkPurple
         currentSquatButton.tintColor = .white
-        currentSquatButton.setTitle("\(currentSquatCount))", for: .normal)
+        currentSquatButton.setTitle("\(currentSquatCount)", for: .normal)
         currentSquatButton.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 100)
         
         currentSquatButton.translatesAutoresizingMaskIntoConstraints = false

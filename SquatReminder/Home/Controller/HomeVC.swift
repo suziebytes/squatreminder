@@ -50,9 +50,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
     }
     
     @objc func willEnterForeground() {
-        let squatCount = UserDefaults.standard.integer(forKey: "logSquats")
-        todayView.currentSquatButton.setTitle(String(squatCount), for: .normal)
-        
+        todayView.getCount()
     }
     
     //MARK: Notification Banner Updates
@@ -76,27 +74,46 @@ class HomeVC: UIViewController, NotificationViewDelegate {
             
             // initialize SquatEntity Class
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            let squatEntity = SquatEntity(context: appDelegate.persistentContainer.viewContext)
+//            let squatEntity = SquatEntity(context: appDelegate.persistentContainer.viewContext)
             // Fetch result of today's squatEntity.count
-            var request: NSFetchRequest<SquatEntity> = SquatEntity.fetchRequest()
+            let request: NSFetchRequest<SquatEntity> = SquatEntity.fetchRequest()
             let today = currentDate.currentDate
             // set the filter - filter should check for today's date and the current count for today
-            let predicate = NSPredicate(format: "count == %@ AND date == %@", today)
+            let predicate = NSPredicate(format: "date == %@", today)
             //apply fetch request with filter
             request.predicate = predicate
+            // create squatList with empty array & fetch the result
+            var squatEntityList: [SquatEntity] = []
             //fetch request results and store into squatEntityList
             do {
-                let squatEntityList = try appDelegate.persistentContainer.viewContext.fetch(request)
-                if let squatEntity = squatEntityList.first {
-                    //update squat count
-                    squatEntity.count += tempCount
-                    // Save the new count into squatEntity.count
-                    try appDelegate.persistentContainer.viewContext.save()
-                }
+                //fetches based on predicates / filters
+                squatEntityList = try appDelegate.persistentContainer.viewContext.fetch(request)
+                print("lets see the list 🌈", squatEntityList)
             } catch {
                 print("Error fetching SquatEntity: \(error)")
             }
-            //figure out how to handle saving count for respective date
+            //if there is a value, update value - if there's no value, then create the value ; both will store
+            //check for the number of elements of count (not to be confused w/ number of squats logged in count
+            if squatEntityList.count > 0 {
+                //the first element is the first element of the Squat Entity array, which contains two properties (count and  date)
+                guard let previousSquatEntity = squatEntityList.first else {
+                    return
+                }
+                var previousCount = previousSquatEntity.count
+//                var date = previousSquatEntity.date
+                var updateCount = previousCount + tempCount
+                //override the entity we received from our filtered request with the previous count with new count
+                previousSquatEntity.count = updateCount
+                //save updatedCount to Squat Entity
+                appDelegate.saveContext()
+            } else { //if no entry for today's date, save today's date and the updated count
+                //create new instance of SquatEntity
+                let newEntity = SquatEntity(context: appDelegate.persistentContainer.viewContext)
+                //assign the new values
+                newEntity.date = today
+                newEntity.count = tempCount
+                appDelegate.saveContext()
+            }
         }))
         present(alertController, animated: true, completion: nil)
     }
