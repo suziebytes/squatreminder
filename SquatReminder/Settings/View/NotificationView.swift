@@ -7,6 +7,7 @@
 
 import UIKit
 import UserNotifications
+import CoreData
 
 //1.  Create a protocol + a empty function
 //      >> conform to 'AnyObject' >> protocol NotificationViewDelegate: AnyObject
@@ -177,15 +178,12 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
         let application = UIApplication.shared
         
         if(application.applicationState == .active){
-         
             homeDelegate?.didTapBanner()
             print("user tapped the notification bar when the app is in foreground")
         }
-        
         if(application.applicationState == .inactive)
         {
             homeDelegate?.didTapBanner()
-
             print("user tapped the notification bar when the app is in background")
         }
         
@@ -196,20 +194,53 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
             if let userInput = (response as? UNTextInputNotificationResponse)?.userText {
                 print(userInput)
                 if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: userInput)) {
-                    guard let tempCount = Int(userInput) else {
+                    guard let tempCount = Int64(userInput) else {
                         print("failed because there was no number value")
                         return
                     }
-                    //get the previous count (using standard.integer instead of 'set')
-                    let previousCount =  UserDefaults.standard.integer(forKey: "logSquats")
-                    // add previous count + new count
-                    let updatedCount = previousCount + tempCount
-                    //update the same key with the updateCount
-                    UserDefaults.standard.set(updatedCount, forKey: "logSquats")
                     
-                    let dayOfWeek = currentDate.getDayOfWeek()
-                    UserDefaults.standard.set(updatedCount, forKey: dayOfWeek.uppercased())
-                    weeklyView.setupBarChart()
+                    // initialize SquatEntity Class
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    // Fetch result of today's squatEntity.count
+                    let request: NSFetchRequest<SquatEntity> = SquatEntity.fetchRequest()
+                    let today = currentDate.currentDate
+                    // set the filter - filter should check for today's date and the current count for today
+                    let predicate = NSPredicate(format: "date == %@", today)
+                    //apply fetch request with filter
+                    request.predicate = predicate
+                    // create squatList with empty array & fetch the result
+                    var squatEntityList: [SquatEntity] = []
+                    //fetch request results and store into squatEntityList
+                    do {
+                        //fetches based on predicates / filters
+                        squatEntityList = try appDelegate.persistentContainer.viewContext.fetch(request)
+                        print("lets see the list 🌈", squatEntityList)
+                    } catch {
+                        print("Error fetching SquatEntity: \(error)")
+                    }
+                    //if there is a value, update value - if there's no value, then create the value ; both will store
+                    //check for the number of elements of count (not to be confused w/ number of squats logged in count
+                    if squatEntityList.count > 0 {
+                        //the first element is the first element of the Squat Entity array, which contains two properties (count and  date)
+                        guard let previousSquatEntity = squatEntityList.first else {
+                            return
+                        }
+                        let previousCount = previousSquatEntity.count
+                        //                var date = previousSquatEntity.date
+                        let updateCount = previousCount + tempCount
+                        //override the entity we received from our filtered request with the previous count with new count
+                        previousSquatEntity.count = updateCount
+                        //save updatedCount to Squat Entity
+                        appDelegate.saveContext()
+                    } else { //if no entry for today's date, save today's date and the updated count
+                        //create new instance of SquatEntity
+                        let newEntity = SquatEntity(context: appDelegate.persistentContainer.viewContext)
+                        //assign the new values
+                        newEntity.date = today
+                        newEntity.count = tempCount
+                        appDelegate.saveContext()
+                    }
+                    todayView.getCount()
                     
                 } else {
                     let alertController = UIAlertController(title: "Enter Numbers Only", message: "", preferredStyle: .alert)
@@ -219,7 +250,6 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
                     self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
                 }
             }
-            
         default:
             break
         }

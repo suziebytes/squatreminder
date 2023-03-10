@@ -68,13 +68,10 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         alertController.addAction(UIAlertAction(title: "Log", style: .default, handler: {[self, weak alertController] (_) in
             let textField = alertController?.textFields![0]
             let value = textField?.text ?? ""
-            
             //store the inputted user value
             let tempCount = Int64(value) ?? 0
-            
             // initialize SquatEntity Class
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//            let squatEntity = SquatEntity(context: appDelegate.persistentContainer.viewContext)
             // Fetch result of today's squatEntity.count
             let request: NSFetchRequest<SquatEntity> = SquatEntity.fetchRequest()
             let today = currentDate.currentDate
@@ -99,9 +96,9 @@ class HomeVC: UIViewController, NotificationViewDelegate {
                 guard let previousSquatEntity = squatEntityList.first else {
                     return
                 }
-                var previousCount = previousSquatEntity.count
+                let previousCount = previousSquatEntity.count
 //                var date = previousSquatEntity.date
-                var updateCount = previousCount + tempCount
+                let updateCount = previousCount + tempCount
                 //override the entity we received from our filtered request with the previous count with new count
                 previousSquatEntity.count = updateCount
                 //save updatedCount to Squat Entity
@@ -114,6 +111,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
                 newEntity.count = tempCount
                 appDelegate.saveContext()
             }
+            todayView.getCount()
         }))
         present(alertController, animated: true, completion: nil)
     }
