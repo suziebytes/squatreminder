@@ -17,6 +17,14 @@ class WeeklyView: UIView {
     let cardView = CardView()
     var currentDate = CurrentDate()
     var logSquatsModel = LogSquatsModel()
+    var weeklyViewModel = WeeklyViewModel()
+    var mon: String = ""
+    var tue: String = ""
+    var wed: String = ""
+    var thu: String = ""
+    var fri: String = ""
+    var sat: String = ""
+    var sun: String = ""
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,7 +34,6 @@ class WeeklyView: UIView {
         setupWeeklyLabel()
         setupBarChart()
         setupBarChartStyling()
-        getDate()
     }
     
     required init?(coder: NSCoder) {
@@ -58,9 +65,8 @@ class WeeklyView: UIView {
     }
     
     //MARK: Current Date
-    func getDate() {
-        let getCurrentDate = currentDate.getCurrentDate()
-        let getDayOfWeek = currentDate.getDayOfWeek()
+    func getDate() -> String {
+       return currentDate.getCurrentDate()
     }
 
     //MARK: CHART
@@ -69,21 +75,49 @@ class WeeklyView: UIView {
         cardView.translatesAutoresizingMaskIntoConstraints = false
     }
     
-//    func fetchSquatCount() {
-//
-//    }
+    func getDaysOfWeek() {
+        var today = getDate()
+        weeklyViewModel.findMonday(today: today)
+        
+        //gets the date: String
+        mon = weeklyViewModel.mon
+        tue = weeklyViewModel.tue
+        wed = weeklyViewModel.wed
+        thu = weeklyViewModel.thu
+        fri = weeklyViewModel.fri
+        sat = weeklyViewModel.sat
+        sun = weeklyViewModel.sun
+    }
     
     func setupBarChart(){
         cardView.addSubview(barChart)
+        getDaysOfWeek()
+        var monCount: Double
+        var tueCount: Double
+        var wedCount: Double
+        var thuCount: Double
+        var friCount: Double
+        var satCount: Double
+        var sunCount: Double
         
+        //Double - count values
+        monCount = logSquatsModel.getCountBasedOnDate(day: mon)
+        tueCount = logSquatsModel.getCountBasedOnDate(day: tue)
+        wedCount = logSquatsModel.getCountBasedOnDate(day: wed)
+        thuCount = logSquatsModel.getCountBasedOnDate(day: thu)
+        friCount = logSquatsModel.getCountBasedOnDate(day: fri)
+        satCount = logSquatsModel.getCountBasedOnDate(day: sun)
+        sunCount = logSquatsModel.getCountBasedOnDate(day: sun)
+        
+        //get the squat count via coredata
         let mockBarChartDataSet: BarChartView.DataSet? = BarChartView.DataSet(elements: [
-            .init(date: nil, xLabel: "SUN", bars: [.init(value: sun, color: colors.lightPurple)]),
-            .init(date: nil, xLabel: "MON", bars: [.init(value: mon, color: colors.lightPurple)]),
-            .init(date: nil, xLabel: "TUE", bars: [.init(value: tue, color: colors.lightPurple)]),
-            .init(date: nil, xLabel: "WED", bars: [.init(value: wed, color: colors.lightPurple)]),
-            .init(date: nil, xLabel: "THU", bars: [.init(value: thu, color: colors.lightPurple)]),
-            .init(date: nil, xLabel: "FRI", bars: [.init(value: fri, color: colors.lightPurple)]),
-            .init(date: nil, xLabel: "SAT", bars: [.init(value: sat, color: colors.lightPurple)])
+            .init(date: nil, xLabel: "SUN", bars: [.init(value: sunCount, color: colors.lightPurple)]),
+            .init(date: nil, xLabel: "MON", bars: [.init(value: monCount, color: colors.lightPurple)]),
+            .init(date: nil, xLabel: "TUE", bars: [.init(value: tueCount, color: colors.lightPurple)]),
+            .init(date: nil, xLabel: "WED", bars: [.init(value: wedCount, color: colors.lightPurple)]),
+            .init(date: nil, xLabel: "THU", bars: [.init(value: thuCount, color: colors.lightPurple)]),
+            .init(date: nil, xLabel: "FRI", bars: [.init(value: friCount, color: colors.lightPurple)]),
+            .init(date: nil, xLabel: "SAT", bars: [.init(value: satCount, color: colors.lightPurple)])
         ], selectionColor: colors.darkPurple)
         
         barChart.dataSet = mockBarChartDataSet

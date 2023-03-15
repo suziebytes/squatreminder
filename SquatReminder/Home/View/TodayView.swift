@@ -39,7 +39,7 @@ class TodayView: UIView {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         // Fetch result of today's squatEntity.count
         let request: NSFetchRequest<SquatEntity> = SquatEntity.fetchRequest()
-        let today = currentDate.currentDate
+        let today = currentDate.getCurrentDate()
         // set the filter - filter should check for today's date and the current count for today
         let predicate = NSPredicate(format: "date == %@", today)
         //apply fetch request with filter
@@ -52,7 +52,7 @@ class TodayView: UIView {
                     return
                 }
 
-                let count = previousSquatEntity.count
+                let count = Int64(previousSquatEntity.count)
                 let stringCount = String(count)
                 currentSquatButton.setTitle(stringCount, for: .normal)
             }

@@ -21,14 +21,13 @@ struct LogSquatsModel {
         do {
             //fetches based on predicates / filters
             squatEntityList = try appDelegate.persistentContainer.viewContext.fetch(request)
-            print("lets see the list 🌈", squatEntityList)
         } catch {
             print("Error fetching SquatEntity: \(error)")
         }
     }
     
-    mutating func updateResults(tempCount: Int64) {
-        let today = currentDate.currentDate
+    mutating func updateResults(tempCount: Double) {
+        let today = currentDate.getCurrentDate()
         // set the filter - filter should check for today's date and the current count for today
         let predicate = NSPredicate(format: "date == %@", today)
         //apply fetch request with filter
@@ -47,6 +46,7 @@ struct LogSquatsModel {
             previousSquatEntity.count = updateCount
             //save updatedCount to Squat Entity
             appDelegate.saveContext()
+            print("🤪updated entity")
         } else { //if no entry for today's date, save today's date and the updated count
             //create new instance of SquatEntity
             let newEntity = SquatEntity(context: appDelegate.persistentContainer.viewContext)
@@ -54,6 +54,24 @@ struct LogSquatsModel {
             newEntity.date = today
             newEntity.count = tempCount
             appDelegate.saveContext()
+            print("🤪 created count / date ")
         }
+    }
+    
+    mutating func getCountBasedOnDate(day: String) -> Double {
+        let predicate = NSPredicate(format: "date == %@", day)
+        var count: Double = 0
+        
+        request.predicate = predicate
+        
+        fetchData()
+
+        if squatEntityList.count > 0 {
+            guard let day = squatEntityList.first else {
+                return count
+            }
+            count = day.count
+        }
+        return count
     }
 }

@@ -195,12 +195,13 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
             if let userInput = (response as? UNTextInputNotificationResponse)?.userText {
                 print(userInput)
                 if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: userInput)) {
-                    guard let tempCount = Int64(userInput) else {
+                    guard let tempCount = Double(userInput) else {
                         print("failed because there was no number value")
                         return
                     }
                     logSquatsModel.updateResults(tempCount: tempCount)
                     todayView.getCount()
+                    weeklyView.setupBarChart()
                     
                 } else {
                     let alertController = UIAlertController(title: "Enter Numbers Only", message: "", preferredStyle: .alert)

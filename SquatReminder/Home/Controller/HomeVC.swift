@@ -32,13 +32,13 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         configureScrollView()
         configureStackView()
         addToStackView()
-        weeklyViewModel.findMonday()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         welcomeView.setupNameLabel()
         todayView.setupDailyButton()
+        weeklyView.setupBarChart()
         
         if UserDefaults.standard.bool(forKey: "outletSwitch") {
             notificationView.onOffSwitch.setOn(true, animated: false)
@@ -69,10 +69,11 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         alertController.addAction(UIAlertAction(title: "Log", style: .default, handler: {[self, weak alertController] (_) in
             let textField = alertController?.textFields![0]
             let value = textField?.text ?? ""
-            let tempCount = Int64(value) ?? 0 //store the inputted user value
+            let tempCount = Double(value) ?? 0 //store the inputted user value
 
             logSquatModel.updateResults(tempCount: tempCount)
             todayView.getCount()
+            weeklyView.setupBarChart()
         }))
         present(alertController, animated: true, completion: nil)
     }

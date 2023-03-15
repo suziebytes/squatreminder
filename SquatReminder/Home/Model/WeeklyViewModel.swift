@@ -12,19 +12,17 @@ struct WeeklyViewModel {
     var currentDate = CurrentDate()
     var date = Date() //type Date will give you the day of today
     var calendar = Calendar.current
+    var mon = ""
+    var tue = ""
+    var wed = ""
+    var thu = ""
+    var fri = ""
+    var sat = ""
+    var sun = ""
     
-
-    mutating func findMonday() {
-        var today = currentDate.getCurrentDate() //type String (because we formatted dateFormatter.string
-        var mon = ""
-        var tue = ""
-        var wed = ""
-        var thu = ""
-        var fri = ""
-        var sat = ""
-        var sun = ""
-        print("🍑🍑🍑🍑🍑🍑", today)
-        
+    mutating func findMonday(today: String) {
+         //type String (because we formatted dateFormatter.string
+//        print("🍑🍑🍑🍑🍑🍑", today)
         switch today.prefix(3) { //check to see if its m,t,w,etc
         case "Mon":
             mon = today
