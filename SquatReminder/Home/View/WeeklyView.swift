@@ -76,14 +76,6 @@ class WeeklyView: UIView {
     func setupBarChart(){
         cardView.addSubview(barChart)
         
-        let mon = Double(UserDefaults.standard.integer(forKey: "MON"))
-        let tue = Double(UserDefaults.standard.integer(forKey: "TUES"))
-        let wed = Double(UserDefaults.standard.integer(forKey: "WED"))
-        let thu = Double(UserDefaults.standard.integer(forKey: "THU"))
-        let fri = Double(UserDefaults.standard.integer(forKey: "FRI"))
-        let sat = Double(UserDefaults.standard.integer(forKey: "SAT"))
-        let sun = Double(UserDefaults.standard.integer(forKey: "SUN"))
-        
         let mockBarChartDataSet: BarChartView.DataSet? = BarChartView.DataSet(elements: [
             .init(date: nil, xLabel: "SUN", bars: [.init(value: sun, color: colors.lightPurple)]),
             .init(date: nil, xLabel: "MON", bars: [.init(value: mon, color: colors.lightPurple)]),

@@ -34,6 +34,7 @@
 		B0DC8DBA29AFFA250029EA6E /* CurrentDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DB929AFFA250029EA6E /* CurrentDate.swift */; };
 		B0DC8DC029B7E4E40029EA6E /* LogSquatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DBF29B7E4E40029EA6E /* LogSquatsModel.swift */; };
 		B0DC8DC529B7E9D20029EA6E /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DC329B7E9D20029EA6E /* CoreDataModel.xcdatamodeld */; };
+		B0DC8DCA29BF93930029EA6E /* WeeklyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DC929BF93930029EA6E /* WeeklyViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		B0DC8DB929AFFA250029EA6E /* CurrentDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDate.swift; sourceTree = "<group>"; };
 		B0DC8DBF29B7E4E40029EA6E /* LogSquatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSquatsModel.swift; sourceTree = "<group>"; };
 		B0DC8DC429B7E9D20029EA6E /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		B0DC8DC929BF93930029EA6E /* WeeklyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				B0DC8DB929AFFA250029EA6E /* CurrentDate.swift */,
+				B0DC8DC929BF93930029EA6E /* WeeklyViewModel.swift */,
 				B0DC8DBF29B7E4E40029EA6E /* LogSquatsModel.swift */,
 			);
 			path = Model;
@@ -389,6 +392,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0C1595D298F25B6006EC7C0 /* MaxSquatView.swift in Sources */,
+				B0DC8DCA29BF93930029EA6E /* WeeklyViewModel.swift in Sources */,
 				B0C1595F2990449A006EC7C0 /* HeaderLabels.swift in Sources */,
 				B0ACB06A2988D77400664508 /* Buttons.swift in Sources */,
 				B0C1596129904AF9006EC7C0 /* TimePickerView.swift in Sources */,

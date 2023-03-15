@@ -22,6 +22,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
     let notificationView = NotificationView()
     var logSquatModel = LogSquatsModel()
     var squatEntityList: [SquatEntity] = []
+    var weeklyViewModel = WeeklyViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         configureScrollView()
         configureStackView()
         addToStackView()
+        weeklyViewModel.findMonday()
     }
     
     override func viewWillAppear(_ animated: Bool) {
