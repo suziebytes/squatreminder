@@ -27,22 +27,18 @@ class MonthView: UIView {
     func setupMonthLabel() {
         addSubview(monthLabel)
         monthLabel.setupLabel(inputText: "MONTH")
-        
         monthLabel.translatesAutoresizingMaskIntoConstraints = false
         monthLabel.topAnchor.constraint(equalTo: topAnchor, constant: 25).isActive = true
     }
     
     private func createCalendar() {
+        let calendar = Calendar.current
+
         let dateFormatter = DateFormatter()
         let date = Date()
         dateFormatter.dateFormat = "dd-MM-yyyy"
-        
-       
-        
-        let calendar = Calendar.current
+        // Get current month's first and last day
         let selectedDate = calendar.date(from: DateComponents(year: 2020, month: 01, day: 19))!
-
-        
         let comp: DateComponents = Calendar.current.dateComponents([.year, .month], from: date)
         let startDate = Calendar.current.date(from: comp)!
         var comps2 = DateComponents()
@@ -50,13 +46,13 @@ class MonthView: UIView {
         comps2.day = -1
         let endDate = Calendar.current.date(byAdding: comps2, to: startDate) ?? startDate
         
+        //Setting up spacing and design
         var content = CalendarViewContent(calendar: calendar, visibleDateRange: startDate...endDate, monthsLayout: .horizontal(options: HorizontalMonthsLayoutOptions()))
-        
         content = content.interMonthSpacing(15)
         content = content.verticalDayMargin(5)
         content = content.horizontalDayMargin(5)
         
-        //Day styling
+        //Day styling + selected date's indicator
         content = content.dayItemProvider { [calendar] day in
             var invariantViewProperties = DayView.InvariantViewProperties.baseNonInteractive
             invariantViewProperties.font = UIFont.systemFont(ofSize: 12)
@@ -64,11 +60,10 @@ class MonthView: UIView {
             //changing color of single day selection
             let date = calendar.date(from: day.components)
             if date == selectedDate {
-              invariantViewProperties.backgroundShapeDrawingConfig.borderColor = .blue
-              invariantViewProperties.backgroundShapeDrawingConfig.fillColor = .blue.withAlphaComponent(0.15)
+                invariantViewProperties.backgroundShapeDrawingConfig.borderColor = self.colors.darkPurple
+                invariantViewProperties.backgroundShapeDrawingConfig.fillColor = self.colors.darkPurple.withAlphaComponent(0.15)
             }
             
-
             return DayView.calendarItemModel(
                 invariantViewProperties: invariantViewProperties,
                 viewModel: .init(
