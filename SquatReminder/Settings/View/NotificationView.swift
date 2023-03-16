@@ -214,6 +214,7 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
         default:
             break
         }
+        weeklyView.setupBarChart()
         completionHandler()
     }
 }

@@ -63,7 +63,6 @@ struct LogSquatsModel {
         var count: Double = 0
         
         request.predicate = predicate
-        
         fetchData()
 
         if squatEntityList.count > 0 {
@@ -73,5 +72,10 @@ struct LogSquatsModel {
             count = day.count
         }
         return count
+    }
+    
+    func didSquat() {
+        //fetch data
+        //if date has count 
     }
 }

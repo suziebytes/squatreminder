@@ -33,23 +33,48 @@ class MonthView: UIView {
     }
     
     private func createCalendar() {
-        let calender = Calendar.current
-        let startDate = calender.date(from: DateComponents(year: 2022, month: 2, day: 1))!
-        let endDate = calender.date(from: DateComponents(year: 2022, month: 12, day: 31))!
-        var content = CalendarViewContent(calendar: calender, visibleDateRange: startDate...endDate, monthsLayout: .horizontal(options: HorizontalMonthsLayoutOptions()))
+        let dateFormatter = DateFormatter()
+        let date = Date()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        
+       
+        
+        let calendar = Calendar.current
+        let selectedDate = calendar.date(from: DateComponents(year: 2020, month: 01, day: 19))!
+
+        
+        let comp: DateComponents = Calendar.current.dateComponents([.year, .month], from: date)
+        let startDate = Calendar.current.date(from: comp)!
+        var comps2 = DateComponents()
+        comps2.month = 1
+        comps2.day = -1
+        let endDate = Calendar.current.date(byAdding: comps2, to: startDate) ?? startDate
+        
+        var content = CalendarViewContent(calendar: calendar, visibleDateRange: startDate...endDate, monthsLayout: .horizontal(options: HorizontalMonthsLayoutOptions()))
+        
         content = content.interMonthSpacing(15)
         content = content.verticalDayMargin(5)
         content = content.horizontalDayMargin(5)
         
         //Day styling
-        content = content.dayItemProvider { day in
+        content = content.dayItemProvider { [calendar] day in
             var invariantViewProperties = DayView.InvariantViewProperties.baseNonInteractive
             invariantViewProperties.font = UIFont.systemFont(ofSize: 12)
             invariantViewProperties.textColor = self.colors.darkGray
+            //changing color of single day selection
+            let date = calendar.date(from: day.components)
+            if date == selectedDate {
+              invariantViewProperties.backgroundShapeDrawingConfig.borderColor = .blue
+              invariantViewProperties.backgroundShapeDrawingConfig.fillColor = .blue.withAlphaComponent(0.15)
+            }
             
+
             return DayView.calendarItemModel(
                 invariantViewProperties: invariantViewProperties,
-                viewModel: .init(dayText: day.day.description, accessibilityLabel: nil, accessibilityHint: nil)
+                viewModel: .init(
+                    dayText: day.day.description,
+                    accessibilityLabel: nil,
+                    accessibilityHint: nil)
             )
         }
         
