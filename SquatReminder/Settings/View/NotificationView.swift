@@ -43,7 +43,7 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
         setupNotifcationOptionLabel()
         setupSwitch()
         checkForPermissions()
-        logSquatsModel.didSquat()
+//        logSquatsModel.didSquat()
     }
     
     required init?(coder: NSCoder) {

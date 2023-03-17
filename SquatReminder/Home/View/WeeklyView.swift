@@ -104,8 +104,11 @@ class WeeklyView: UIView {
         monCount = logSquatsModel.getCountBasedOnDate(day: mon)
         tueCount = logSquatsModel.getCountBasedOnDate(day: tue)
         wedCount = logSquatsModel.getCountBasedOnDate(day: wed)
+        print("this is Wed squat count 😫", wedCount)
         thuCount = logSquatsModel.getCountBasedOnDate(day: thu)
+        print("this is Thu squat count 😫", thuCount)
         friCount = logSquatsModel.getCountBasedOnDate(day: fri)
+        print("this is Fri squat count 😫", friCount)
         satCount = logSquatsModel.getCountBasedOnDate(day: sun)
         sunCount = logSquatsModel.getCountBasedOnDate(day: sun)
         

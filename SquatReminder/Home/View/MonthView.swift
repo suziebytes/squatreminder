@@ -9,10 +9,10 @@ import UIKit
 import HorizonCalendar
 
 class MonthView: UIView {
-    
     let monthLabel = SpacedLabel()
     let cardView = CardView()
     let colors = ColorManager()
+    var logSquatsModel = LogSquatsModel()
     
     override init(frame: CGRect) {
         super .init(frame: frame)
@@ -31,25 +31,11 @@ class MonthView: UIView {
         monthLabel.topAnchor.constraint(equalTo: topAnchor, constant: 25).isActive = true
     }
     
-//    func fetchActiveDates() {
-//        //fetchdata
-//        //check date for current month's date ranges
-//        //convert format from dateformatter (string) to datecoponents
-//
-//        let date = Date() //this is dates that are fetched
-//        let components = Calendar.current.dateComponents([ .year, .month, .day], from: date)
-//        //print(components)
-//        // Output: month: 3 day: 14
-//
-//
-//    }
-
-    
-    
-    private func createCalendar() {
+    func createCalendar() {
+        print("🔥")
         let calendar = Calendar.current
-        let selectedDate = calendar.date(from: DateComponents(year: 2023, month: 03, day: 16))!
-
+        //        let selectedDate = calendar.date(from: DateComponents(year: 2023, month: 03, day: 16))!
+        
         let dateFormatter = DateFormatter()
         let date = Date()
         dateFormatter.dateFormat = "dd-MM-yyyy"
@@ -79,11 +65,19 @@ class MonthView: UIView {
             invariantViewProperties.textColor = self.colors.darkGray
             //changing color of single day selection
             let date = calendar.date(from: day.components)
-            
             // if day is contained in my array that I fetched from core data,
-            if date == selectedDate {
-                invariantViewProperties.backgroundShapeDrawingConfig.borderColor = self.colors.darkPurple
-                invariantViewProperties.backgroundShapeDrawingConfig.fillColor = self.colors.darkPurple.withAlphaComponent(0.75)
+            self.logSquatsModel.didSquat() //fetches data
+            for element in self.logSquatsModel.newDates {
+                var loggedDay = calendar.component(.day, from: element)
+                var day = day.day //assign this so we can compare Int
+                print("🔥 this is day ", day)
+                print("🔥 loggedDay", loggedDay)
+                
+                if day == loggedDay {
+                    invariantViewProperties.backgroundShapeDrawingConfig.borderColor = self.colors.darkPurple
+                    invariantViewProperties.backgroundShapeDrawingConfig.fillColor = self.colors.darkPurple.withAlphaComponent(0.75)
+                
+                }
             }
             
             return DayView.calendarItemModel(
@@ -105,7 +99,6 @@ class MonthView: UIView {
         calendarView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
         calendarView.layer.shadowOpacity = 0.3
         calendarView.layer.shadowRadius = 5.0
-        
         calendarView.translatesAutoresizingMaskIntoConstraints = false
         calendarView.topAnchor.constraint(equalTo: monthLabel.bottomAnchor, constant: 5).isActive = true
         calendarView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true

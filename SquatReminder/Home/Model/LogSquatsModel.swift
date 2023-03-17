@@ -76,7 +76,6 @@ struct LogSquatsModel {
         return count
     }
     
-    
     mutating func didSquat(){
         let today = Date()
         var dateFormatter = DateFormatter()
