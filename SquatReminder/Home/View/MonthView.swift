@@ -75,8 +75,8 @@ class MonthView: UIView {
                 
                 if day == loggedDay {
                     invariantViewProperties.backgroundShapeDrawingConfig.borderColor = self.colors.darkPurple
-                    invariantViewProperties.backgroundShapeDrawingConfig.fillColor = self.colors.darkPurple.withAlphaComponent(0.75)
-                
+                    invariantViewProperties.backgroundShapeDrawingConfig.fillColor = self.colors.darkPurple
+                    invariantViewProperties.textColor = .white
                 }
             }
             
