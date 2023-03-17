@@ -16,6 +16,8 @@ struct LogSquatsModel {
     let request: NSFetchRequest<SquatEntity> = SquatEntity.fetchRequest()
     // create squatList with empty array & fetch the result
     var squatEntityList: [SquatEntity] = []
+    var dateString: String = ""
+    var newDates: [Date] = []
     
     mutating func fetchData() {
         do {
@@ -53,8 +55,8 @@ struct LogSquatsModel {
             //assign the new values
             newEntity.date = today
             newEntity.count = tempCount
+            
             appDelegate.saveContext()
-            print("🤪 created count / date ")
         }
     }
     
@@ -64,7 +66,7 @@ struct LogSquatsModel {
         
         request.predicate = predicate
         fetchData()
-
+        
         if squatEntityList.count > 0 {
             guard let day = squatEntityList.first else {
                 return count
@@ -74,8 +76,43 @@ struct LogSquatsModel {
         return count
     }
     
-    func didSquat() {
-        //fetch data
-        //if date has count 
+    
+    mutating func didSquat(){
+        let today = Date()
+        var dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "MMM"
+        var stringMonth = dateFormatter.string(from: today) //prints "Mar"
+        dateFormatter.dateFormat = "YYYY"
+        var stringYear = dateFormatter.string(from:today)
+        //filter for the month matching current month
+        let predicate = NSPredicate(format: "date CONTAINS[cd] '\(stringMonth)' AND date CONTAINS[cd] '\(stringYear)'")
+        
+        request.predicate = predicate
+        fetchData()
+        
+        //check if there is data stored - squatEntityList is the array with all values
+        if squatEntityList.count > 0 {
+            //loop through array
+            for element in squatEntityList {
+                let dateString = element.date ?? "" //gets each element's date property
+                dateFormatter.locale = Locale(identifier: "en-US")
+                dateFormatter.setLocalizedDateFormatFromTemplate("EEE MMM d yyyy") //lets formatter know this is the format of the received string
+                let date = dateFormatter.date(from: dateString) // converts the dataString to a date object
+                print("this is the date 🥶🥶🥶🥶 \(String(describing: date))")
+                let calendar = Calendar.current
+                //gets all the components
+                let components = calendar.dateComponents([.year, .month, .day], from: date ?? Date())
+                //gets specific components
+                var year = calendar.component(.year , from: date!)
+                var month = calendar.component(.month, from: date!)
+                var day = calendar.component(.day, from: date!)
+                
+                var stringToDate = calendar.date(from: DateComponents(year: year, month: month, day: day))!
+                print("this is the date 🌈🌈🌈 \(stringToDate)")
+
+                newDates.append(stringToDate)
+            }
+        }
     }
 }
