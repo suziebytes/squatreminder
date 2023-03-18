@@ -52,7 +52,8 @@ class MonthView: UIView {
         var content = CalendarViewContent(
             calendar: calendar,
             visibleDateRange: startDate...endDate,
-            monthsLayout: .horizontal(options: HorizontalMonthsLayoutOptions()))
+            monthsLayout: .horizontal(options: HorizontalMonthsLayoutOptions())
+        )
         
         content = content.interMonthSpacing(15)
         content = content.verticalDayMargin(5)
@@ -91,7 +92,6 @@ class MonthView: UIView {
         
         let calendarView = CalendarView(initialContent: content)
         calendarView.tintColor = colors.darkGray
-        
         addSubview(calendarView)
         
         calendarView.layer.cornerRadius = 15

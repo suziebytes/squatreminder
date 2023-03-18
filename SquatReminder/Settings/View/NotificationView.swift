@@ -34,9 +34,8 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
     let maxSquatLabel = UILabel()
     let timePickerView = TimePickerView()
     let todayView = TodayView()
-    let weeklyView = WeeklyView()
-    var currentDate = CurrentDate()
     var logSquatsModel = LogSquatsModel()
+    var homeVC: HomeVC? 
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -201,8 +200,6 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
                         return
                     }
                     logSquatsModel.updateResults(tempCount: tempCount)
-                    todayView.getCount()
-                    weeklyView.setupBarChart()
                     
                 } else {
                     let alertController = UIAlertController(title: "Enter Numbers Only", message: "", preferredStyle: .alert)
@@ -215,7 +212,9 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
         default:
             break
         }
-        weeklyView.setupBarChart()
+        todayView.getCount()
+        homeVC?.monthlyView.createCalendar()
+        homeVC?.weeklyView.setupBarChart()
         completionHandler()
     }
 }

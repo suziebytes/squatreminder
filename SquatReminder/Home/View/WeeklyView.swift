@@ -109,11 +109,11 @@ class WeeklyView: UIView {
         print("this is Thu squat count 😫", thuCount)
         friCount = logSquatsModel.getCountBasedOnDate(day: fri)
         print("this is Fri squat count 😫", friCount)
-        satCount = logSquatsModel.getCountBasedOnDate(day: sun)
+        satCount = logSquatsModel.getCountBasedOnDate(day: sat)
         sunCount = logSquatsModel.getCountBasedOnDate(day: sun)
         
         //get the squat count via coredata
-        let mockBarChartDataSet: BarChartView.DataSet? = BarChartView.DataSet(elements: [
+        let loggedData: BarChartView.DataSet? = BarChartView.DataSet(elements: [
             .init(date: nil, xLabel: "SUN", bars: [.init(value: sunCount, color: colors.lightPurple)]),
             .init(date: nil, xLabel: "MON", bars: [.init(value: monCount, color: colors.lightPurple)]),
             .init(date: nil, xLabel: "TUE", bars: [.init(value: tueCount, color: colors.lightPurple)]),
@@ -123,13 +123,14 @@ class WeeklyView: UIView {
             .init(date: nil, xLabel: "SAT", bars: [.init(value: satCount, color: colors.lightPurple)])
         ], selectionColor: colors.darkPurple)
         
-        barChart.dataSet = mockBarChartDataSet
+        barChart.dataSet = loggedData
+        
     }
     
     func setupBarChartStyling() {
-        barChart.barWidth = 30
+        barChart.barWidth = 20
         barChart.translatesAutoresizingMaskIntoConstraints = false
-        barChart.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        barChart.heightAnchor.constraint(equalToConstant: 500).isActive = true
         barChart.topAnchor.constraint(equalTo: cardView.topAnchor).isActive = true
         barChart.bottomAnchor.constraint(equalTo: cardView.bottomAnchor).isActive = true
         barChart.leftAnchor.constraint(equalTo: cardView.leftAnchor, constant: 10).isActive = true

@@ -29,9 +29,11 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         view.backgroundColor = .white
         title = "Home"
         notificationView.homeDelegate = self
+        notificationView.checkForPermissions()
         configureScrollView()
         configureStackView()
         addToStackView()
+        notificationView.homeVC = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,6 +76,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
             logSquatModel.updateResults(tempCount: tempCount)
             todayView.getCount()
             weeklyView.setupBarChart()
+            monthlyView.createCalendar()
         }))
         present(alertController, animated: true, completion: nil)
     }
