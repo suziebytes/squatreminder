@@ -29,7 +29,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         view.backgroundColor = .white
         title = "Home"
         notificationView.homeDelegate = self
-        notificationView.checkForPermissions()
+//        notificationView.checkForPermissions()
         configureScrollView()
         configureStackView()
         addToStackView()
@@ -43,10 +43,10 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         weeklyView.setupBarChart()
         
         if UserDefaults.standard.bool(forKey: "outletSwitch") {
-            notificationView.onOffSwitch.setOn(true, animated: false)
+            notificationView.notificationSwitch.setOn(true, animated: false)
             notificationView.scheduleLocal()
         } else {
-            notificationView.onOffSwitch.setOn(false, animated: false)
+            notificationView.notificationSwitch.setOn(false, animated: false)
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)

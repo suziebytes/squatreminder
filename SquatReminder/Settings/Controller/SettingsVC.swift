@@ -47,10 +47,10 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
         }
     
         if UserDefaults.standard.bool(forKey: "outletSwitch"){
-            notificationView.onOffSwitch.setOn(true, animated: false)
-            notificationView.scheduleLocal()
+            notificationView.notificationSwitch.setOn(true, animated: false)
+//            notificationView.scheduleLocal()
         } else {
-            notificationView.onOffSwitch.setOn(false, animated: false)
+            notificationView.notificationSwitch.setOn(false, animated: false)
         }
     }
     

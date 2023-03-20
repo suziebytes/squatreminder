@@ -16,22 +16,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITableViewDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        UNUserNotificationCenter.current().delegate = self
-        
-        // request permission from user to send notification
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: { authorized, error in
-            if authorized {
-                DispatchQueue.main.async(execute: {
-                    application.registerForRemoteNotifications()
-                })
-            }
-        })
+        //        UNUserNotificationCenter.current().delegate = self
+        //
+        //        // request permission from user to send notification
+        //        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: { authorized, error in
+        //            if authorized {
+        //                DispatchQueue.main.async(execute: {
+        //                    application.registerForRemoteNotifications()
+        //                })
+        //            }
+        //        })
+        //
+        registerForPushNotifications()
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
         
         return true
+    }
+    
+    //request authorization for notifications
+    func registerForPushNotifications() {
+        UNUserNotificationCenter.current()
+            .requestAuthorization(
+                options: [.alert, .sound, .badge]) { [weak self] granted, _ in
+                    print("Permission granted: \(granted)")
+                    guard granted else { return }
+                    self?.getNotificationSettings()
+                }
+    }
+    
+    //when user does not allow notifications
+    func getNotificationSettings() {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            print("Notification settings: \(settings)")
+            //verify authorization status
+            guard settings.authorizationStatus == .authorized else { return }
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+        }
+    }
+    
+    func application(
+      _ application: UIApplication,
+      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+    ) {
+      let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+      let token = tokenParts.joined()
+      print("Device Token: \(token)")
     }
     
     

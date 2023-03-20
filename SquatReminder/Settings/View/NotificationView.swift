@@ -29,7 +29,7 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
     weak var homeDelegate: NotificationViewDelegate?
     
     let colors = ColorManager()
-    let onOffSwitch = UISwitch()
+    let notificationSwitch = NotificationSwitch()
     let notificationOptionLabel = UILabel()
     let maxSquatLabel = UILabel()
     let timePickerView = TimePickerView()
@@ -41,8 +41,7 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
         super.init(frame: frame)
         setupNotifcationOptionLabel()
         setupSwitch()
-        checkForPermissions()
-//        logSquatsModel.didSquat()
+//        checkForPermissions()
     }
     
     required init?(coder: NSCoder) {
@@ -67,26 +66,22 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
     }
     
     func setupSwitch() {
-        addSubview(onOffSwitch)
-        onOffSwitch.backgroundColor = colors.lightGray
-        onOffSwitch.tintColor = colors.lightGray
-        onOffSwitch.onTintColor = colors.darkPurple
-        onOffSwitch.layer.cornerRadius = 15
-        onOffSwitch.layer.borderColor = colors.darkGray.cgColor
-        onOffSwitch.layer.borderWidth = 1
-        onOffSwitch.addTarget(self, action: #selector(switchDidChange), for: .valueChanged)
+        addSubview(notificationSwitch)
+        notificationSwitch.setupSwitch()
+        
+        notificationSwitch.addTarget(self, action: #selector(switchDidChange), for: .valueChanged)
         
         if UserDefaults.standard.bool(forKey: "outletSwitch"){
-            onOffSwitch.setOn(true, animated: false)
+            notificationSwitch.setOn(true, animated: false)
             scheduleLocal()
         } else {
-            onOffSwitch.setOn(false, animated: false)
+            notificationSwitch.setOn(false, animated: false)
         }
         
-        onOffSwitch.translatesAutoresizingMaskIntoConstraints = false
-        onOffSwitch.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        onOffSwitch.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
-        onOffSwitch.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        notificationSwitch.translatesAutoresizingMaskIntoConstraints = false
+        notificationSwitch.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        notificationSwitch.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
+        notificationSwitch.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
     @objc func switchDidChange(_ sender:UISwitch) {
@@ -131,7 +126,7 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
         
         //        let trigger = UNCalendarNotificationTrigger(dateMatching: componentsFromDate, repeats: true)
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
         
         //        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         
