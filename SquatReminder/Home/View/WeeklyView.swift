@@ -124,13 +124,12 @@ class WeeklyView: UIView {
         ], selectionColor: colors.darkPurple)
         
         barChart.dataSet = loggedData
-        
     }
     
     func setupBarChartStyling() {
         barChart.barWidth = 20
         barChart.translatesAutoresizingMaskIntoConstraints = false
-        barChart.heightAnchor.constraint(equalToConstant: 500).isActive = true
+        barChart.heightAnchor.constraint(equalToConstant: 150).isActive = true
         barChart.topAnchor.constraint(equalTo: cardView.topAnchor).isActive = true
         barChart.bottomAnchor.constraint(equalTo: cardView.bottomAnchor).isActive = true
         barChart.leftAnchor.constraint(equalTo: cardView.leftAnchor, constant: 10).isActive = true

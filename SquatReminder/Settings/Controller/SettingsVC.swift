@@ -58,7 +58,6 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
         view.addSubview(settingsLabel)
         settingsLabel.text = "Settings"
         settingsLabel.font = UIFont.boldSystemFont(ofSize: 30.0)
-        
         settingsLabel.translatesAutoresizingMaskIntoConstraints = false
         settingsLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         settingsLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
@@ -77,7 +76,6 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
     func setupNotificationTitleLabel() {
         view.addSubview(notificationTitleLabel)
         notificationTitleLabel.setupLabel(inputText: "NOTIFICATION SETTINGS")
-        
         notificationTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         notificationTitleLabel.topAnchor.constraint(equalTo: squatButtonView.bottomAnchor, constant: 30).isActive = true
         notificationTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
@@ -85,7 +83,6 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
     
     func setupNotificationView() {
         view.addSubview(notificationView)
-        
         notificationView.translatesAutoresizingMaskIntoConstraints = false
         notificationView.topAnchor.constraint(equalTo: notificationTitleLabel.bottomAnchor, constant: 30).isActive = true
         notificationView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40).isActive = true
@@ -94,7 +91,6 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
     
     func setupMaxSquatView() {
         view.addSubview(maxSquatView)
-        
         maxSquatView.translatesAutoresizingMaskIntoConstraints = false
         maxSquatView.topAnchor.constraint(equalTo: notificationView.bottomAnchor, constant: 40).isActive = true
         maxSquatView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40).isActive = true
