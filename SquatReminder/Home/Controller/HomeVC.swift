@@ -43,10 +43,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         weeklyView.setupBarChart()
         
         if UserDefaults.standard.bool(forKey: "outletSwitch") {
-            notificationView.notificationSwitch.setOn(true, animated: false)
             notificationView.scheduleLocal()
-        } else {
-            notificationView.notificationSwitch.setOn(false, animated: false)
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)

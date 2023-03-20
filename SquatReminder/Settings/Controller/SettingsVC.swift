@@ -19,7 +19,6 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
     let timePickerView = TimePickerView()
     let nameButton = Buttons()
     let welcomeView = WelcomeView()
-    let notifcationView = NotificationView()
     
     override func viewDidLoad() {
         super.viewDidLoad()

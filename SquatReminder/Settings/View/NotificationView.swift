@@ -126,7 +126,7 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
         
         //        let trigger = UNCalendarNotificationTrigger(dateMatching: componentsFromDate, repeats: true)
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         
         //        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         
@@ -139,6 +139,8 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
         let center = UNUserNotificationCenter.current()
         center.getNotificationSettings { settings in
             if settings.authorizationStatus == .authorized {
+                UserDefaults.standard.set(true, forKey: "outletSwitch")
+                print("🔥 GRANTED SET TO TRUE")
                 self.scheduleLocal()
             }
         }

@@ -39,12 +39,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITableViewDelegate {
     //request authorization for notifications
     func registerForPushNotifications() {
         UNUserNotificationCenter.current()
-            .requestAuthorization(
-                options: [.alert, .sound, .badge]) { [weak self] granted, _ in
-                    print("Permission granted: \(granted)")
-                    guard granted else { return }
-                    self?.getNotificationSettings()
-                }
+            .requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, _ in
+                print("Permission granted: \(granted)")
+                guard granted else { return }
+                UserDefaults.standard.set(true, forKey: "outletSwitch")
+                self?.getNotificationSettings()
+            }
     }
     
     //when user does not allow notifications
