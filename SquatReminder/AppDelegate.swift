@@ -15,18 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITableViewDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        //        UNUserNotificationCenter.current().delegate = self
-        //
-        //        // request permission from user to send notification
-        //        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: { authorized, error in
-        //            if authorized {
-        //                DispatchQueue.main.async(execute: {
-        //                    application.registerForRemoteNotifications()
-        //                })
-        //            }
-        //        })
-        //
         registerForPushNotifications()
         
         window = UIWindow(frame: UIScreen.main.bounds)
