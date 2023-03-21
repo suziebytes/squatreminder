@@ -71,7 +71,7 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
         
         notificationSwitch.addTarget(self, action: #selector(switchDidChange), for: .valueChanged)
         
-        if UserDefaults.standard.bool(forKey: "outletSwitch"){
+        if UserDefaults.standard.bool(forKey: "notificationSwitch"){
             notificationSwitch.setOn(true, animated: false)
             scheduleLocal()
         } else {
@@ -87,7 +87,7 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
     @objc func switchDidChange(_ sender:UISwitch) {
         if sender.isOn == true {
             print("notifications on")
-            UserDefaults.standard.set(true, forKey: "outletSwitch")
+            UserDefaults.standard.set(true, forKey: "notificationSwitch")
             //request permission from user to send notificaitons
             
             //request authorization for notifications from user
@@ -102,7 +102,7 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
                 }
             }
         } else {
-            UserDefaults.standard.set(false, forKey: "outletSwitch")
+            UserDefaults.standard.set(false, forKey: "notificationSwitch")
             print("notifications off")
         }
     }
@@ -139,7 +139,7 @@ class NotificationView: UIView, UNUserNotificationCenterDelegate, UITextFieldDel
         let center = UNUserNotificationCenter.current()
         center.getNotificationSettings { settings in
             if settings.authorizationStatus == .authorized {
-                UserDefaults.standard.set(true, forKey: "outletSwitch")
+                UserDefaults.standard.set(true, forKey: "notificationSwitch")
                 print("🔥 GRANTED SET TO TRUE")
                 self.scheduleLocal()
             }

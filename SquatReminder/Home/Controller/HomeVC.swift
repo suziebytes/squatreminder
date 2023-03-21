@@ -42,7 +42,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         todayView.setupDailyButton()
         weeklyView.setupBarChart()
         
-        if UserDefaults.standard.bool(forKey: "outletSwitch") {
+        if UserDefaults.standard.bool(forKey: "notificationSwitch") {
             notificationView.scheduleLocal()
         }
         

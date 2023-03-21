@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITableViewDelegate {
             .requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, _ in
                 print("Permission granted: \(granted)")
                 guard granted else { return }
-                UserDefaults.standard.set(true, forKey: "outletSwitch")
+                UserDefaults.standard.set(true, forKey: "notificationSwitch")
                 self?.getNotificationSettings()
             }
     }
