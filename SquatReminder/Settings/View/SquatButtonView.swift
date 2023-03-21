@@ -47,6 +47,7 @@ class SquatButtonView: UIView {
         alertController.addTextField { (textField) in
             // configure the properties of the text field
             textField.placeholder = "0"
+            textField.keyboardType = .numberPad
         }
         
         alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (_) in

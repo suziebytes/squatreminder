@@ -18,6 +18,8 @@ struct LogSquatsModel {
     var squatEntityList: [SquatEntity] = []
     var dateString: String = ""
     var newDates: [Date] = []
+    var todayView = TodayView()
+    let confetti = Confetti()
     
     mutating func fetchData() {
         do {
@@ -48,6 +50,7 @@ struct LogSquatsModel {
             previousSquatEntity.count = updateCount
             //save updatedCount to Squat Entity
             appDelegate.saveContext()
+            goalReached(currentCount: Int(updateCount))
             print("🤪updated entity")
         } else { //if no entry for today's date, save today's date and the updated count
             //create new instance of SquatEntity
@@ -57,7 +60,9 @@ struct LogSquatsModel {
             newEntity.count = tempCount
             
             appDelegate.saveContext()
+            goalReached(currentCount: Int(tempCount))
         }
+    
     }
     
     mutating func getCountBasedOnDate(day: String) -> Double {
@@ -112,6 +117,15 @@ struct LogSquatsModel {
 
                 newDates.append(stringToDate)
             }
+        }
+    }
+    
+    func goalReached(currentCount: Int) {
+        
+        let countGoal = UserDefaults.standard.string(forKey: "key-goal") ?? ""
+        print(currentCount, countGoal, "these are the current count to compare  ⚡️")
+        if currentCount >= Int(countGoal) ?? 0 {
+            confetti.displayConfetti()
         }
     }
 }

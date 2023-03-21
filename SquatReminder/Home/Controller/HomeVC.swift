@@ -8,6 +8,7 @@ import UIKit
 import UserNotifications
 import BarChartKit
 import CoreData
+import ConfettiView
 
 class HomeVC: UIViewController, NotificationViewDelegate {
     var currentDate = CurrentDate()
@@ -30,11 +31,12 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         view.backgroundColor = .white
         title = "Home"
         notificationView.homeDelegate = self
-//        notificationView.checkForPermissions()
+        notificationModel.checkForPermissions()
         configureScrollView()
         configureStackView()
         addToStackView()
         notificationView.homeVC = self
+        notificationModel.homeDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,6 +62,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         let alertController = UIAlertController(title: "Log Squat", message: "", preferredStyle: .alert)
         alertController.addTextField { (textField) in
             textField.placeholder = "0"
+            textField.keyboardType = .numberPad
         }
         
         alertController.addAction(UIAlertAction(title: "No Squats", style: .default, handler: { (_) in
@@ -73,10 +76,15 @@ class HomeVC: UIViewController, NotificationViewDelegate {
 
             logSquatModel.updateResults(tempCount: tempCount)
             todayView.getCount()
-            weeklyView.setupBarChart()
-            monthlyView.createCalendar()
+            updateMonthAndWeek()
+    
         }))
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func updateMonthAndWeek() {
+        weeklyView.setupBarChart()
+        monthlyView.createCalendar()
     }
     
     //MARK: UI Configuration

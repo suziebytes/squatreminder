@@ -10,14 +10,14 @@ import UserNotifications
 
 protocol NotificationViewDelegate: AnyObject {
     func didTapBanner()
+    func updateMonthAndWeek()
 }
 
 class NotificationModel: NSObject, UNUserNotificationCenterDelegate {
     weak var homeDelegate: NotificationViewDelegate?
 
-    var homeVC: HomeVC?
     let todayView = TodayView()
-    var logSquatsModel = LogSquatsModel()
+    var logSquatModel = LogSquatsModel()
     
     func scheduleLocal() {
         registerCategories()
@@ -28,7 +28,7 @@ class NotificationModel: NSObject, UNUserNotificationCenterDelegate {
         
         let content = UNMutableNotificationContent()
         content.title = "SQUAT TIME"
-        content.body = "Drop it like a Squat"
+        content.body = "🔥🔥🔥\n Drop it like a Squat!"
         content.sound = .default
         content.userInfo = ["logsquats": "add to count"]
         content.categoryIdentifier = "squatsReminderCategory"
@@ -108,7 +108,7 @@ class NotificationModel: NSObject, UNUserNotificationCenterDelegate {
                         print("failed because there was no number value")
                         return
                     }
-                    logSquatsModel.updateResults(tempCount: tempCount)
+                    logSquatModel.updateResults(tempCount: tempCount)
                     
                 } else {
                     let alertController = UIAlertController(title: "Enter Numbers Only", message: "", preferredStyle: .alert)
@@ -123,8 +123,8 @@ class NotificationModel: NSObject, UNUserNotificationCenterDelegate {
             break
         }
         todayView.getCount()
-        homeVC?.monthlyView.createCalendar()
-        homeVC?.weeklyView.setupBarChart()
+        homeDelegate?.updateMonthAndWeek()
+//        logSquatModel.goalReached(currentCount: Int)
         completionHandler()
     }
 }

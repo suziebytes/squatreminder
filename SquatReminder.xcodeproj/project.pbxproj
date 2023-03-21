@@ -37,6 +37,8 @@
 		B0DC8DCA29BF93930029EA6E /* WeeklyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DC929BF93930029EA6E /* WeeklyViewModel.swift */; };
 		B0DC8DCD29C903500029EA6E /* notificationsSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DCC29C903500029EA6E /* notificationsSwitch.swift */; };
 		B0DC8DCF29CA2BDA0029EA6E /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DCE29CA2BDA0029EA6E /* NotificationModel.swift */; };
+		B0DC8DD229CA35AA0029EA6E /* ConfettiView in Frameworks */ = {isa = PBXBuildFile; productRef = B0DC8DD129CA35AA0029EA6E /* ConfettiView */; };
+		B0DC8DD429CA35C50029EA6E /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DD329CA35C50029EA6E /* ConfettiView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,7 @@
 		B0DC8DCB29C8FF600029EA6E /* SquatReminder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SquatReminder.entitlements; sourceTree = "<group>"; };
 		B0DC8DCC29C903500029EA6E /* notificationsSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationsSwitch.swift; sourceTree = "<group>"; };
 		B0DC8DCE29CA2BDA0029EA6E /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		B0DC8DD329CA35C50029EA6E /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +102,7 @@
 			files = (
 				B07973EC298C6F2500338BA1 /* HorizonCalendar in Frameworks */,
 				B0ACB082298AEA4B00664508 /* BarChartKit-static in Frameworks */,
+				B0DC8DD229CA35AA0029EA6E /* ConfettiView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +218,7 @@
 				B0C15951298EBEF0006EC7C0 /* DescriptionLabel.swift */,
 				B0ACB0792989DAA200664508 /* WelcomeView.swift */,
 				B07973ED298D894600338BA1 /* SpacedLabel.swift */,
+				B0DC8DD329CA35C50029EA6E /* ConfettiView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 			packageProductDependencies = (
 				B0ACB081298AEA4B00664508 /* BarChartKit-static */,
 				B07973EB298C6F2500338BA1 /* HorizonCalendar */,
+				B0DC8DD129CA35AA0029EA6E /* ConfettiView */,
 			);
 			productName = SquatReminder;
 			productReference = B0ACB027298883F000664508 /* SquatReminder.app */;
@@ -357,6 +363,7 @@
 			packageReferences = (
 				B0ACB080298AEA4B00664508 /* XCRemoteSwiftPackageReference "BarChart" */,
 				B07973EA298C6F2500338BA1 /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
+				B0DC8DD029CA35AA0029EA6E /* XCRemoteSwiftPackageReference "ConfettiView" */,
 			);
 			productRefGroup = B0ACB028298883F000664508 /* Products */;
 			projectDirPath = "";
@@ -417,6 +424,7 @@
 				B0ACB0742989996800664508 /* WeeklyView.swift in Sources */,
 				B0DC8DC029B7E4E40029EA6E /* LogSquatsModel.swift in Sources */,
 				B0C15952298EBEF0006EC7C0 /* DescriptionLabel.swift in Sources */,
+				B0DC8DD429CA35C50029EA6E /* ConfettiView.swift in Sources */,
 				B0DC8DCF29CA2BDA0029EA6E /* NotificationModel.swift in Sources */,
 				B0ACB0722989860F00664508 /* MonthView.swift in Sources */,
 				B0ACB086298B2B4800664508 /* CardView.swift in Sources */,
@@ -771,6 +779,14 @@
 				kind = branch;
 			};
 		};
+		B0DC8DD029CA35AA0029EA6E /* XCRemoteSwiftPackageReference "ConfettiView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/NSHipster/ConfettiView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -783,6 +799,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B0ACB080298AEA4B00664508 /* XCRemoteSwiftPackageReference "BarChart" */;
 			productName = "BarChartKit-static";
+		};
+		B0DC8DD129CA35AA0029EA6E /* ConfettiView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B0DC8DD029CA35AA0029EA6E /* XCRemoteSwiftPackageReference "ConfettiView" */;
+			productName = ConfettiView;
 		};
 /* End XCSwiftPackageProductDependency section */
 
