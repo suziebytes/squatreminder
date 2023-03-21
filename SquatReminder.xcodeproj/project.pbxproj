@@ -36,6 +36,7 @@
 		B0DC8DC529B7E9D20029EA6E /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DC329B7E9D20029EA6E /* CoreDataModel.xcdatamodeld */; };
 		B0DC8DCA29BF93930029EA6E /* WeeklyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DC929BF93930029EA6E /* WeeklyViewModel.swift */; };
 		B0DC8DCD29C903500029EA6E /* notificationsSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DCC29C903500029EA6E /* notificationsSwitch.swift */; };
+		B0DC8DCF29CA2BDA0029EA6E /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DCE29CA2BDA0029EA6E /* NotificationModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		B0DC8DC929BF93930029EA6E /* WeeklyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyViewModel.swift; sourceTree = "<group>"; };
 		B0DC8DCB29C8FF600029EA6E /* SquatReminder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SquatReminder.entitlements; sourceTree = "<group>"; };
 		B0DC8DCC29C903500029EA6E /* notificationsSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationsSwitch.swift; sourceTree = "<group>"; };
+		B0DC8DCE29CA2BDA0029EA6E /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +229,7 @@
 		B0C15954298F022E006EC7C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B0DC8DCE29CA2BDA0029EA6E /* NotificationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				B0ACB0742989996800664508 /* WeeklyView.swift in Sources */,
 				B0DC8DC029B7E4E40029EA6E /* LogSquatsModel.swift in Sources */,
 				B0C15952298EBEF0006EC7C0 /* DescriptionLabel.swift in Sources */,
+				B0DC8DCF29CA2BDA0029EA6E /* NotificationModel.swift in Sources */,
 				B0ACB0722989860F00664508 /* MonthView.swift in Sources */,
 				B0ACB086298B2B4800664508 /* CardView.swift in Sources */,
 				B07973EE298D894600338BA1 /* SpacedLabel.swift in Sources */,

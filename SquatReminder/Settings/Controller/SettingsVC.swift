@@ -15,6 +15,7 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
     let notificationTitleLabel = HeaderLabel()
     let remindersLabel = HeaderLabel()
     let notificationView = NotificationView()
+    let notificationModel = NotificationModel()
     let maxSquatView = MaxSquatView()
     let timePickerView = TimePickerView()
     let nameButton = Buttons()
@@ -45,9 +46,9 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
             nameButton.setTitle("ADD NAME", for: .normal)
         }
     
-        if UserDefaults.standard.bool(forKey: "outletSwitch"){
+        if UserDefaults.standard.bool(forKey: "notificationSwitch"){
             notificationView.notificationSwitch.setOn(true, animated: false)
-//            notificationView.scheduleLocal()
+            notificationModel.scheduleLocal()
         } else {
             notificationView.notificationSwitch.setOn(false, animated: false)
         }

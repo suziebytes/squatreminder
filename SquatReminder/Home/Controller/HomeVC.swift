@@ -23,6 +23,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
     var logSquatModel = LogSquatsModel()
     var squatEntityList: [SquatEntity] = []
     var weeklyViewModel = WeeklyViewModel()
+    let notificationModel = NotificationModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +44,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         weeklyView.setupBarChart()
         
         if UserDefaults.standard.bool(forKey: "notificationSwitch") {
-            notificationView.scheduleLocal()
+            notificationModel.scheduleLocal()
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
