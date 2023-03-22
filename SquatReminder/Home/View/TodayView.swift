@@ -17,6 +17,7 @@ class TodayView: UIView {
     let dailySquatButton = Buttons()
     let dailySquatLabel = DescriptionLabel()
     var currentSquatCount = 0
+    var squatGoal = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -97,10 +98,10 @@ class TodayView: UIView {
     
     func setupDailyButton() {
         addSubview(dailySquatButton)
-        let squatGoal = UserDefaults.standard.string(forKey: "key-goal") ?? ""
+        squatGoal = UserDefaults.standard.integer(forKey: "key-goal")
         dailySquatButton.backgroundColor = colors.darkPurple
         dailySquatButton.tintColor = .white
-        dailySquatButton.setTitle(squatGoal, for: .normal)
+        dailySquatButton.setTitle(String(squatGoal), for: .normal)
         dailySquatButton.titleLabel?.adjustsFontSizeToFitWidth = true
         dailySquatButton.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 60)
         dailySquatButton.addTarget(self, action: #selector(updateSquatGoal), for: .touchUpInside)

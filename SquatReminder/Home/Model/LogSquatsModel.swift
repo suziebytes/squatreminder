@@ -8,8 +8,10 @@
 import Foundation
 import CoreData
 import UIKit
+import ConfettiView
 
-struct LogSquatsModel {
+class LogSquatsModel {
+    let colors = ColorManager()
     let currentDate = CurrentDate()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     // Fetch result of today's squatEntity.count
@@ -19,9 +21,10 @@ struct LogSquatsModel {
     var dateString: String = ""
     var newDates: [Date] = []
     var todayView = TodayView()
-    let confetti = Confetti()
+    var currentCount = 0
+    var homeVC: HomeVC?
     
-    mutating func fetchData() {
+    func fetchData() {
         do {
             //fetches based on predicates / filters
             squatEntityList = try appDelegate.persistentContainer.viewContext.fetch(request)
@@ -30,7 +33,7 @@ struct LogSquatsModel {
         }
     }
     
-    mutating func updateResults(tempCount: Double) {
+    func updateResults(tempCount: Double) {
         let today = currentDate.getCurrentDate()
         // set the filter - filter should check for today's date and the current count for today
         let predicate = NSPredicate(format: "date == %@", today)
@@ -48,9 +51,11 @@ struct LogSquatsModel {
             let updateCount = previousCount + tempCount
             //override the entity we received from our filtered request with the previous count with new count
             previousSquatEntity.count = updateCount
+            currentCount = Int(updateCount)
             //save updatedCount to Squat Entity
             appDelegate.saveContext()
-            goalReached(currentCount: Int(updateCount))
+            //            goalReached(currentCount: Int(updateCount))
+            homeVC?.displayConfetti()
             print("🤪updated entity")
         } else { //if no entry for today's date, save today's date and the updated count
             //create new instance of SquatEntity
@@ -58,14 +63,15 @@ struct LogSquatsModel {
             //assign the new values
             newEntity.date = today
             newEntity.count = tempCount
-            
+            currentCount = Int(tempCount)
             appDelegate.saveContext()
-            goalReached(currentCount: Int(tempCount))
+            homeVC?.displayConfetti()
+            //            goalReached(currentCount: Int(tempCount))
         }
-    
+        
     }
     
-    mutating func getCountBasedOnDate(day: String) -> Double {
+    func getCountBasedOnDate(day: String) -> Double {
         let predicate = NSPredicate(format: "date == %@", day)
         var count: Double = 0
         
@@ -81,7 +87,7 @@ struct LogSquatsModel {
         return count
     }
     
-    mutating func didSquat(){
+    func didSquat(){
         let today = Date()
         var dateFormatter = DateFormatter()
         
@@ -114,18 +120,9 @@ struct LogSquatsModel {
                 
                 var stringToDate = calendar.date(from: DateComponents(year: year, month: month, day: day))!
                 print("this is the date 🌈🌈🌈 \(stringToDate)")
-
+                
                 newDates.append(stringToDate)
             }
-        }
-    }
-    
-    func goalReached(currentCount: Int) {
-        
-        let countGoal = UserDefaults.standard.string(forKey: "key-goal") ?? ""
-        print(currentCount, countGoal, "these are the current count to compare  ⚡️")
-        if currentCount >= Int(countGoal) ?? 0 {
-            confetti.displayConfetti()
         }
     }
 }

@@ -25,6 +25,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
     var squatEntityList: [SquatEntity] = []
     var weeklyViewModel = WeeklyViewModel()
     let notificationModel = NotificationModel()
+    let confettiView = ConfettiView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +37,10 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         configureStackView()
         addToStackView()
         notificationView.homeVC = self
+        logSquatModel.homeVC = self
         notificationModel.homeDelegate = self
+        setupConfetti()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,8 +56,39 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //        displayConfetti()
+    }
+    
     @objc func willEnterForeground() {
         todayView.getCount()
+    }
+    
+    func setupConfetti() {
+        view.addSubview(confettiView)
+        confettiView.translatesAutoresizingMaskIntoConstraints = false
+        confettiView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        confettiView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        confettiView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        confettiView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+    }
+    
+    func displayConfetti() {
+        let countGoal = UserDefaults.standard.string(forKey: "key-goal") ?? ""
+        let currentCount = logSquatModel.currentCount
+        print(currentCount, countGoal, "these are the current count to compare  ⚡️")
+        
+        if currentCount >= Int(countGoal) ?? 0 {
+            confettiView.emit(with: [
+                .shape(.circle, colors.darkPurple),
+                .shape(.triangle, colors.lightPurple),
+                .shape(.square, colors.lightGray)
+            ]) {_ in
+                // Optional completion handler fires when animation finishes.
+                print("hurray hurray")
+            }
+        }
     }
     
     //MARK: Notification Banner Updates
@@ -73,11 +108,13 @@ class HomeVC: UIViewController, NotificationViewDelegate {
             let textField = alertController?.textFields![0]
             let value = textField?.text ?? ""
             let tempCount = Double(value) ?? 0 //store the inputted user value
-
-            logSquatModel.updateResults(tempCount: tempCount)
-            todayView.getCount()
-            updateMonthAndWeek()
-    
+            
+            //ensures that everything is performed on the main thread; typically UI actions is performed on main thread
+            DispatchQueue.main.async {
+                self.logSquatModel.updateResults(tempCount: tempCount)
+                self.todayView.getCount()
+                self.updateMonthAndWeek()
+            }
         }))
         present(alertController, animated: true, completion: nil)
     }

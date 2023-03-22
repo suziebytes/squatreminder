@@ -32,7 +32,6 @@ class MonthView: UIView {
     }
     
     func createCalendar() {
-        print("🔥")
         let calendar = Calendar.current
         //        let selectedDate = calendar.date(from: DateComponents(year: 2023, month: 03, day: 16))!
         
@@ -71,8 +70,8 @@ class MonthView: UIView {
             for element in self.logSquatsModel.newDates {
                 var loggedDay = calendar.component(.day, from: element)
                 var day = day.day //assign this so we can compare Int
-                print("🔥 this is day ", day)
-                print("🔥 loggedDay", loggedDay)
+//                print("🔥 this is day ", day)
+                print("⚡️ loggedDay", loggedDay)
                 
                 if day == loggedDay {
                     invariantViewProperties.backgroundShapeDrawingConfig.borderColor = self.colors.darkPurple

@@ -19,12 +19,10 @@ class WelcomeView: UIView {
         setupNameLabel()
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    
     func setupWelcomeLabel() {
         addSubview(welcomeLabel)
         welcomeLabel.textColor = colors.darkPurple
