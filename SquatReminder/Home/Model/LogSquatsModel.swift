@@ -54,7 +54,6 @@ class LogSquatsModel {
             currentCount = Int(updateCount)
             //save updatedCount to Squat Entity
             appDelegate.saveContext()
-            //            goalReached(currentCount: Int(updateCount))
             homeVC?.displayConfetti()
             print("🤪updated entity")
         } else { //if no entry for today's date, save today's date and the updated count
@@ -66,9 +65,7 @@ class LogSquatsModel {
             currentCount = Int(tempCount)
             appDelegate.saveContext()
             homeVC?.displayConfetti()
-            //            goalReached(currentCount: Int(tempCount))
         }
-        
     }
     
     func getCountBasedOnDate(day: String) -> Double {

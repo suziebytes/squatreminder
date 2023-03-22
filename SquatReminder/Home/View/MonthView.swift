@@ -33,8 +33,6 @@ class MonthView: UIView {
     
     func createCalendar() {
         let calendar = Calendar.current
-        //        let selectedDate = calendar.date(from: DateComponents(year: 2023, month: 03, day: 16))!
-        
         let dateFormatter = DateFormatter()
         let date = Date()
         dateFormatter.dateFormat = "dd-MM-yyyy"
@@ -92,7 +90,6 @@ class MonthView: UIView {
         let calendarView = CalendarView(initialContent: content)
         calendarView.tintColor = colors.darkGray
         addSubview(calendarView)
-        
         calendarView.layer.cornerRadius = 15
         calendarView.layer.shadowColor = UIColor.darkGray.cgColor
         calendarView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
