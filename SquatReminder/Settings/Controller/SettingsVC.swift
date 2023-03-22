@@ -20,6 +20,7 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
     let timePickerView = TimePickerView()
     let nameButton = Buttons()
     let welcomeView = WelcomeView()
+//    let goalReached = GoalReachedView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,12 +34,11 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
         setupRemindersLabel()
         setupTimePickerView()
         setupNameButton()
+//        setupGoal()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         squatButtonView.setupSquatButton()
-        timePickerView.setupEndTimePicker()
-        timePickerView.setupStartTimePicker()
         
         if UserDefaults.standard.string(forKey: "key-name") != nil {
             nameButton.setTitle(UserDefaults.standard.string(forKey: "key-name"), for: .normal)
@@ -53,6 +53,15 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
             notificationView.notificationSwitch.setOn(false, animated: false)
         }
     }
+     
+//    func setupGoal() {
+//        view.addSubview(goalReached)
+//        goalReached.translatesAutoresizingMaskIntoConstraints = false
+//        goalReached.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        goalReached.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+//        goalReached.heightAnchor.constraint(equalToConstant: 150).isActive = true
+//        goalReached.widthAnchor.constraint(equalToConstant: 230).isActive = true
+//    }
     
     func setupSettingsLabel() {
         view.addSubview(settingsLabel)
@@ -66,7 +75,6 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
     
     func setupSquatButtonView() {
         view.addSubview(squatButtonView)
-        
         squatButtonView.translatesAutoresizingMaskIntoConstraints = false
         squatButtonView.topAnchor.constraint(equalTo: settingsLabel.bottomAnchor, constant: 15).isActive = true
         squatButtonView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -100,7 +108,6 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
     func setupRemindersLabel() {
         view.addSubview(remindersLabel)
         remindersLabel.setupLabel(inputText: "WHEN DO YOU WANT TO BE REMINDED")
-        
         remindersLabel.translatesAutoresizingMaskIntoConstraints = false
         remindersLabel.topAnchor.constraint(equalTo: maxSquatView.bottomAnchor, constant: 30).isActive = true
         remindersLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
@@ -109,7 +116,6 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
     
     func setupTimePickerView() {
         view.addSubview(timePickerView)
-        
         timePickerView.translatesAutoresizingMaskIntoConstraints = false
         timePickerView.topAnchor.constraint(equalTo: remindersLabel.bottomAnchor, constant: 10).isActive = true
         timePickerView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
@@ -121,7 +127,6 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
         nameButton.setTitle("ADD NAME", for: .normal)
         nameButton.addTarget(self, action: #selector(alertName), for: .touchUpInside)
         nameButton.backgroundColor = colors.darkPurple
-        
         nameButton.translatesAutoresizingMaskIntoConstraints = false
         nameButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         nameButton.widthAnchor.constraint(equalToConstant: 150).isActive = true

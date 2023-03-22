@@ -1,0 +1,32 @@
+{
+  "pins" : [
+    {
+      "identity" : "barchart",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/marekpridal/BarChart.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "30db3802a904414ee42c9c7aefe28bdcec10921e"
+      }
+    },
+    {
+      "identity" : "confettiview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/NSHipster/ConfettiView.git",
+      "state" : {
+        "revision" : "fcd1d3718116396df21d67af0826a4c6573f9350",
+        "version" : "0.3.1"
+      }
+    },
+    {
+      "identity" : "horizoncalendar",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/HorizonCalendar.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "0bd1227dba03b5c4036920d6ef684f92088e383c"
+      }
+    }
+  ],
+  "version" : 2
+}

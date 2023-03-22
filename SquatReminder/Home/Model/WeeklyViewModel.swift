@@ -22,7 +22,7 @@ struct WeeklyViewModel {
     
     mutating func findMonday(today: String) {
          //type String (because we formatted dateFormatter.string
-        print("🍑🍑🍑🍑🍑🍑", today)
+//        print("🍑🍑🍑🍑🍑🍑", today)
         switch today.prefix(3) { //check to see if its m,t,w,etc
         case "Mon":
             mon = today

@@ -51,7 +51,6 @@ class MonthView: UIView {
             visibleDateRange: startDate...endDate,
             monthsLayout: .horizontal(options: HorizontalMonthsLayoutOptions())
         )
-        
         content = content.interMonthSpacing(15)
         content = content.verticalDayMargin(5)
         content = content.horizontalDayMargin(5)
@@ -69,7 +68,7 @@ class MonthView: UIView {
                 var loggedDay = calendar.component(.day, from: element)
                 var day = day.day //assign this so we can compare Int
 //                print("🔥 this is day ", day)
-                print("⚡️ loggedDay", loggedDay)
+//                print("⚡️ loggedDay", loggedDay)
                 
                 if day == loggedDay {
                     invariantViewProperties.backgroundShapeDrawingConfig.borderColor = self.colors.darkPurple

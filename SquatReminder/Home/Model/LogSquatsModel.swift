@@ -106,7 +106,7 @@ class LogSquatsModel {
                 dateFormatter.locale = Locale(identifier: "en-US")
                 dateFormatter.setLocalizedDateFormatFromTemplate("EEE MMM d yyyy") //lets formatter know this is the format of the received string
                 let date = dateFormatter.date(from: dateString) // converts the dataString to a date object
-                print("this is the date 🥶🥶🥶🥶 \(String(describing: date))")
+//                print("this is the date 🥶🥶🥶🥶 \(String(describing: date))")
                 let calendar = Calendar.current
                 //gets all the components
                 let components = calendar.dateComponents([.year, .month, .day], from: date ?? Date())
@@ -116,7 +116,7 @@ class LogSquatsModel {
                 var day = calendar.component(.day, from: date!)
                 
                 var stringToDate = calendar.date(from: DateComponents(year: year, month: month, day: day))!
-                print("this is the date 🌈🌈🌈 \(stringToDate)")
+//                print("this is the date 🌈🌈🌈 \(stringToDate)")
                 
                 newDates.append(stringToDate)
             }

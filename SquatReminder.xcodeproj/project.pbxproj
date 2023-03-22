@@ -38,6 +38,7 @@
 		B0DC8DCD29C903500029EA6E /* notificationsSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DCC29C903500029EA6E /* notificationsSwitch.swift */; };
 		B0DC8DCF29CA2BDA0029EA6E /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DCE29CA2BDA0029EA6E /* NotificationModel.swift */; };
 		B0DC8DD229CA35AA0029EA6E /* ConfettiView in Frameworks */ = {isa = PBXBuildFile; productRef = B0DC8DD129CA35AA0029EA6E /* ConfettiView */; };
+		B0DC8DD629CB834F0029EA6E /* GoalReachedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DD529CB834F0029EA6E /* GoalReachedView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		B0DC8DCB29C8FF600029EA6E /* SquatReminder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SquatReminder.entitlements; sourceTree = "<group>"; };
 		B0DC8DCC29C903500029EA6E /* notificationsSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationsSwitch.swift; sourceTree = "<group>"; };
 		B0DC8DCE29CA2BDA0029EA6E /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		B0DC8DD529CB834F0029EA6E /* GoalReachedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalReachedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +218,7 @@
 				B0C15951298EBEF0006EC7C0 /* DescriptionLabel.swift */,
 				B0ACB0792989DAA200664508 /* WelcomeView.swift */,
 				B07973ED298D894600338BA1 /* SpacedLabel.swift */,
+				B0DC8DD529CB834F0029EA6E /* GoalReachedView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				B0C15952298EBEF0006EC7C0 /* DescriptionLabel.swift in Sources */,
 				B0DC8DCF29CA2BDA0029EA6E /* NotificationModel.swift in Sources */,
 				B0ACB0722989860F00664508 /* MonthView.swift in Sources */,
+				B0DC8DD629CB834F0029EA6E /* GoalReachedView.swift in Sources */,
 				B0ACB086298B2B4800664508 /* CardView.swift in Sources */,
 				B07973EE298D894600338BA1 /* SpacedLabel.swift in Sources */,
 				B0ACB02D298883F000664508 /* SceneDelegate.swift in Sources */,
@@ -588,6 +592,7 @@
 				DEVELOPMENT_TEAM = MAKTT332B3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SquatReminder/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Squat Tracker";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -620,6 +625,7 @@
 				DEVELOPMENT_TEAM = MAKTT332B3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SquatReminder/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Squat Tracker";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

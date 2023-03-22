@@ -14,8 +14,6 @@ class TimePickerView: UIView {
     let startTimeLabel = HeaderLabel()
     let endTimeLabel = HeaderLabel()
     let dateFormatter = DateFormatter()
-    
-    
     let startStackView = UIStackView()
     let endStackView = UIStackView()
     let stackViewContainer = UIStackView()
@@ -82,13 +80,14 @@ class TimePickerView: UIView {
     func setupStartTimePicker() {
         dateFormatter.dateFormat = "hh:mm a"
         var date = dateFormatter.date(from: "9:00 AM")
-        startTimePicker.date = date!
         
         //declare a variable and check to see if there's a selected time in userdefaults, if there is, update the date variable
         if let storedTime = UserDefaults.standard.string(forKey: "selectedStartTime") {
             date = dateFormatter.date(from: storedTime)
         }
         
+        //overrides the origial set date 900am to the new selected date
+        startTimePicker.date = date ?? Date()
         startTimePicker.addTarget(self, action: #selector(startTimePickerValueChanged), for: .valueChanged)
         startTimePicker.tintColor = colors.darkPurple
         startTimePicker.datePickerMode = UIDatePicker.Mode.time
@@ -98,8 +97,7 @@ class TimePickerView: UIView {
     @objc func startTimePickerValueChanged() {
         let selectedDate = startTimePicker.date
         let selectedTime = dateFormatter.string(from: selectedDate)
-        print("Selected Time: \(selectedTime)")
-        
+        print("🥶🥶🥶🥶 Selected Time: \(selectedTime)")
         UserDefaults.standard.set(selectedTime, forKey: "selectedStartTime")
     }
     
@@ -134,7 +132,7 @@ class TimePickerView: UIView {
             date = dateFormatter.date(from: storedTime)
         }
         
-        endTimePicker.date = date!
+        endTimePicker.date = date ?? Date()
         endTimePicker.addTarget(self, action: #selector(endTimePickerValueChanged), for: .valueChanged)
         endTimePicker.tintColor = colors.darkPurple
         endTimePicker.datePickerMode = UIDatePicker.Mode.time
