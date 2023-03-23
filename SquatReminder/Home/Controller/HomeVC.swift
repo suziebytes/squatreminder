@@ -40,7 +40,6 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         logSquatModel.homeVC = self
         notificationModel.homeDelegate = self
         setupConfetti()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,12 +52,13 @@ class HomeVC: UIViewController, NotificationViewDelegate {
             notificationModel.scheduleLocal()
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground),
+                                               name: UIApplication.willEnterForegroundNotification,
+                                               object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //        displayConfetti()
     }
     
     @objc func willEnterForeground() {

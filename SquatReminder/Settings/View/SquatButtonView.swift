@@ -72,7 +72,7 @@ class SquatButtonView: UIView {
     
     func setupSquatGoalLabel() {
         squatButton.addSubview(squatGoalLabel)
-        squatGoalLabel.setupLabel(labelTitle: "MY SQUAT GOAL")
+        squatGoalLabel.setupLabel(labelTitle: "DAILY SQUAT GOAL")
         
         squatGoalLabel.translatesAutoresizingMaskIntoConstraints = false
         squatGoalLabel.bottomAnchor.constraint(equalTo: squatButton.bottomAnchor, constant: -5).isActive = true

@@ -35,7 +35,7 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
 //        setupMaxSquatView()
         setupRemindersLabel()
         setupTimePickerView()
-
+        setupWelcomeView()
         nameView.settingsVC = self 
     }
     
@@ -44,8 +44,13 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
         
         if UserDefaults.standard.string(forKey: "key-name") != nil {
             nameView.nameButton.setTitle(UserDefaults.standard.string(forKey: "key-name"), for: .normal)
+            welcomeView.isHidden = false
+            nameView.isHidden = true
+    
         } else {
             nameView.nameButton.setTitle("ADD NAME", for: .normal)
+            welcomeView.isHidden = true
+            
         }
     
         if UserDefaults.standard.bool(forKey: "notificationSwitch"){
@@ -72,10 +77,18 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
         nameView.topAnchor.constraint(equalTo: settingsLabel.bottomAnchor).isActive = true
     }
     
+    func setupWelcomeView() {
+        view.addSubview(welcomeView)
+        welcomeView.translatesAutoresizingMaskIntoConstraints = false
+        welcomeView.topAnchor.constraint(equalTo: settingsLabel.bottomAnchor).isActive = true
+        welcomeView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        welcomeView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true 
+    }
+    
     func setupSquatButtonView() {
         view.addSubview(squatButtonView)
         squatButtonView.translatesAutoresizingMaskIntoConstraints = false
-        squatButtonView.topAnchor.constraint(equalTo: nameView.bottomAnchor, constant: 15).isActive = true
+        squatButtonView.topAnchor.constraint(equalTo: nameView.bottomAnchor, constant: 30).isActive = true
         squatButtonView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         squatButtonView.heightAnchor.constraint(equalToConstant: 150).isActive = true
     }

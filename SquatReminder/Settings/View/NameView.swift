@@ -24,7 +24,6 @@ class NameView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
      
-    
     func setupHeaderLabel() {
         addSubview(headerLabel)
 //        headerLabel.setupLabel(inputText: "HEY YOU")
