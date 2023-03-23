@@ -39,6 +39,7 @@
 		B0DC8DCF29CA2BDA0029EA6E /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DCE29CA2BDA0029EA6E /* NotificationModel.swift */; };
 		B0DC8DD229CA35AA0029EA6E /* ConfettiView in Frameworks */ = {isa = PBXBuildFile; productRef = B0DC8DD129CA35AA0029EA6E /* ConfettiView */; };
 		B0DC8DD629CB834F0029EA6E /* GoalReachedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DD529CB834F0029EA6E /* GoalReachedView.swift */; };
+		B0DC8DD829CBB4D20029EA6E /* NameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DD729CBB4D20029EA6E /* NameView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		B0DC8DCC29C903500029EA6E /* notificationsSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationsSwitch.swift; sourceTree = "<group>"; };
 		B0DC8DCE29CA2BDA0029EA6E /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		B0DC8DD529CB834F0029EA6E /* GoalReachedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalReachedView.swift; sourceTree = "<group>"; };
+		B0DC8DD729CBB4D20029EA6E /* NameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +250,7 @@
 				B0C1595E2990449A006EC7C0 /* HeaderLabels.swift */,
 				B0C1595C298F25B6006EC7C0 /* MaxSquatView.swift */,
 				B0C1595A298F04E3006EC7C0 /* SquatButtonView.swift */,
+				B0DC8DD729CBB4D20029EA6E /* NameView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				B0ACB06E298985FF00664508 /* TodayView.swift in Sources */,
 				B0DC8DCD29C903500029EA6E /* notificationsSwitch.swift in Sources */,
 				B0ACB06C29897DEA00664508 /* ColorManager.swift in Sources */,
+				B0DC8DD829CBB4D20029EA6E /* NameView.swift in Sources */,
 				B0C1595B298F04E3006EC7C0 /* SquatButtonView.swift in Sources */,
 				B0ACB07A2989DAA200664508 /* WelcomeView.swift in Sources */,
 				B0ACB0742989996800664508 /* WeeklyView.swift in Sources */,

@@ -160,7 +160,6 @@ class NotificationModel: NSObject, UNUserNotificationCenterDelegate {
         }
         todayView.getCount()
         homeDelegate?.updateMonthAndWeek()
-        //        logSquatModel.goalReached(currentCount: Int)
         completionHandler()
     }
 }
