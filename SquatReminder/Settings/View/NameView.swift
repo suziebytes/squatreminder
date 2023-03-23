@@ -41,7 +41,6 @@ class NameView: UIView {
         nameButton.translatesAutoresizingMaskIntoConstraints = false
         nameButton.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 10).isActive = true
         nameButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
-        nameButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
         nameButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
         nameButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
         nameButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
