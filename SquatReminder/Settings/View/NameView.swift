@@ -16,7 +16,7 @@ class NameView: UIView {
 
     override init(frame: CGRect) {
         super .init(frame: frame)
-        setupHeaderLabel()
+//        setupHeaderLabel()
         setupNameButton()
     }
     
@@ -24,25 +24,27 @@ class NameView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
      
-    func setupHeaderLabel() {
-        addSubview(headerLabel)
-//        headerLabel.setupLabel(inputText: "HEY YOU")
-        headerLabel.textColor = colors.darkGray
-        headerLabel.translatesAutoresizingMaskIntoConstraints = false
-        headerLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        headerLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
-    }
+//    func setupHeaderLabel() {
+//        addSubview(headerLabel)
+//        headerLabel.setupLabel(inputText: "HELLO")
+//        headerLabel.textColor = colors.darkGray
+//        headerLabel.translatesAutoresizingMaskIntoConstraints = false
+//        headerLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+//        headerLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+//    }
     
     func setupNameButton() {
         addSubview(nameButton)
         nameButton.setTitle("ADD NAME", for: .normal)
         nameButton.addTarget(self, action: #selector(alertName), for: .touchUpInside)
+        nameButton.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 30.0)
         nameButton.backgroundColor = colors.lightPurple
+        nameButton.layer.cornerRadius = 0
         nameButton.translatesAutoresizingMaskIntoConstraints = false
-        nameButton.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 10).isActive = true
+        nameButton.topAnchor.constraint(equalTo: topAnchor).isActive = true
         nameButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
         nameButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
-        nameButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
+        nameButton.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         nameButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
     }
     
