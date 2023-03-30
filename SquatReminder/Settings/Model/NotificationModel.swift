@@ -22,56 +22,54 @@ class NotificationModel: NSObject, UNUserNotificationCenterDelegate {
     let todayView = TodayView()
     var logSquatModel = LogSquatsModel()
     let calendar = Calendar.current
-
+    
     func checkCurrentTime() {
         //let trigger = UNCalendarNotificationTrigger(dateMatching: componentsFromDate, repeats: true)
         //Assign variables to start + end time from date picker - these are type Strings
-        guard let startTime = UserDefaults.standard.string(forKey: "selectedStartTime"),
-              let endTime = UserDefaults.standard.string(forKey: "selectedEndTime") else {
+        guard
+            let startTime = UserDefaults.standard.string(forKey: "selectedStartTime"),
+            let endTime = UserDefaults.standard.string(forKey: "selectedEndTime")
+        else {
             return
         }
         
-        //Convert String date to be Type Date
-        dateFormatter.locale = Locale(identifier: "en-US")
-        dateFormatter.setLocalizedDateFormatFromTemplate("hh:ss a")
-        dateFormatter.dateFormat = "hh:ss a"
+        var today = Date()
+        var startDate = convertStringToDate(time: startTime)
+        var endDate = convertStringToDate(time: endTime)
         
-        let today = Date()
-        guard let start = dateFormatter.date(from: startTime),
-              let end = dateFormatter.date(from: endTime) else {
-            return
-        }
-        print("👛👛👛👛👛this is today", today)
-        print(" 🌈 this is start", start) //type Date
-        print(" 🌈 this is end", end)
+        var todayHM = getHourMin(time: today)
+        var startHM = getHourMin(time: startDate)
+        var endHM = getHourMin(time: endDate)
         
-        if today >= start && today <= end {
+        var withinTimeFrame =
+            todayHM.0 >= startHM.0
+            && todayHM.1 <= startHM.1
+            && todayHM.0 <= endHM.0
+        
+        if withinTimeFrame {
             scheduleLocal()
         }
         removePendingNotifications()
     }
     
-//    func convertStartToDate() {
-//        //let trigger = UNCalendarNotificationTrigger(dateMatching: componentsFromDate, repeats: true)
-//        //Assign variables to start + end time from date picker - these are type Strings
-//        guard let startTime = UserDefaults.standard.string(forKey: "selectedStartTime") else {
-//            return
-//        }
-//
-//        //Convert String date to be Type Date
-//        dateFormatter.locale = Locale(identifier: "en-US")
-//        dateFormatter.setLocalizedDateFormatFromTemplate("hh:ss a")
-//        dateFormatter.dateFormat = "hh:ss a"
-//
-//        guard let start = dateFormatter.date(from: startTime) else {
-//            return
-//        }
-//
-//        let hour = calendar.component(.hour, from: start)
-//        let minutes = calendar.component(.minute, from: start)
-//        let seconds = calendar.component(.second, from: start)
-//        let time = hour:minutes:seconds
-//    }
+    func convertStringToDate(time: String) -> Date {
+        //Convert String date to be Type Date
+        dateFormatter.locale = Locale(identifier: "en-US")
+        dateFormatter.setLocalizedDateFormatFromTemplate("hh:ss a")
+        dateFormatter.dateFormat = "hh:ss a"
+        
+        guard let time = dateFormatter.date(from: time) else {
+            return Date()
+        }
+        return time
+    }
+    
+    func getHourMin(time: Date) -> (Int, Int) {
+        var hour = calendar.component(.hour, from: time)
+        var min = calendar.component(.minute, from: time)
+        
+        return (hour, min)
+    }
     
     func scheduleLocal() {
         registerCategories()
@@ -89,7 +87,7 @@ class NotificationModel: NSObject, UNUserNotificationCenterDelegate {
     func triggerNotifications() {
         //triggers notificaitons every x time
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
-
+        
         //let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger, triggerTimeInterval)
         let request = UNNotificationRequest(identifier: "squatsReminder", content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
@@ -105,7 +103,7 @@ class NotificationModel: NSObject, UNUserNotificationCenterDelegate {
         center.getNotificationSettings { settings in
             if settings.authorizationStatus == .authorized {
                 UserDefaults.standard.set(true, forKey: "notificationSwitch")
-                print("🔥 GRANTED SET TO TRUE")
+                //                print("🔥 GRANTED SET TO TRUE")
                 self.scheduleLocal()
             }
         }
@@ -164,10 +162,16 @@ class NotificationModel: NSObject, UNUserNotificationCenterDelegate {
                     logSquatModel.updateResults(tempCount: tempCount)
                     
                 } else {
-                    let alertController = UIAlertController(title: "Enter Numbers Only", message: "", preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
-                        print("User clicked OK")
-                    }))
+                    let alertController = UIAlertController(
+                        title: "Enter Numbers Only",
+                        message: "",
+                        preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(
+                        title: "Ok",
+                        style: .default,
+                        handler: { (_) in
+                            print("User clicked OK")
+                        }))
                     let window = UIApplication.shared.keyWindow
                     window?.rootViewController?.present(alertController, animated: true, completion: nil)
                 }

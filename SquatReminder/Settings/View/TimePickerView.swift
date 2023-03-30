@@ -132,9 +132,7 @@ class TimePickerView: UIView {
             date = dateFormatter.date(from: storedTime)
         }
         
-//        endTimePicker.date = date ?? Date()
-//        endTimePicker.minimumDate = Date()
-//        endTimePicker.datePickerMode = .date
+        endTimePicker.date = date ?? Date()
         endTimePicker.addTarget(self, action: #selector(endTimePickerValueChanged), for: .valueChanged)
         endTimePicker.tintColor = colors.darkPurple
         endTimePicker.datePickerMode = UIDatePicker.Mode.time
