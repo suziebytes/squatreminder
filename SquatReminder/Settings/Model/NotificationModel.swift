@@ -15,72 +15,89 @@ protocol NotificationViewDelegate: AnyObject {
 
 class NotificationModel: NSObject, UNUserNotificationCenterDelegate {
     weak var homeDelegate: NotificationViewDelegate?
-    
+    let calednar = Calendar.current
+    let dateFormatter = DateFormatter()
+    let center = UNUserNotificationCenter.current()
+    let content = UNMutableNotificationContent()
     let todayView = TodayView()
     var logSquatModel = LogSquatsModel()
+    let calendar = Calendar.current
+
+    func checkCurrentTime() {
+        //let trigger = UNCalendarNotificationTrigger(dateMatching: componentsFromDate, repeats: true)
+        //Assign variables to start + end time from date picker - these are type Strings
+        guard let startTime = UserDefaults.standard.string(forKey: "selectedStartTime"),
+              let endTime = UserDefaults.standard.string(forKey: "selectedEndTime") else {
+            return
+        }
+        
+        //Convert String date to be Type Date
+        dateFormatter.locale = Locale(identifier: "en-US")
+        dateFormatter.setLocalizedDateFormatFromTemplate("hh:ss a")
+        dateFormatter.dateFormat = "hh:ss a"
+        
+        let today = Date()
+        guard let start = dateFormatter.date(from: startTime),
+              let end = dateFormatter.date(from: endTime) else {
+            return
+        }
+        print("👛👛👛👛👛this is today", today)
+        print(" 🌈 this is start", start) //type Date
+        print(" 🌈 this is end", end)
+        
+        if today >= start && today <= end {
+            scheduleLocal()
+        }
+        removePendingNotifications()
+    }
+    
+//    func convertStartToDate() {
+//        //let trigger = UNCalendarNotificationTrigger(dateMatching: componentsFromDate, repeats: true)
+//        //Assign variables to start + end time from date picker - these are type Strings
+//        guard let startTime = UserDefaults.standard.string(forKey: "selectedStartTime") else {
+//            return
+//        }
+//
+//        //Convert String date to be Type Date
+//        dateFormatter.locale = Locale(identifier: "en-US")
+//        dateFormatter.setLocalizedDateFormatFromTemplate("hh:ss a")
+//        dateFormatter.dateFormat = "hh:ss a"
+//
+//        guard let start = dateFormatter.date(from: startTime) else {
+//            return
+//        }
+//
+//        let hour = calendar.component(.hour, from: start)
+//        let minutes = calendar.component(.minute, from: start)
+//        let seconds = calendar.component(.second, from: start)
+//        let time = hour:minutes:seconds
+//    }
     
     func scheduleLocal() {
         registerCategories()
-        
         //access current notice of user notifications
-        let center = UNUserNotificationCenter.current()
         center.removeAllPendingNotificationRequests()
-        
-        let content = UNMutableNotificationContent()
         content.title = "SQUAT TIME"
         content.body = "🔥🔥🔥\n Drop it like a Squat!"
         content.sound = .default
         content.userInfo = ["logsquats": "add to count"]
         content.categoryIdentifier = "squatsReminderCategory"
         
-        //        let componentsFromDate = Calendar.current.dateComponents(in: TimeZone.current, from: timePickerView.startTimePicker.date)
-        //        print("this is componentsFromDaate \(componentsFromDate)")
-        
-        //        let trigger = UNCalendarNotificationTrigger(dateMatching: componentsFromDate, repeats: true)
-        
-        //retreive store start and end time from date picker -> stored as strings
-        guard let startTime = UserDefaults.standard.string(forKey: "selectedStartTime"),
-              let endTime = UserDefaults.standard.string(forKey: "selectedEndTime") else {
-            return
-        }
-        print(" 🎃 this is startTime", startTime)
-        print(" 🎃 this is endTime", endTime)
-        //Format date
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en-US")
-        dateFormatter.setLocalizedDateFormatFromTemplate("hh:ss a")
-        dateFormatter.dateFormat = "hh:ss a"
-        
-        guard let start = dateFormatter.date(from: startTime),
-              let end = dateFormatter.date(from: endTime) else {
-            return
-        }
-        print(" 🌈 this is start", start, "this is type", type(of: start))
-        print(" 🌈 this is end", end)
-        
-        //use date components to get hour + minute
-//        let dateComponents = DateComponents()
-//        let calendar = Calendar.current
-//        var begTimeHour = calendar.dateComponents([.hour], from: start)
-//        var begTimeMin = calendar.dateComponents([.minute], from: start)
-//        var finalTimeHour = calendar.dateComponents([.hour], from: end)
-//        var finalTimeMin = calendar.dateComponents([.minute], from: end)
-//
-//        print("🤡this is begTime", begTimeHour,  "\n🤡this is begTime", begTimeMin)
-//        print("🤡this is begTime", finalTimeHour,  "\n🤡this is finalTime", finalTimeMin)
+        triggerNotifications()
+    }
+    
+    func triggerNotifications() {
+        //triggers notificaitons every x time
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
 
-        let timeInterval = end.timeIntervalSince(start)
-        print("😬😬😬😬😬😬", timeInterval, "This is time interval in seconds") // printed in seconds
-        
-
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-
-        
-        //        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        
+        //let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger, triggerTimeInterval)
         let request = UNNotificationRequest(identifier: "squatsReminder", content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         center.add(request)
+    }
+    
+    func removePendingNotifications() {
+        center.removeAllPendingNotificationRequests()
     }
     
     func checkForPermissions() {

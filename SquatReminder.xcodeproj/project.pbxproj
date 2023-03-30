@@ -31,6 +31,7 @@
 		B0C1595D298F25B6006EC7C0 /* MaxSquatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1595C298F25B6006EC7C0 /* MaxSquatView.swift */; };
 		B0C1595F2990449A006EC7C0 /* HeaderLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1595E2990449A006EC7C0 /* HeaderLabels.swift */; };
 		B0C1596129904AF9006EC7C0 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1596029904AF9006EC7C0 /* TimePickerView.swift */; };
+		B0D33DD729D38C430075159B /* TriggerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D33DD629D38C430075159B /* TriggerModel.swift */; };
 		B0DC8DBA29AFFA250029EA6E /* CurrentDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DB929AFFA250029EA6E /* CurrentDate.swift */; };
 		B0DC8DC029B7E4E40029EA6E /* LogSquatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DBF29B7E4E40029EA6E /* LogSquatsModel.swift */; };
 		B0DC8DC529B7E9D20029EA6E /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DC329B7E9D20029EA6E /* CoreDataModel.xcdatamodeld */; };
@@ -40,6 +41,7 @@
 		B0DC8DD229CA35AA0029EA6E /* ConfettiView in Frameworks */ = {isa = PBXBuildFile; productRef = B0DC8DD129CA35AA0029EA6E /* ConfettiView */; };
 		B0DC8DD629CB834F0029EA6E /* GoalReachedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DD529CB834F0029EA6E /* GoalReachedView.swift */; };
 		B0DC8DD829CBB4D20029EA6E /* NameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DD729CBB4D20029EA6E /* NameView.swift */; };
+		B0DC8DDA29CCFEDF0029EA6E /* Pseudo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DC8DD929CCFEDF0029EA6E /* Pseudo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,7 @@
 		B0C1595C298F25B6006EC7C0 /* MaxSquatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxSquatView.swift; sourceTree = "<group>"; };
 		B0C1595E2990449A006EC7C0 /* HeaderLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderLabels.swift; sourceTree = "<group>"; };
 		B0C1596029904AF9006EC7C0 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
+		B0D33DD629D38C430075159B /* TriggerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerModel.swift; sourceTree = "<group>"; };
 		B0DC8DB929AFFA250029EA6E /* CurrentDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDate.swift; sourceTree = "<group>"; };
 		B0DC8DBF29B7E4E40029EA6E /* LogSquatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSquatsModel.swift; sourceTree = "<group>"; };
 		B0DC8DC429B7E9D20029EA6E /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -95,6 +98,7 @@
 		B0DC8DCE29CA2BDA0029EA6E /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		B0DC8DD529CB834F0029EA6E /* GoalReachedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalReachedView.swift; sourceTree = "<group>"; };
 		B0DC8DD729CBB4D20029EA6E /* NameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameView.swift; sourceTree = "<group>"; };
+		B0DC8DD929CCFEDF0029EA6E /* Pseudo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pseudo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +162,7 @@
 				B0ACB05E29888D0700664508 /* Settings */,
 				B0ACB036298883F200664508 /* Assets.xcassets */,
 				B0ACB03B298883F200664508 /* Info.plist */,
+				B0DC8DD929CCFEDF0029EA6E /* Pseudo.swift */,
 			);
 			path = SquatReminder;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				B0DC8DCE29CA2BDA0029EA6E /* NotificationModel.swift */,
+				B0D33DD629D38C430075159B /* TriggerModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -415,10 +421,12 @@
 				B0ACB06A2988D77400664508 /* Buttons.swift in Sources */,
 				B0C1596129904AF9006EC7C0 /* TimePickerView.swift in Sources */,
 				B0ACB02F298883F000664508 /* HomeVC.swift in Sources */,
+				B0D33DD729D38C430075159B /* TriggerModel.swift in Sources */,
 				B0DC8DC529B7E9D20029EA6E /* CoreDataModel.xcdatamodeld in Sources */,
 				B0DC8DBA29AFFA250029EA6E /* CurrentDate.swift in Sources */,
 				B0ACB02B298883F000664508 /* AppDelegate.swift in Sources */,
 				B0ACB0782989BBB900664508 /* SettingsVC.swift in Sources */,
+				B0DC8DDA29CCFEDF0029EA6E /* Pseudo.swift in Sources */,
 				B0ACB06E298985FF00664508 /* TodayView.swift in Sources */,
 				B0DC8DCD29C903500029EA6E /* notificationsSwitch.swift in Sources */,
 				B0ACB06C29897DEA00664508 /* ColorManager.swift in Sources */,

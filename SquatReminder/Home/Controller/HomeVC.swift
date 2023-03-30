@@ -49,7 +49,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         weeklyView.setupBarChart()
         
         if UserDefaults.standard.bool(forKey: "notificationSwitch") {
-            notificationModel.scheduleLocal()
+            notificationModel.checkCurrentTime()
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground),
@@ -77,7 +77,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
     func displayConfetti() {
         let countGoal = UserDefaults.standard.string(forKey: "key-goal") ?? ""
         let currentCount = logSquatModel.currentCount
-        print(currentCount, countGoal, "these are the current count to compare  ⚡️")
+//        print(currentCount, countGoal, "these are the current count to compare  ⚡️")
         
         if currentCount >= Int(countGoal) ?? 0 {
             confettiView.emit(with: [
@@ -94,17 +94,26 @@ class HomeVC: UIViewController, NotificationViewDelegate {
     //MARK: Notification Banner Updates
     func didTapBanner() {
         print("this was triggered ❌")
-        let alertController = UIAlertController(title: "Log Squat", message: "", preferredStyle: .alert)
+        let alertController = UIAlertController(
+            title: "Log Squat",
+            message: "",
+            preferredStyle: .alert)
         alertController.addTextField { (textField) in
             textField.placeholder = "0"
             textField.keyboardType = .numberPad
         }
         
-        alertController.addAction(UIAlertAction(title: "No Squats", style: .default, handler: { (_) in
+        alertController.addAction(UIAlertAction(
+            title: "No Squats",
+            style: .default,
+            handler: { (_) in
             print(" ❌ User Didn't Squat")
         }))
         
-        alertController.addAction(UIAlertAction(title: "Log", style: .default, handler: {[self, weak alertController] (_) in
+        alertController.addAction(UIAlertAction(
+            title: "Log",
+            style: .default,
+            handler: {[self, weak alertController] (_) in
             let textField = alertController?.textFields![0]
             let value = textField?.text ?? ""
             let tempCount = Double(value) ?? 0 //store the inputted user value

@@ -97,7 +97,7 @@ class TimePickerView: UIView {
     @objc func startTimePickerValueChanged() {
         let selectedDate = startTimePicker.date
         let selectedTime = dateFormatter.string(from: selectedDate)
-        print("🥶🥶🥶🥶 Selected Time: \(selectedTime)")
+//        print("🥶🥶🥶🥶 Selected Time: \(selectedTime)")
         UserDefaults.standard.set(selectedTime, forKey: "selectedStartTime")
     }
     
@@ -132,7 +132,9 @@ class TimePickerView: UIView {
             date = dateFormatter.date(from: storedTime)
         }
         
-        endTimePicker.date = date ?? Date()
+//        endTimePicker.date = date ?? Date()
+//        endTimePicker.minimumDate = Date()
+//        endTimePicker.datePickerMode = .date
         endTimePicker.addTarget(self, action: #selector(endTimePickerValueChanged), for: .valueChanged)
         endTimePicker.tintColor = colors.darkPurple
         endTimePicker.datePickerMode = UIDatePicker.Mode.time
@@ -142,7 +144,7 @@ class TimePickerView: UIView {
     @objc func endTimePickerValueChanged() {
         let selectedDate = endTimePicker.date
         let selectedTime = dateFormatter.string(from: selectedDate)
-        print("Selected Time: \(selectedTime)")
+        print("Selected End Time: \(selectedTime)")
         //saves selected time
         UserDefaults.standard.set(selectedTime, forKey: "selectedEndTime")
     }

@@ -51,7 +51,7 @@ class MonthView: UIView {
             visibleDateRange: startDate...endDate,
             monthsLayout: .horizontal(options: HorizontalMonthsLayoutOptions())
         )
-        content = content.interMonthSpacing(15)
+        content = content.interMonthSpacing(10)
         content = content.verticalDayMargin(5)
         content = content.horizontalDayMargin(5)
         
@@ -65,8 +65,8 @@ class MonthView: UIView {
             // if day is contained in my array that I fetched from core data,
             self.logSquatsModel.didSquat() //fetches data
             for element in self.logSquatsModel.newDates {
-                var loggedDay = calendar.component(.day, from: element)
-                var day = day.day //assign this so we can compare Int
+                let loggedDay = calendar.component(.day, from: element)
+                let day = day.day //assign this so we can compare Int
 //                print("🔥 this is day ", day)
 //                print("⚡️ loggedDay", loggedDay)
                 
@@ -98,7 +98,7 @@ class MonthView: UIView {
         calendarView.topAnchor.constraint(equalTo: monthLabel.bottomAnchor, constant: 5).isActive = true
         calendarView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         calendarView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        calendarView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        calendarView.heightAnchor.constraint(equalToConstant: 300).isActive = true
         calendarView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
 }

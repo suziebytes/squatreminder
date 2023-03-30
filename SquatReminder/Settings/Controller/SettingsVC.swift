@@ -55,7 +55,7 @@ class SettingsVC: UIViewController, UNUserNotificationCenterDelegate {
     
         if UserDefaults.standard.bool(forKey: "notificationSwitch"){
             notificationView.notificationSwitch.setOn(true, animated: false)
-            notificationModel.scheduleLocal()
+            notificationModel.checkCurrentTime()
         } else {
             notificationView.notificationSwitch.setOn(false, animated: false)
         }
