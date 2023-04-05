@@ -11,7 +11,7 @@ import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, UITableViewDelegate {
-    var notificationModel = NotificationModel()
+    lazy var notificationModel = NotificationModel()
     var window: UIWindow?
     var timer = Timer()
     
