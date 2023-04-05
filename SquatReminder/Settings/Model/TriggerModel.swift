@@ -21,3 +21,5 @@
 //if current time is between start and end time -> trigger notificaiton
 //if current time is outside of start and end time -> remove pending notifications
 
+
+//toggle for true or false if notification has been scheduled 

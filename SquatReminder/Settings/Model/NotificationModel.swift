@@ -15,6 +15,7 @@ protocol NotificationViewDelegate: AnyObject {
 
 class NotificationModel: NSObject, UNUserNotificationCenterDelegate {
     weak var homeDelegate: NotificationViewDelegate?
+    
     let calednar = Calendar.current
     let dateFormatter = DateFormatter()
     let center = UNUserNotificationCenter.current()
@@ -22,9 +23,9 @@ class NotificationModel: NSObject, UNUserNotificationCenterDelegate {
     let todayView = TodayView()
     var logSquatModel = LogSquatsModel()
     let calendar = Calendar.current
+    var hasNotScheduled = true
     
     func checkCurrentTime() {
-        //let trigger = UNCalendarNotificationTrigger(dateMatching: componentsFromDate, repeats: true)
         //Assign variables to start + end time from date picker - these are type Strings
         guard
             let startTime = UserDefaults.standard.string(forKey: "selectedStartTime"),
@@ -33,23 +34,30 @@ class NotificationModel: NSObject, UNUserNotificationCenterDelegate {
             return
         }
         
-        var today = Date()
-        var startDate = convertStringToDate(time: startTime)
-        var endDate = convertStringToDate(time: endTime)
+        let today = Date()
+        let startDate = convertStringToDate(time: startTime)
+        let endDate = convertStringToDate(time: endTime)
         
-        var todayHM = getHourMin(time: today)
-        var startHM = getHourMin(time: startDate)
-        var endHM = getHourMin(time: endDate)
+        let todayHM = getHourMin(time: today)
+        let startHM = getHourMin(time: startDate)
+        let endHM = getHourMin(time: endDate)
         
-        var withinTimeFrame =
-            todayHM.0 >= startHM.0
-            && todayHM.1 <= startHM.1
-            && todayHM.0 <= endHM.0
+        //accessing our getHourMin tuple
+        let withinTimeFrame =
+        todayHM.0 >= startHM.0
+        && todayHM.1 <= startHM.1
+        && todayHM.0 <= endHM.0
         
-        if withinTimeFrame {
+        //if within timeframe + has not scheduled -> schedule + toggle hasNotScheduled to false
+        if withinTimeFrame && hasNotScheduled {
             scheduleLocal()
+            hasNotScheduled = false
         }
-        removePendingNotifications()
+        //if outside timeframe - removepending and toggle to true (not scheduled)
+        if !withinTimeFrame {
+            removePendingNotifications()
+            hasNotScheduled = true
+        }
     }
     
     func convertStringToDate(time: String) -> Date {
@@ -65,9 +73,10 @@ class NotificationModel: NSObject, UNUserNotificationCenterDelegate {
     }
     
     func getHourMin(time: Date) -> (Int, Int) {
-        var hour = calendar.component(.hour, from: time)
-        var min = calendar.component(.minute, from: time)
+        let hour = calendar.component(.hour, from: time)
+        let min = calendar.component(.minute, from: time)
         
+        //return tuple
         return (hour, min)
     }
     
@@ -90,7 +99,6 @@ class NotificationModel: NSObject, UNUserNotificationCenterDelegate {
         
         //let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger, triggerTimeInterval)
         let request = UNNotificationRequest(identifier: "squatsReminder", content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         center.add(request)
     }
     

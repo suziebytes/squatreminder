@@ -11,8 +11,9 @@ import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, UITableViewDelegate {
-    
+    var notificationModel = NotificationModel()
     var window: UIWindow?
+    var timer = Timer()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         registerForPushNotifications()
@@ -20,6 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITableViewDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
+        //execute Timer function every 60 seconds
+        self.timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true, block: { _ in
+//               print("🐱 timer goes off every 60 second")
+            self.notificationModel.checkCurrentTime()
+           })
         
         return true
     }
