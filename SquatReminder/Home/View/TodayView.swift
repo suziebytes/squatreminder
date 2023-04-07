@@ -74,10 +74,9 @@ class TodayView: UIView {
     
     func setupCurrentSquatButton(count: Int){
         addSubview(currentSquatButton)
-        let stringCount =  String(currentSquatCount)
         currentSquatButton.backgroundColor = colors.darkPurple
         currentSquatButton.tintColor = .white
-        currentSquatButton.setTitle("\(currentSquatCount)", for: .normal)
+        currentSquatButton.setTitle("\(count)", for: .normal)
         currentSquatButton.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 100)
         
         currentSquatButton.translatesAutoresizingMaskIntoConstraints = false

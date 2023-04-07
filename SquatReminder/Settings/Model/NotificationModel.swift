@@ -34,6 +34,7 @@ class NotificationModel: NSObject, UNUserNotificationCenterDelegate {
             return
         }
         
+        
         let today = Date()
         let startDate = convertStringToDate(time: startTime)
         let endDate = convertStringToDate(time: endTime)
@@ -41,30 +42,45 @@ class NotificationModel: NSObject, UNUserNotificationCenterDelegate {
         let todayHM = getHourMin(time: today)
         let startHM = getHourMin(time: startDate)
         let endHM = getHourMin(time: endDate)
+        let todayHour = todayHM.0
+        let todayMinute = todayHM.1
+        let startHour = startHM.0
+        let startMinute = startHM.1
+        let endHour = endHM.0
+        let endMinute = endHM.1
         
-        //accessing our getHourMin tuple
-        let withinTimeFrame =
-        todayHM.0 >= startHM.0
-        && todayHM.1 <= startHM.1
-        && todayHM.0 <= endHM.0
+        let sameHourWithinMinuteRange = todayHour == startHour && todayHour == endHour && todayMinute > startMinute && todayMinute < endMinute
+        let withinStartAndEndHour = todayHour > startHour && todayHour < endHour
+        let sameStartHour = todayHour == startHour && todayMinute >= startMinute && todayHour < endHour
+        let sameEndHour = todayHour == endHour && todayMinute <= endMinute && todayHour > startHour
         
-        //if within timeframe + has not scheduled -> schedule + toggle hasNotScheduled to false
+        let withinTimeFrame = sameHourWithinMinuteRange || withinStartAndEndHour || sameStartHour || sameEndHour
+        
+        if withinTimeFrame {
+            print("🔥 Inside")
+        } else {
+            print("💧 Outside")
+        }
+        
+        //        //if within timeframe + has not scheduled -> schedule + toggle hasNotScheduled to false
         if withinTimeFrame && hasNotScheduled {
             scheduleLocal()
             hasNotScheduled = false
+            print("🦊 timer goes off")
         }
         //if outside timeframe - removepending and toggle to true (not scheduled)
         if !withinTimeFrame {
             removePendingNotifications()
             hasNotScheduled = true
+            print("🦊 timer SAFLAJF:A")
         }
     }
     
     func convertStringToDate(time: String) -> Date {
         //Convert String date to be Type Date
         dateFormatter.locale = Locale(identifier: "en-US")
-        dateFormatter.setLocalizedDateFormatFromTemplate("hh:ss a")
-        dateFormatter.dateFormat = "hh:ss a"
+        dateFormatter.setLocalizedDateFormatFromTemplate("hh:mm a")
+        dateFormatter.dateFormat = "hh:mm a"
         
         guard let time = dateFormatter.date(from: time) else {
             return Date()

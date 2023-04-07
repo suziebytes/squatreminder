@@ -22,8 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITableViewDelegate {
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
         //execute Timer function every 60 seconds
-        self.timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true, block: { _ in
-//               print("🐱 timer goes off every 60 second")
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
             self.notificationModel.checkCurrentTime()
            })
         

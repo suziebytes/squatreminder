@@ -97,7 +97,7 @@ class TimePickerView: UIView {
     @objc func startTimePickerValueChanged() {
         let selectedDate = startTimePicker.date
         let selectedTime = dateFormatter.string(from: selectedDate)
-//        print("🥶🥶🥶🥶 Selected Time: \(selectedTime)")
+        print("🥶🥶🥶🥶 Selected Time: \(selectedTime)")
         UserDefaults.standard.set(selectedTime, forKey: "selectedStartTime")
     }
     
