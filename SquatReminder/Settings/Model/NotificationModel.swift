@@ -55,24 +55,18 @@ class NotificationModel: NSObject, UNUserNotificationCenterDelegate {
         let sameEndHour = todayHour == endHour && todayMinute <= endMinute && todayHour > startHour
         
         let withinTimeFrame = sameHourWithinMinuteRange || withinStartAndEndHour || sameStartHour || sameEndHour
-        
-        if withinTimeFrame {
-            print("🔥 Inside")
-        } else {
-            print("💧 Outside")
-        }
-        
-        //        //if within timeframe + has not scheduled -> schedule + toggle hasNotScheduled to false
+
+        //if within timeframe + has not scheduled -> schedule + toggle hasNotScheduled to false
         if withinTimeFrame && hasNotScheduled {
             scheduleLocal()
             hasNotScheduled = false
-            print("🦊 timer goes off")
+            print("🔥 Inside")
         }
         //if outside timeframe - removepending and toggle to true (not scheduled)
         if !withinTimeFrame {
             removePendingNotifications()
             hasNotScheduled = true
-            print("🦊 timer SAFLAJF:A")
+            print("💧 Outside")
         }
     }
     
