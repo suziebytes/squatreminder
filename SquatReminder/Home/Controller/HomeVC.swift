@@ -26,6 +26,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
     var weeklyViewModel = WeeklyViewModel()
     let notificationModel = NotificationModel()
     let confettiView = ConfettiView()
+    var timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,11 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         logSquatModel.homeVC = self
         notificationModel.homeDelegate = self
         setupConfetti()
+        
+        //execute Timer function every 60 seconds
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+            self.notificationModel.checkCurrentTime()
+           })
     }
     
     override func viewWillAppear(_ animated: Bool) {

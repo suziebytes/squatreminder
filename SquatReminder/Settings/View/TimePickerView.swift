@@ -79,7 +79,7 @@ class TimePickerView: UIView {
 
     func setupStartTimePicker() {
         dateFormatter.dateFormat = "hh:mm a"
-        var date = dateFormatter.date(from: "9:00 AM")
+        var date = dateFormatter.date(from: "8:00 AM")
         
         //declare a variable and check to see if there's a selected time in userdefaults, if there is, update the date variable
         if let storedTime = UserDefaults.standard.string(forKey: "selectedStartTime") {
