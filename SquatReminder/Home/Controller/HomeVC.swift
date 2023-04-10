@@ -42,10 +42,12 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         notificationModel.homeDelegate = self
         setupConfetti()
         
+        todayView.currentSquatButton.addTarget(self, action: #selector(didTapBanner), for: .touchUpInside)
+        
         //execute Timer function every 60 seconds
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
             self.notificationModel.checkCurrentTime()
-           })
+       })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +55,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         welcomeView.setupNameLabel()
         todayView.setupDailyButton()
         weeklyView.setupBarChart()
+        todayView.getCount()
         
         if UserDefaults.standard.bool(forKey: "notificationSwitch") {
             notificationModel.checkCurrentTime()
@@ -98,7 +101,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
     }
     
     //MARK: Notification Banner Updates
-    func didTapBanner() {
+    @objc func didTapBanner() {
         print("this was triggered ❌")
         let alertController = UIAlertController(
             title: "Log Squat",

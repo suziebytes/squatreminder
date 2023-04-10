@@ -34,7 +34,6 @@ class NotificationModel: NSObject, UNUserNotificationCenterDelegate {
             return
         }
         
-        
         let today = Date()
         let startDate = convertStringToDate(time: startTime)
         let endDate = convertStringToDate(time: endTime)

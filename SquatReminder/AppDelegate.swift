@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITableViewDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
-    
+
+        
         return true
     }
     

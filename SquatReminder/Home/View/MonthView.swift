@@ -92,7 +92,7 @@ class MonthView: UIView {
         calendarView.layer.cornerRadius = 15
         calendarView.layer.shadowColor = UIColor.darkGray.cgColor
         calendarView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
-        calendarView.layer.shadowOpacity = 0.3
+        calendarView.layer.shadowOpacity = 0.25
         calendarView.layer.shadowRadius = 5.0
         calendarView.translatesAutoresizingMaskIntoConstraints = false
         calendarView.topAnchor.constraint(equalTo: monthLabel.bottomAnchor, constant: 5).isActive = true

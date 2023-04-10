@@ -36,6 +36,7 @@ class TodayView: UIView {
     
     //MARK: Fetching current count
     func getCount() {
+        print("⌚️ Getting count..")
         // initialize SquatEntity Class
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         // Fetch result of today's squatEntity.count
