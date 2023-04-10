@@ -151,6 +151,7 @@ class HomeVC: UIViewController, NotificationViewDelegate {
         scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
     }
     
     func configureStackView() {
