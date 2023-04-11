@@ -9,7 +9,7 @@ Welcome to my second app! I created this project from scratch with the goal to l
 **Here's What I Learned: **
 </br> ✅ CoreData and UserDefault for data management 
 </br> ✅ Introduction to Protocol / Delegates 
-</br> ✅ UserNotification Framework 
+</br> ✅ UserNotification / Push Notifications Framework 
 </br> ✅ Date & DateComponents
 </br> ✅ BarChartKit - 3rd Party Library 
 </br> ✅ ConfettiView - 3rd Party Library 
@@ -21,5 +21,7 @@ Welcome to my second app! I created this project from scratch with the goal to l
 </br> ✅ StackView
 </br> ✅ Familiarization, repetition, application of classes/struts
 </br> ✅ MVC design architecture - *Practice makes perfect! I definitely am getting better with this!*
+
+**Here Are Skills I Perfected A Little Bit More** 
 
 
