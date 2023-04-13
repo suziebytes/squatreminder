@@ -104,7 +104,7 @@ class NotificationModel: NSObject, UNUserNotificationCenterDelegate {
     
     func triggerNotifications() {
         //triggers notificaitons every x time
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: true)
         
         //let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger, triggerTimeInterval)
         let request = UNNotificationRequest(identifier: "squatsReminder", content: content, trigger: trigger)
